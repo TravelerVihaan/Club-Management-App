@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Club Management Application</title>
+<script>
+	alert("Welcome in Club Management Application!");
+</script>
+</head>
+<body>
+	<a th:href="@{/login}">Login Page</a>
+	
+	<a th:href="@{/test}">Test Security Page</a>
+	<br>
+	<form action="logout" th:action="@{/logout}" method="post" >
+        <input type="submit" value="Log me out" />
+    </form>
+</body>
+</html>
