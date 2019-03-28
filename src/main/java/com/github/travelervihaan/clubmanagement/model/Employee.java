@@ -26,7 +26,7 @@ public class Employee {
 	@NotNull
 	private String lastName;
 	
-	Employee(){};
+	public Employee(){};
 	public Employee(String username, String password, String firstName, String lastName) {
 		this.username = username;
 		this.password = password;
