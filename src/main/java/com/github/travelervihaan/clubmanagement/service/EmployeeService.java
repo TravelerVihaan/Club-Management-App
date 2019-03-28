@@ -15,8 +15,12 @@ public class EmployeeService {
 	
 	@Autowired
 	public EmployeeService(EmployeeRepository employeeRepo, PasswordEncoder passwordEncoder) {
-		this.employeeRepo = employeeRepo;
 		this.passwordEncoder = passwordEncoder;
+	}
+	
+	@Autowired
+	public void setEmployeeRepository(EmployeeRepository employeeRepo) {
+		this.employeeRepo = employeeRepo;
 	}
 	
 	public void addNewEmployee(Employee employee) {
