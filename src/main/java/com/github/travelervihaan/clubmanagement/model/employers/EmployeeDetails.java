@@ -18,6 +18,9 @@ public class EmployeeDetails implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_title")
     JobTitle jobTitle;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="contract_id")
+    ContractType contractType;
 
     public EmployeeDetails(){}
 
@@ -41,11 +44,20 @@ public class EmployeeDetails implements Serializable {
         this.jobTitle = jobTitle;
     }
 
+    public ContractType getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(ContractType contractType) {
+        this.contractType = contractType;
+    }
+
     @Override
     public String toString() {
         return "EmployeeDetails{" +
                 "id=" + id +
                 ", jobTitle=" + jobTitle +
+                ", contractType=" + contractType +
                 '}';
     }
 }

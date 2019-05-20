@@ -1,7 +1,7 @@
 package com.github.travelervihaan.clubmanagement.model.employers;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
@@ -14,13 +14,13 @@ public class JobTitle implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_title")
     Long id;
-    @NotNull
+    @NotEmpty
     @Column(name="title")
     String jobTitle;
 
     public JobTitle(){}
 
-    public JobTitle(@NotNull String jobTitle) {
+    public JobTitle(@NotEmpty String jobTitle) {
         this.jobTitle = jobTitle;
     }
 

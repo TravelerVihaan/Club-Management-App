@@ -1,6 +1,7 @@
 package com.github.travelervihaan.clubmanagement.model.employers;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -14,20 +15,20 @@ public class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_employee")
 	private Long id;
-	@NotNull
-	//@Column(unique=true)
+	@NotEmpty
+	@Column(unique=true)
 	private String username;
-	@NotNull
+	@NotEmpty
 	private String password;
-	@NotNull
+	@NotEmpty
 	private String firstName;
-	@NotNull
+	@NotEmpty
 	private String lastName;
 	@OneToOne
 	private EmployeeDetails employeeDetails;
 	
 	public Employee(){};
-	public Employee(String username, String password, String firstName, String lastName) {
+	public Employee(@NotEmpty String username, @NotEmpty String password, @NotEmpty String firstName, @NotEmpty String lastName) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
