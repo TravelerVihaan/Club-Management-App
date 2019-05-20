@@ -12,15 +12,16 @@ public class EmployeeDetails implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_employee_details")
-    Long id;
+    private Long id;
     //Date hireDay
     //TODO
+    private double salary;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_title")
-    JobTitle jobTitle;
+    private JobTitle jobTitle;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="contract_id")
-    ContractType contractType;
+    private ContractType contractType;
 
     public EmployeeDetails(){}
 

@@ -13,10 +13,10 @@ public class JobTitle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_title")
-    Long id;
+    private Long id;
     @NotEmpty
     @Column(name="title")
-    String jobTitle;
+    private String jobTitle;
 
     public JobTitle(){}
 

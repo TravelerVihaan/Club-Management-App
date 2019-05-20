@@ -13,10 +13,10 @@ public class ContractType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="contract_id")
-    Long id;
+    private Long id;
     @NotNull
     @Column(unique = true)
-    String contractType;
+    private String contractType;
 
     public ContractType(){}
 
