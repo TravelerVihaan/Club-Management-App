@@ -16,13 +16,15 @@ public class WorkDay implements Serializable {
     private int dayOfMonth;
     private int month;
     private int year;
+    private int workingTime;
 
     public WorkDay(){}
 
-    public WorkDay(int dayOfMonth, int month, int year) {
+    public WorkDay(int dayOfMonth, int month, int year, int workingTime) {
         this.dayOfMonth = dayOfMonth;
         this.month = month;
         this.year = year;
+        this.workingTime = workingTime;
     }
 
     public Long getId() {
@@ -57,6 +59,14 @@ public class WorkDay implements Serializable {
         this.year = year;
     }
 
+    public int getWorkingTime() {
+        return workingTime;
+    }
+
+    public void setWorkingTime(int workingTime) {
+        this.workingTime = workingTime;
+    }
+
     @Override
     public String toString() {
         return "WorkDay{" +
@@ -64,6 +74,7 @@ public class WorkDay implements Serializable {
                 ", dayOfMonth=" + dayOfMonth +
                 ", month=" + month +
                 ", year=" + year +
+                ", workingTime=" + workingTime +
                 '}';
     }
 }
