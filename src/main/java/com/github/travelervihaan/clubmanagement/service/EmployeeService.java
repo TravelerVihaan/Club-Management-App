@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.repository.EmployeeRepository;
+import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
 
 @Service
 public class EmployeeService {

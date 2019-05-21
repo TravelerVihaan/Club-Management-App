@@ -17,7 +17,7 @@ public class EmployeeDetails implements Serializable {
     //TODO
     private double salary;
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_title")
+    @JoinColumn(name="title_id")
     private JobTitle jobTitle;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="contract_id")
@@ -31,6 +31,14 @@ public class EmployeeDetails implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
     public void setId(Long id) {
@@ -57,6 +65,7 @@ public class EmployeeDetails implements Serializable {
     public String toString() {
         return "EmployeeDetails{" +
                 "id=" + id +
+                ", salary=" + salary +
                 ", jobTitle=" + jobTitle +
                 ", contractType=" + contractType +
                 '}';

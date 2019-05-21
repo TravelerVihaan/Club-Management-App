@@ -11,7 +11,7 @@ public class WorkDay implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "workday_id")
+    @Column(name = "id_workday")
     private Long id;
     private int dayOfMonth;
     private int month;
@@ -55,5 +55,15 @@ public class WorkDay implements Serializable {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkDay{" +
+                "id=" + id +
+                ", dayOfMonth=" + dayOfMonth +
+                ", month=" + month +
+                ", year=" + year +
+                '}';
     }
 }

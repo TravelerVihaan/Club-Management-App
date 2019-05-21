@@ -12,7 +12,7 @@ public class ContractType implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="contract_id")
+    @Column(name="id_contract")
     private Long id;
     @NotNull
     @Column(unique = true)

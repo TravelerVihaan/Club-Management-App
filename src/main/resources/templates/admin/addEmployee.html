@@ -14,6 +14,15 @@
 		<p th:errors="*{lastName}">Last Name Errors</p>
 		<input th:field="*{lastName}" placeholder="LastName" /><br>
 		<input th:field="*{password}" type="password" placeholder="Password" /><br>
+
+		<select class="form-control" id="jobTitle" name="jobTitle">
+			<option th:each="title:${jobTitles}" th:value="${title}" th:utext="${title}" />
+		</select>
+
+		<select class="form-control" id="contractType" name="contractType">
+			<option th:each="contract:${contractTypes}" th:value="${contract}" th:utext="${contract}" />
+		</select>
+
 		<input type="submit" value="Add Employee"/>
 	</form>
 </body>

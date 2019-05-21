@@ -14,7 +14,7 @@ public class Event {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "event_id")
+	@Column(name = "id_event")
 	private Long id;
 	@Column(name = "event_name")
 	@NotNull
