@@ -1,4 +1,4 @@
-package com.github.travelervihaan.clubmanagement.web.controller;
+package com.github.travelervihaan.clubmanagement.controller.workdiagram;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
