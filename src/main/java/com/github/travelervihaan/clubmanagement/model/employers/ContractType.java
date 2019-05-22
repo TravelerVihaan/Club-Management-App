@@ -1,8 +1,10 @@
 package com.github.travelervihaan.clubmanagement.model.employers;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="contracts")
@@ -14,9 +16,11 @@ public class ContractType implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_contract")
     private Long id;
-    @NotNull
-    @Column(unique = true)
+    @NotEmpty
+    @Column(unique = true, nullable = false)
     private String contractType;
+    @OneToMany(mappedBy = "contractType")
+    private List<EmployeeDetails> employeeDetails;
 
     public ContractType(){}
 
@@ -38,6 +42,14 @@ public class ContractType implements Serializable {
 
     public void setContractType(String contractType) {
         this.contractType = contractType;
+    }
+
+    public List<EmployeeDetails> getEmployeeDetails() {
+        return employeeDetails;
+    }
+
+    public void setEmployeeDetails(List<EmployeeDetails> employeeDetails) {
+        this.employeeDetails = employeeDetails;
     }
 
     @Override

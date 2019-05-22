@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name= "employee_details")
+@Table(name= "employers_details")
 public class EmployeeDetails implements Serializable {
 
     private static final long serialVersionUID = 7021150458271420830L;
@@ -16,10 +16,10 @@ public class EmployeeDetails implements Serializable {
     //Date hireDay
     //TODO
     private double salary;
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="title_id")
     private JobTitle jobTitle;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="contract_id")
     private ContractType contractType;
 
@@ -33,13 +33,9 @@ public class EmployeeDetails implements Serializable {
         return id;
     }
 
-    public double getSalary() {
-        return salary;
-    }
+    public double getSalary() { return salary; }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
+    public void setSalary(double salary) { this.salary = salary; }
 
     public void setId(Long id) {
         this.id = id;

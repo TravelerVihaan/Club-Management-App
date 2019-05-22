@@ -16,13 +16,16 @@ public class Employee implements Serializable {
 	@Column(name = "id_employee")
 	private Long id;
 	@NotEmpty
-	@Column(unique=true)
+	@Column(unique=true, nullable = false)
 	private String username;
 	@NotEmpty
+	@Column(nullable = false)
 	private String password;
 	@NotEmpty
+	@Column(nullable = false)
 	private String firstName;
 	@NotEmpty
+	@Column(nullable = false)
 	private String lastName;
 	@OneToOne
 	private EmployeeDetails employeeDetails;
