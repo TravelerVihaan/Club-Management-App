@@ -1,5 +1,6 @@
 package com.github.travelervihaan.clubmanagement.model.employers;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -24,9 +25,7 @@ public class ContractType implements Serializable {
 
     public ContractType(){}
 
-    public ContractType(@NotNull String contractType) {
-        this.contractType = contractType;
-    }
+    public ContractType(@NotNull String contractType) { this.contractType = contractType; }
 
     public Long getId() {
         return id;
