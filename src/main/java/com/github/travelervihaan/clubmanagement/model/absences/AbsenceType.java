@@ -2,6 +2,7 @@ package com.github.travelervihaan.clubmanagement.model.absences;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="abscences")
@@ -16,6 +17,8 @@ public class AbsenceType implements Serializable {
 
     private String abscenceType;
 
+    @OneToMany(mappedBy = "absenceApproval")
+    private List<Absence> absences;
 
     public AbsenceType(){}
     public AbsenceType(String abscenceType) {
@@ -36,6 +39,14 @@ public class AbsenceType implements Serializable {
 
     public void setAbscenceType(String abscenceType) {
         this.abscenceType = abscenceType;
+    }
+
+    public List<Absence> getAbsences() {
+        return absences;
+    }
+
+    public void setAbsences(List<Absence> absences) {
+        this.absences = absences;
     }
 
     @Override

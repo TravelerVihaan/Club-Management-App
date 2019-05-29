@@ -15,7 +15,7 @@ public class EmployeeDetails implements Serializable {
     private Long id;
     //Date hireDay
     //TODO
-    private double salary;
+    private Double salary;
     @ManyToOne
     @JoinColumn(name="title_id")
     private JobTitle jobTitle;
@@ -33,7 +33,7 @@ public class EmployeeDetails implements Serializable {
         return id;
     }
 
-    public double getSalary() { return salary; }
+    public Double getSalary() { return salary; }
 
     public void setSalary(double salary) { this.salary = salary; }
 

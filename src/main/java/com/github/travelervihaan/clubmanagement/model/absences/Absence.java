@@ -17,15 +17,80 @@ public class Absence implements Serializable {
     //FK
     private Employee employee;
 
-    private int absenceFromDay;
-    private int absenceFromMonth;
+    private Integer absenceFromDay;
+    private Integer absenceFromMonth;
 
-    private int absenceToDay;
-    private int absenceToMonth;
+    private Integer absenceToDay;
+    private Integer absenceToMonth;
 
-    //FK
+    @ManyToOne
+    @JoinColumn(name="approval_id")
     private AbsenceApprovalStatus absenceApprovalStatus;
-    //FK
+    @ManyToOne
+    @JoinColumn(name="absence_type_id")
     private AbsenceType absenceType;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Integer getAbsenceFromDay() {
+        return absenceFromDay;
+    }
+
+    public void setAbsenceFromDay(Integer absenceFromDay) {
+        this.absenceFromDay = absenceFromDay;
+    }
+
+    public Integer getAbsenceFromMonth() {
+        return absenceFromMonth;
+    }
+
+    public void setAbsenceFromMonth(Integer absenceFromMonth) {
+        this.absenceFromMonth = absenceFromMonth;
+    }
+
+    public Integer getAbsenceToDay() {
+        return absenceToDay;
+    }
+
+    public void setAbsenceToDay(Integer absenceToDay) {
+        this.absenceToDay = absenceToDay;
+    }
+
+    public Integer getAbsenceToMonth() {
+        return absenceToMonth;
+    }
+
+    public void setAbsenceToMonth(Integer absenceToMonth) {
+        this.absenceToMonth = absenceToMonth;
+    }
+
+    public AbsenceApprovalStatus getAbsenceApprovalStatus() {
+        return absenceApprovalStatus;
+    }
+
+    public void setAbsenceApprovalStatus(AbsenceApprovalStatus absenceApprovalStatus) {
+        this.absenceApprovalStatus = absenceApprovalStatus;
+    }
+
+    public AbsenceType getAbsenceType() {
+        return absenceType;
+    }
+
+    public void setAbsenceType(AbsenceType absenceType) {
+        this.absenceType = absenceType;
+    }
 }
