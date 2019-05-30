@@ -5,19 +5,19 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="abscences")
+@Table(name="absence_types")
 public class AbsenceType implements Serializable {
 
     private static final long serialVersionUID = 13L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_absence")
+    @Column(name="id_absence_type")
     private Long id;
 
     private String abscenceType;
 
-    @OneToMany(mappedBy = "absenceApproval")
+    @OneToMany(mappedBy = "absenceType")
     private List<Absence> absences;
 
     public AbsenceType(){}

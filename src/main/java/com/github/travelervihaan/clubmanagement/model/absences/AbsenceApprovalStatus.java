@@ -17,7 +17,7 @@ public class AbsenceApprovalStatus implements Serializable {
 
     private String status;
 
-    @OneToMany(mappedBy = "absenceApproval")
+    @OneToMany(mappedBy = "absenceApprovalStatus")
     private List<Absence> absences;
 
     public AbsenceApprovalStatus(){}

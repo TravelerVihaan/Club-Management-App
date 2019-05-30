@@ -13,6 +13,7 @@ public class Absence implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_absence")
     private Long id;
     //FK
     private Employee employee;
