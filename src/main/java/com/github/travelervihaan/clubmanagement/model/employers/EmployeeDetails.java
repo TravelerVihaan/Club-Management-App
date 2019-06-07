@@ -7,8 +7,6 @@ import java.io.Serializable;
 @Table(name= "employers_details")
 public class EmployeeDetails implements Serializable {
 
-    private static final long serialVersionUID = 7021150458271420830L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_employee_details")
@@ -35,7 +33,7 @@ public class EmployeeDetails implements Serializable {
 
     public Double getSalary() { return salary; }
 
-    public void setSalary(double salary) { this.salary = salary; }
+    public void setSalary(Double salary) { this.salary = salary; }
 
     public void setId(Long id) {
         this.id = id;

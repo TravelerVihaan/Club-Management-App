@@ -9,8 +9,6 @@ import java.util.List;
 @Table(name = "job_title")
 public class JobTitle implements Serializable {
 
-    private static final long serialVersionUID = 7021150458271420831L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_title")

@@ -11,8 +11,6 @@ import java.util.List;
 @Table(name="contracts")
 public class ContractType implements Serializable {
 
-    private static final long serialVersionUID = 7021150458271420832L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_contract")

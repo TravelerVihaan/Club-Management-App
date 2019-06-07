@@ -7,14 +7,12 @@ import java.io.Serializable;
 @Table(name="payrolls")
 public class Payroll implements Serializable {
 
-    private static final long serialVersionUID = 70L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int workedDays;
-    private double workedHours;
-    private double salary;
+    private Integer workedDays;
+    private Double workedHours;
+    private Double salary;
 
     Payroll(){}
 
@@ -32,27 +30,27 @@ public class Payroll implements Serializable {
         this.id = id;
     }
 
-    public int getWorkedDays() {
+    public Integer getWorkedDays() {
         return workedDays;
     }
 
-    public void setWorkedDays(int workedDays) {
+    public void setWorkedDays(Integer workedDays) {
         this.workedDays = workedDays;
     }
 
-    public double getWorkedHours() {
+    public Double getWorkedHours() {
         return workedHours;
     }
 
-    public void setWorkedHours(double workedHours) {
+    public void setWorkedHours(Double workedHours) {
         this.workedHours = workedHours;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 

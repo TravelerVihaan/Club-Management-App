@@ -4,25 +4,24 @@ import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="absences")
 public class Absence implements Serializable {
 
-    private static final long serialVersionUID = 11L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_absence")
     private Long id;
-    //FK
+
+    private LocalDate absenceFromDay;
+
+    private LocalDate absenceToDay;
+
+    @ManyToOne
+    @JoinColumn(name="employee_id")
     private Employee employee;
-
-    private Integer absenceFromDay;
-    private Integer absenceFromMonth;
-
-    private Integer absenceToDay;
-    private Integer absenceToMonth;
 
     @ManyToOne
     @JoinColumn(name="approval_id")
@@ -39,44 +38,26 @@ public class Absence implements Serializable {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    public Employee getEmployee() { return employee; }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
-    public Integer getAbsenceFromDay() {
+    public LocalDate getAbsenceFromDay() {
         return absenceFromDay;
     }
 
-    public void setAbsenceFromDay(Integer absenceFromDay) {
+    public void setAbsenceFromDay(LocalDate absenceFromDay) {
         this.absenceFromDay = absenceFromDay;
     }
 
-    public Integer getAbsenceFromMonth() {
-        return absenceFromMonth;
-    }
-
-    public void setAbsenceFromMonth(Integer absenceFromMonth) {
-        this.absenceFromMonth = absenceFromMonth;
-    }
-
-    public Integer getAbsenceToDay() {
+    public LocalDate getAbsenceToDay() {
         return absenceToDay;
     }
 
-    public void setAbsenceToDay(Integer absenceToDay) {
+    public void setAbsenceToDay(LocalDate absenceToDay) {
         this.absenceToDay = absenceToDay;
-    }
-
-    public Integer getAbsenceToMonth() {
-        return absenceToMonth;
-    }
-
-    public void setAbsenceToMonth(Integer absenceToMonth) {
-        this.absenceToMonth = absenceToMonth;
     }
 
     public AbsenceApprovalStatus getAbsenceApprovalStatus() {
@@ -93,5 +74,17 @@ public class Absence implements Serializable {
 
     public void setAbsenceType(AbsenceType absenceType) {
         this.absenceType = absenceType;
+    }
+
+    @Override
+    public String toString() {
+        return "Absence{" +
+                "id=" + id +
+                ", absenceFromDay=" + absenceFromDay +
+                ", absenceToDay=" + absenceToDay +
+                ", employee=" + employee +
+                ", absenceApprovalStatus=" + absenceApprovalStatus +
+                ", absenceType=" + absenceType +
+                '}';
     }
 }

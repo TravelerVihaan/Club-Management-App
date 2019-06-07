@@ -1,29 +1,32 @@
 package com.github.travelervihaan.clubmanagement.model.workdiagram;
 
+import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "work_day")
 public class WorkDay implements Serializable {
 
-    private static final long serialVersionUID = 7021150458271420834L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_workday")
     private Long id;
-    private int dayOfMonth;
-    private int month;
-    private int year;
-    private int workingTime;
+    private LocalDate date;
+    private Integer workingTime;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="workday_employers",
+                joinColumns = {@JoinColumn(name = "workday_id", referencedColumnName = "id_workday")},
+                inverseJoinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "id_employee")})
+    private List<Employee> employers;
 
     public WorkDay(){}
 
-    public WorkDay(int dayOfMonth, int month, int year, int workingTime) {
-        this.dayOfMonth = dayOfMonth;
-        this.month = month;
-        this.year = year;
+    public WorkDay(LocalDate date, int workingTime) {
+        this.date = date;
         this.workingTime = workingTime;
     }
 
@@ -35,46 +38,37 @@ public class WorkDay implements Serializable {
         this.id = id;
     }
 
-    public int getDayOfMonth() {
-        return dayOfMonth;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDayOfMonth(int dayOfMonth) {
-        this.dayOfMonth = dayOfMonth;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    public void setWorkingTime(Integer workingTime) {
+        this.workingTime = workingTime;
     }
 
     public int getWorkingTime() {
         return workingTime;
     }
 
-    public void setWorkingTime(int workingTime) {
-        this.workingTime = workingTime;
+    public List<Employee> getEmployers() {
+        return employers;
+    }
+
+    public void setEmployers(List<Employee> employers) {
+        this.employers = employers;
     }
 
     @Override
     public String toString() {
         return "WorkDay{" +
                 "id=" + id +
-                ", dayOfMonth=" + dayOfMonth +
-                ", month=" + month +
-                ", year=" + year +
+                ", date=" + date +
                 ", workingTime=" + workingTime +
+                ", employers=" + employers +
                 '}';
     }
 }

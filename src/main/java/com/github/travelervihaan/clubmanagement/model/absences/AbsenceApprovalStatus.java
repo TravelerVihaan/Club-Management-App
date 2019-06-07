@@ -8,8 +8,6 @@ import java.util.List;
 @Table(name="absences_approvals")
 public class AbsenceApprovalStatus implements Serializable {
 
-    private static final long serialVersionUID = 12L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_absence_approval")

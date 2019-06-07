@@ -1,15 +1,17 @@
 package com.github.travelervihaan.clubmanagement.model.employers;
 
+import com.github.travelervihaan.clubmanagement.model.absences.Absence;
+import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "employers")
 public class Employee implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +31,10 @@ public class Employee implements Serializable {
 	private String lastName;
 	@OneToOne
 	private EmployeeDetails employeeDetails;
+	@ManyToMany(mappedBy="employers")
+	private List<WorkDay> workDays;
+	@OneToMany(mappedBy = "employee")
+	private List<Absence> absences;
 	
 	public Employee(){}
 	public Employee(@NotEmpty String username, @NotEmpty String password, @NotEmpty String firstName, @NotEmpty String lastName) {
@@ -84,6 +90,22 @@ public class Employee implements Serializable {
 
 	public void setEmployeeDetails(EmployeeDetails employeeDetails) {
 		this.employeeDetails = employeeDetails;
+	}
+
+	public List<WorkDay> getWorkDays() {
+		return workDays;
+	}
+
+	public void setWorkDays(List<WorkDay> workDays) {
+		this.workDays = workDays;
+	}
+
+	public List<Absence> getAbsences() {
+		return absences;
+	}
+
+	public void setAbsences(List<Absence> absences) {
+		this.absences = absences;
 	}
 
 	@Override
