@@ -3,6 +3,7 @@ package com.github.travelervihaan.clubmanagement.model.absences;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -14,9 +15,11 @@ public class Absence implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_absence")
     private Long id;
-
+    @NotNull
+    @Column(nullable = false)
     private LocalDate absenceFromDay;
-
+    @NotNull
+    @Column(nullable = false)
     private LocalDate absenceToDay;
 
     @ManyToOne

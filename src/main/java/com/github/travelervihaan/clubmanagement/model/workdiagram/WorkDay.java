@@ -3,6 +3,7 @@ package com.github.travelervihaan.clubmanagement.model.workdiagram;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,9 +16,20 @@ public class WorkDay implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_workday")
     private Long id;
+    @NotNull
+    @Column(nullable = false, unique = true)
     private LocalDate date;
+    @NotNull
+    @Column(nullable = false)
     private Integer workingTime;
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    private String bookedArtist;
+
+    @ManyToOne
+    @JoinColumn(name="contract_id")
+    private WorkDayImportance workDayImportance;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     @JoinTable(name="workday_employers",
                 joinColumns = {@JoinColumn(name = "workday_id", referencedColumnName = "id_workday")},
                 inverseJoinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "id_employee")})

@@ -1,6 +1,7 @@
 package com.github.travelervihaan.clubmanagement.model.absences;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +13,8 @@ public class AbsenceApprovalStatus implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_absence_approval")
     private Long id;
-
+    @NotEmpty
+    @Column(unique = true, nullable = false)
     private String status;
 
     @OneToMany(mappedBy = "absenceApprovalStatus")

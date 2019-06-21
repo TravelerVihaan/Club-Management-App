@@ -29,7 +29,7 @@ public class Employee implements Serializable {
 	@NotEmpty
 	@Column(nullable = false)
 	private String lastName;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private EmployeeDetails employeeDetails;
 	@ManyToMany(mappedBy="employers")
 	private List<WorkDay> workDays;
