@@ -22,13 +22,19 @@ public class Absence implements Serializable {
     @Column(nullable = false)
     private LocalDate absenceToDay;
 
+    @NotNull
+    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name="employee_id")
     private Employee employee;
 
+    @NotNull
+    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name="approval_id")
     private AbsenceApprovalStatus absenceApprovalStatus;
+    @NotNull
+    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name="absence_type_id")
     private AbsenceType absenceType;

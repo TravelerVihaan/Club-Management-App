@@ -1,6 +1,9 @@
 package com.github.travelervihaan.clubmanagement.model.payrolls;
 
+import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -10,16 +13,28 @@ public class Payroll implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Column(nullable = false)
     private Integer workedDays;
+    @NotNull
+    @Column(nullable = false)
     private Double workedHours;
+    @NotNull
+    @Column(nullable = false)
     private Double salary;
+    @NotNull
+    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name="employee_id")
+    private Employee employee;
 
     Payroll(){}
 
-    public Payroll(int workedDays, double workedHours, double salary) {
+    public Payroll(int workedDays, double workedHours, double salary, Employee employee) {
         this.workedDays = workedDays;
         this.workedHours = workedHours;
         this.salary = salary;
+        this.employee = employee;
     }
 
     public Long getId() {
@@ -54,6 +69,14 @@ public class Payroll implements Serializable {
         this.salary = salary;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "Payroll{" +
@@ -61,6 +84,7 @@ public class Payroll implements Serializable {
                 ", workedDays=" + workedDays +
                 ", workedHours=" + workedHours +
                 ", salary=" + salary +
+                ", employee=" + employee +
                 '}';
     }
 }

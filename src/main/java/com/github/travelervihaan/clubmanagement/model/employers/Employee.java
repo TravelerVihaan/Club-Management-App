@@ -1,6 +1,7 @@
 package com.github.travelervihaan.clubmanagement.model.employers;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
+import com.github.travelervihaan.clubmanagement.model.payrolls.Payroll;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 
 import javax.persistence.*;
@@ -35,6 +36,9 @@ public class Employee implements Serializable {
 	private List<WorkDay> workDays;
 	@OneToMany(mappedBy = "employee")
 	private List<Absence> absences;
+	@OneToMany(mappedBy = "employee")
+	private List<Payroll> payrolls;
+
 	
 	public Employee(){}
 	public Employee(@NotEmpty String username, @NotEmpty String password, @NotEmpty String firstName, @NotEmpty String lastName) {
@@ -106,6 +110,14 @@ public class Employee implements Serializable {
 
 	public void setAbsences(List<Absence> absences) {
 		this.absences = absences;
+	}
+
+	public List<Payroll> getPayrolls() {
+		return payrolls;
+	}
+
+	public void setPayrolls(List<Payroll> payrolls) {
+		this.payrolls = payrolls;
 	}
 
 	@Override
