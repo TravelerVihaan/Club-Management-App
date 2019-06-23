@@ -30,7 +30,7 @@ public class Employee implements Serializable {
 	@NotEmpty
 	@Column(nullable = false)
 	private String surname;
-
+	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_details_id")
 	private EmployeeDetails employeeDetails;
