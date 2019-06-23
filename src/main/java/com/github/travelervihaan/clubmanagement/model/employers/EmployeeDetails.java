@@ -13,9 +13,9 @@ public class EmployeeDetails implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_employee_details")
     private Long id;
-    @NotNull
 
     // HIRE INFO
+    @NotNull
     @Column(nullable = false)
     private LocalDate hireDay;
     private LocalDate dayOfHireTerminate;
@@ -30,26 +30,27 @@ public class EmployeeDetails implements Serializable {
     private Integer totalVacationDays;
     @NotNull
     @Column(nullable = false)
-    private Integer avaliableVacationDays;
+    private Integer availableVacationDays;
 
     @OneToOne(mappedBy = "employeeDetails")
     private Employee employee;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name="title_id")
     private JobTitle jobTitle;
+    @NotNull
     @ManyToOne
     @JoinColumn(name="contract_id")
     private ContractType contractType;
 
     public EmployeeDetails(){}
-
-    public EmployeeDetails(@NotNull LocalDate hireDay, LocalDate dayOfHireTerminate, @NotNull Double salary, @NotNull Integer totalVacationDays, @NotNull Integer avaliableVacationDays, JobTitle jobTitle, ContractType contractType) {
+    public EmployeeDetails(@NotNull LocalDate hireDay, LocalDate dayOfHireTerminate, @NotNull Double salary, @NotNull Integer totalVacationDays, @NotNull Integer availableVacationDays, @NotNull JobTitle jobTitle, @NotNull ContractType contractType) {
         this.hireDay = hireDay;
         this.dayOfHireTerminate = dayOfHireTerminate;
         this.salary = salary;
         this.totalVacationDays = totalVacationDays;
-        this.avaliableVacationDays = avaliableVacationDays;
+        this.availableVacationDays = availableVacationDays;
         this.jobTitle = jobTitle;
         this.contractType = contractType;
     }
@@ -90,12 +91,12 @@ public class EmployeeDetails implements Serializable {
         this.totalVacationDays = totalVacationDays;
     }
 
-    public Integer getAvaliableVacationDays() {
-        return avaliableVacationDays;
+    public Integer getAvailableVacationDays() {
+        return availableVacationDays;
     }
 
-    public void setAvaliableVacationDays(Integer avaliableVacationDays) {
-        this.avaliableVacationDays = avaliableVacationDays;
+    public void setAvailableVacationDays(Integer avaliableVacationDays) {
+        this.availableVacationDays = avaliableVacationDays;
     }
 
     public JobTitle getJobTitle() {
@@ -130,7 +131,7 @@ public class EmployeeDetails implements Serializable {
                 ", dayOfHireTerminate=" + dayOfHireTerminate +
                 ", salary=" + salary +
                 ", totalVacationDays=" + totalVacationDays +
-                ", avaliableVacationDays=" + avaliableVacationDays +
+                ", avaliableVacationDays=" + availableVacationDays +
                 ", jobTitle=" + jobTitle +
                 ", contractType=" + contractType +
                 '}';
