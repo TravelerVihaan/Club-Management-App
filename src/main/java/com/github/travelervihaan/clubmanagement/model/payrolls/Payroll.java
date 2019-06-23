@@ -23,7 +23,6 @@ public class Payroll implements Serializable {
     @Column(nullable = false)
     private Double salary;
     @NotNull
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name="employee_id")
     private Employee employee;

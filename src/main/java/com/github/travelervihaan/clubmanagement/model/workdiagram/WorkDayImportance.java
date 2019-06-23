@@ -18,7 +18,7 @@ public class WorkDayImportance implements Serializable {
     @Column(name = "importance_level", nullable = false, unique = true)
     private Integer importanceLevel;
 
-    @OneToMany(mappedBy = "jobTitle")
+    @OneToMany(mappedBy = "workDayImportance")
     private List<WorkDay> workDay;
 
     public WorkDayImportance(){}
