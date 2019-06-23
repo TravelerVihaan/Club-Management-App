@@ -16,8 +16,9 @@ public class EmployeeDetails implements Serializable {
 
     // HIRE INFO
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "hire_day", nullable = false)
     private LocalDate hireDay;
+    @Column(name = "date_terminate_contract")
     private LocalDate dayOfHireTerminate;
 
     @NotNull
@@ -26,14 +27,11 @@ public class EmployeeDetails implements Serializable {
 
     //URLOP
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "total_vacation_days", nullable = false)
     private Integer totalVacationDays;
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "available_vacation_days", nullable = false)
     private Integer availableVacationDays;
-
-    @OneToOne(mappedBy = "employeeDetails")
-    private Employee employee;
 
     @NotNull
     @ManyToOne
@@ -43,6 +41,9 @@ public class EmployeeDetails implements Serializable {
     @ManyToOne
     @JoinColumn(name="contract_id")
     private ContractType contractType;
+
+    @OneToOne(mappedBy = "employeeDetails")
+    private Employee employee;
 
     public EmployeeDetails(){}
     public EmployeeDetails(@NotNull LocalDate hireDay, LocalDate dayOfHireTerminate, @NotNull Double salary, @NotNull Integer totalVacationDays, @NotNull Integer availableVacationDays, @NotNull JobTitle jobTitle, @NotNull ContractType contractType) {

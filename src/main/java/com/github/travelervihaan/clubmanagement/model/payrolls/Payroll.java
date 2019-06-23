@@ -12,12 +12,13 @@ public class Payroll implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_payroll")
     private Long id;
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "worked_days", nullable = false)
     private Integer workedDays;
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "worked_hours", nullable = false)
     private Double workedHours;
     @NotNull
     @Column(nullable = false)

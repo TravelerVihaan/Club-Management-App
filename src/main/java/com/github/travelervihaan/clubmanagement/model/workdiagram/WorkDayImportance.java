@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "work_day_importance")
+@Table(name = "workday_importance")
 public class WorkDayImportance implements Serializable {
 
     @Id

@@ -17,16 +17,16 @@ public class WorkDay implements Serializable {
     @Column(name = "id_workday")
     private Long id;
     @NotNull
-    @Column(nullable = false, unique = true)
+    @Column(name = "workday_date", nullable = false, unique = true)
     private LocalDate date;
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "working_time", nullable = false)
     private Integer workingTime;
-
+    @Column(name = "booked_artist")
     private String bookedArtist;
 
     @ManyToOne
-    @JoinColumn(name="contract_id")
+    @JoinColumn(name="workday_importance_id")
     private WorkDayImportance workDayImportance;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )

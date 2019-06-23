@@ -26,10 +26,11 @@ public class Employee implements Serializable {
 	private String password;
 	@NotEmpty
 	@Column(nullable = false)
-	private String firstName;
+	private String name;
 	@NotEmpty
 	@Column(nullable = false)
-	private String lastName;
+	private String surname;
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_details_id")
 	private EmployeeDetails employeeDetails;
@@ -41,15 +42,15 @@ public class Employee implements Serializable {
 	@OneToMany(mappedBy = "employee")
 	private List<Payroll> payrolls;
 
-	
+
 	public Employee(){}
-	public Employee(@NotEmpty String username, @NotEmpty String password, @NotEmpty String firstName, @NotEmpty String lastName) {
+	public Employee(@NotEmpty String username, @NotEmpty String password, @NotEmpty String name, @NotEmpty String surname) {
 		this.username = username;
 		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.name = name;
+		this.surname = surname;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -74,20 +75,20 @@ public class Employee implements Serializable {
 		this.password = password;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public EmployeeDetails getEmployeeDetails() {
@@ -128,8 +129,8 @@ public class Employee implements Serializable {
 				"id=" + id +
 				", username='" + username + '\'' +
 				", password='" + password + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
+				", name='" + name + '\'' +
+				", surname='" + surname + '\'' +
 				", employeeDetails=" + employeeDetails +
 				'}';
 	}

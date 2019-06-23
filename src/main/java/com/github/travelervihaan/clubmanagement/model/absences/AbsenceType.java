@@ -11,11 +11,11 @@ public class AbsenceType implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_absence_type")
+    @Column(name="id_absence")
     private Long id;
 
     @NotEmpty
-    @Column(unique = true, nullable = false)
+    @Column(name = "absence_type", unique = true, nullable = false)
     private String abscenceType;
 
     @OneToMany(mappedBy = "absenceType")

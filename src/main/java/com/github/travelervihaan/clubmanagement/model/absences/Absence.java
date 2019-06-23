@@ -16,10 +16,10 @@ public class Absence implements Serializable {
     @Column(name="id_absence")
     private Long id;
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "absence_from_day", nullable = false)
     private LocalDate absenceFromDay;
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "absence_to_day", nullable = false)
     private LocalDate absenceToDay;
 
     @NotNull
