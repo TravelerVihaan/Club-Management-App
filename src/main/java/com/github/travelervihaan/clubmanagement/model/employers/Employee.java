@@ -31,6 +31,7 @@ public class Employee implements Serializable {
 	@Column(nullable = false)
 	private String lastName;
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "employee_details_id")
 	private EmployeeDetails employeeDetails;
 
 	@ManyToMany(mappedBy="employers")

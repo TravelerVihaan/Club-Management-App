@@ -32,6 +32,8 @@ public class EmployeeDetails implements Serializable {
     @Column(nullable = false)
     private Integer avaliableVacationDays;
 
+    @OneToOne(mappedBy = "employeeDetails")
+    private Employee employee;
 
     @ManyToOne
     @JoinColumn(name="title_id")
@@ -110,6 +112,14 @@ public class EmployeeDetails implements Serializable {
 
     public void setContractType(ContractType contractType) {
         this.contractType = contractType;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
