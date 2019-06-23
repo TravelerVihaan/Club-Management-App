@@ -22,33 +22,22 @@ public class WorkDayImportance implements Serializable {
     private List<WorkDay> workDay;
 
     public WorkDayImportance(){}
-    public WorkDayImportance(int importanceLevel){
+
+    public WorkDayImportance(@NotNull Integer importanceLevel) {
         this.importanceLevel = importanceLevel;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
-    public Integer getImportanceLevel() {
-        return importanceLevel;
-    }
+    public Integer getImportanceLevel() { return importanceLevel; }
 
-    public void setImportanceLevel(Integer importanceLevel) {
-        this.importanceLevel = importanceLevel;
-    }
+    public void setImportanceLevel(Integer importanceLevel) { this.importanceLevel = importanceLevel; }
 
-    public List<WorkDay> getWorkDay() {
-        return workDay;
-    }
+    public List<WorkDay> getWorkDay() { return workDay; }
 
-    public void setWorkDay(List<WorkDay> workDay) {
-        this.workDay = workDay;
-    }
+    public void setWorkDay(List<WorkDay> workDay) { this.workDay = workDay; }
 
     @Override
     public String toString() {

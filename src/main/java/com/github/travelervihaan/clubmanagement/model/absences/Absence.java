@@ -39,6 +39,15 @@ public class Absence implements Serializable {
     @JoinColumn(name="absence_type_id")
     private AbsenceType absenceType;
 
+    public Absence(){}
+    public Absence(@NotNull LocalDate absenceFromDay, @NotNull LocalDate absenceToDay, @NotNull Employee employee, @NotNull AbsenceApprovalStatus absenceApprovalStatus, @NotNull AbsenceType absenceType) {
+        this.absenceFromDay = absenceFromDay;
+        this.absenceToDay = absenceToDay;
+        this.employee = employee;
+        this.absenceApprovalStatus = absenceApprovalStatus;
+        this.absenceType = absenceType;
+    }
+
     public Long getId() {
         return id;
     }

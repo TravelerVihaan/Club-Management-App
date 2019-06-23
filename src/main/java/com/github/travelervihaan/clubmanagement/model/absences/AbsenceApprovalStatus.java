@@ -21,7 +21,8 @@ public class AbsenceApprovalStatus implements Serializable {
     private List<Absence> absences;
 
     public AbsenceApprovalStatus(){}
-    public AbsenceApprovalStatus(String status) {
+
+    public AbsenceApprovalStatus(@NotEmpty String status) {
         this.status = status;
     }
 

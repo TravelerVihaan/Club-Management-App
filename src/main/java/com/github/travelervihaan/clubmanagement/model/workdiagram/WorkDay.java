@@ -36,10 +36,11 @@ public class WorkDay implements Serializable {
     private List<Employee> employers;
 
     public WorkDay(){}
-
-    public WorkDay(LocalDate date, int workingTime) {
+    public WorkDay(@NotNull LocalDate date, @NotNull Integer workingTime, String bookedArtist, WorkDayImportance workDayImportance) {
         this.date = date;
         this.workingTime = workingTime;
+        this.bookedArtist = bookedArtist;
+        this.workDayImportance = workDayImportance;
     }
 
     public Long getId() {
@@ -66,6 +67,22 @@ public class WorkDay implements Serializable {
         return workingTime;
     }
 
+    public String getBookedArtist() {
+        return bookedArtist;
+    }
+
+    public void setBookedArtist(String bookedArtist) {
+        this.bookedArtist = bookedArtist;
+    }
+
+    public WorkDayImportance getWorkDayImportance() {
+        return workDayImportance;
+    }
+
+    public void setWorkDayImportance(WorkDayImportance workDayImportance) {
+        this.workDayImportance = workDayImportance;
+    }
+
     public List<Employee> getEmployers() {
         return employers;
     }
@@ -80,6 +97,8 @@ public class WorkDay implements Serializable {
                 "id=" + id +
                 ", date=" + date +
                 ", workingTime=" + workingTime +
+                ", bookedArtist='" + bookedArtist + '\'' +
+                ", workDayImportance=" + workDayImportance +
                 ", employers=" + employers +
                 '}';
     }

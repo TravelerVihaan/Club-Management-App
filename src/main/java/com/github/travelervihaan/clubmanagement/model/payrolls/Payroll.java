@@ -28,9 +28,9 @@ public class Payroll implements Serializable {
     @JoinColumn(name="employee_id")
     private Employee employee;
 
-    Payroll(){}
+    public Payroll(){}
 
-    public Payroll(int workedDays, double workedHours, double salary, Employee employee) {
+    public Payroll(@NotNull Integer workedDays, @NotNull Double workedHours, @NotNull Double salary, @NotNull Employee employee) {
         this.workedDays = workedDays;
         this.workedHours = workedHours;
         this.salary = salary;

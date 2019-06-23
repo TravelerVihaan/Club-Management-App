@@ -32,6 +32,7 @@ public class Employee implements Serializable {
 	private String lastName;
 	@OneToOne(cascade = CascadeType.ALL)
 	private EmployeeDetails employeeDetails;
+
 	@ManyToMany(mappedBy="employers")
 	private List<WorkDay> workDays;
 	@OneToMany(mappedBy = "employee")

@@ -22,7 +22,8 @@ public class AbsenceType implements Serializable {
     private List<Absence> absences;
 
     public AbsenceType(){}
-    public AbsenceType(String abscenceType) {
+
+    public AbsenceType(@NotEmpty String abscenceType) {
         this.abscenceType = abscenceType;
     }
 
