@@ -7,6 +7,7 @@ import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class Employee implements Serializable {
 	@Column(unique=true, nullable = false)
 	private String username;
 	@NotEmpty
+	@Size(min = 8)
 	@Column(nullable = false)
 	private String password;
 	@NotEmpty
