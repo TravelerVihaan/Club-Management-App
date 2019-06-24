@@ -16,15 +16,15 @@ public class AbsenceType implements Serializable {
 
     @NotEmpty
     @Column(name = "absence_type", unique = true, nullable = false)
-    private String abscenceType;
+    private String absenceType;
 
     @OneToMany(mappedBy = "absenceType")
     private List<Absence> absences;
 
     public AbsenceType(){}
 
-    public AbsenceType(@NotEmpty String abscenceType) {
-        this.abscenceType = abscenceType;
+    public AbsenceType(@NotEmpty String absenceType) {
+        this.absenceType = absenceType;
     }
 
     public Long getId() {
@@ -35,12 +35,12 @@ public class AbsenceType implements Serializable {
         this.id = id;
     }
 
-    public String getAbscenceType() {
-        return abscenceType;
+    public String getAbsenceType() {
+        return absenceType;
     }
 
-    public void setAbscenceType(String abscenceType) {
-        this.abscenceType = abscenceType;
+    public void setAbsenceType(String absenceType) {
+        this.absenceType = absenceType;
     }
 
     public List<Absence> getAbsences() {
@@ -55,7 +55,7 @@ public class AbsenceType implements Serializable {
     public String toString() {
         return "AbsenceType{" +
                 "id=" + id +
-                ", abscenceType='" + abscenceType + '\'' +
+                ", abscenceType='" + absenceType + '\'' +
                 '}';
     }
 }

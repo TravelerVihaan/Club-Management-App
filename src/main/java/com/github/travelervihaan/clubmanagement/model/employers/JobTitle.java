@@ -16,6 +16,7 @@ public class JobTitle implements Serializable {
     @NotEmpty
     @Column(name="title", nullable = false, unique = true)
     private String jobTitle;
+
     @OneToMany(mappedBy = "jobTitle")
     private List<EmployeeDetails> employeeDetails;
 

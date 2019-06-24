@@ -18,6 +18,7 @@ public class ContractType implements Serializable {
     @NotEmpty
     @Column(name = "contract_type", nullable = false, unique = true)
     private String contractType;
+
     @OneToMany(mappedBy = "contractType")
     private List<EmployeeDetails> employeeDetails;
 
