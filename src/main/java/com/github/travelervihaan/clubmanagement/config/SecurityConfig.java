@@ -38,7 +38,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.dataSource(dataSource)
 				.passwordEncoder(bCryptPasswordEncoder);
 	}
-	
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable().authorizeRequests()
+				.antMatchers("/logout").permitAll()
+				.antMatchers("/employee/**").hasAnyRole("USER", "ADMIN")
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				.and().logout().permitAll()
+				.and().exceptionHandling().accessDeniedHandler((httpServletRequest, httpServletResponse, e) -> httpServletResponse.sendRedirect("/login?error"))
+				.and().formLogin().permitAll();
+	}
+
+
+	/*
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.
@@ -49,8 +62,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
 	}
 
+	 */
+
 	@Override
-	public void configure(WebSecurity web) throws Exception {
+	public void configure(WebSecurity web){
 		web
 				.ignoring()
 				.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
