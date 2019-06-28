@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Club Management Application</title>
-<script>
-	alert("Welcome in Club Management Application!");
-</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Club Management Application</title>
+	<link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
+	<link rel="Stylesheet" type="text/css" href="css/style.css" />
+	<link rel="Stylesheet" type="text/css" href="css/" />
+
 </head>
 <body>
+	<div id="header" class="container-fluid">
+		<!-- Zawartość kontenera -->
+		<div class="row">
+			<div id="logo" class="col-4">
+				<img src="/images/stack.png" class="float-right img-fluid">
+			</div>
+			<div id="logotext" class="col-8">
+				<p id="headertext" class="h1"><br>BASS STAGE
+					<br>
+					<small id="headertextsmall" class="text-muted">dub, jungle, roots, reggae</small>
+				</p>
+			</div>
+		</div>
+	</div>
+
 	<a th:href="@{/login}">Login Page</a>
 	
 	<a th:href="@{/test}">Test Security Page</a>
