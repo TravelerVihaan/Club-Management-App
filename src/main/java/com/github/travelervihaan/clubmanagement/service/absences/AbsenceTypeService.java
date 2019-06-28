@@ -4,7 +4,9 @@ import com.github.travelervihaan.clubmanagement.model.absences.AbsenceType;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -17,17 +19,19 @@ public class AbsenceTypeService {
         this.absenceTypeRepository = absenceTypeRepository;
     }
 
-    List<AbsenceType> getAllAbsenceTypes(){
+    public List<AbsenceType> getAllAbsenceTypes(){
         return absenceTypeRepository.findAll();
     }
 
-    public void deleteAbsenceType(String jobTitle){
-        if(absenceTypeRepository.findByAbsenceType(jobTitle).isPresent())
-            absenceTypeRepository.delete(absenceTypeRepository.findByAbsenceType(jobTitle).get());
+    public void deleteAbsenceType(String absenceType){
+        if(absenceTypeRepository.findByAbsenceType(absenceType).isPresent())
+            absenceTypeRepository.delete(absenceTypeRepository.findByAbsenceType(absenceType).get());
     }
 
-    public void addNewAbsenceType(AbsenceType absenceType){
-        if(absenceTypeRepository.findByAbsenceType(absenceType.getAbsenceType()).isEmpty())
-            absenceTypeRepository.save(absenceType);
+    public void addNewAbsenceType(@Valid AbsenceType absenceType, BindingResult result) {
+        if (!result.hasErrors()) {
+            if (absenceTypeRepository.findByAbsenceType(absenceType.getAbsenceType()).isEmpty())
+                absenceTypeRepository.save(absenceType);
+        }
     }
 }

@@ -4,7 +4,9 @@ import com.github.travelervihaan.clubmanagement.model.employers.JobTitle;
 import com.github.travelervihaan.clubmanagement.repository.employers.JobTitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -17,7 +19,7 @@ public class JobTitleService {
         this.jobTitleRepository = jobTitleRepository;
     }
 
-    List<JobTitle> getAllJobTitles(){
+    public List<JobTitle> getAllJobTitles(){
         return jobTitleRepository.findAll();
     }
 
@@ -26,8 +28,10 @@ public class JobTitleService {
             jobTitleRepository.delete(jobTitleRepository.findByJobTitle(jobTitle).get());
     }
 
-    public void addNewJobTitle(JobTitle jobTitle){
-        if(jobTitleRepository.findByJobTitle(jobTitle.getJobTitle()).isEmpty())
-            jobTitleRepository.save(jobTitle);
+    public void addNewJobTitle(@Valid JobTitle jobTitle, BindingResult result) {
+        if (!result.hasErrors()) {
+            if (jobTitleRepository.findByJobTitle(jobTitle.getJobTitle()).isEmpty())
+                jobTitleRepository.save(jobTitle);
+        }
     }
 }

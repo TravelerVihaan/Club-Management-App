@@ -4,7 +4,9 @@ import com.github.travelervihaan.clubmanagement.model.employers.ContractType;
 import com.github.travelervihaan.clubmanagement.repository.employers.ContractTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -26,9 +28,11 @@ public class ContractTypeService {
             contractTypeRepository.delete(contractTypeRepository.findByContractType(contractTypeName).get());
     }
 
-    public void addNewContractType(ContractType contractType){
-        if(contractTypeRepository.findByContractType(contractType.getContractType()).isEmpty())
-            contractTypeRepository.save(contractType);
+    public void addNewContractType(@Valid ContractType contractType, BindingResult result){
+        if(!result.hasErrors()) {
+            if (contractTypeRepository.findByContractType(contractType.getContractType()).isEmpty())
+                contractTypeRepository.save(contractType);
+        }
     }
 
 }
