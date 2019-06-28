@@ -4,8 +4,10 @@ import com.github.travelervihaan.clubmanagement.model.employers.ContractType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ContractTypeRepository extends JpaRepository<ContractType, Long> {
 
-    ContractType findByContractType(String contractType);
+    Optional<ContractType> findByContractType(String contractType);
 }

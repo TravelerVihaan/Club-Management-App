@@ -20,4 +20,14 @@ public class JobTitleService {
     List<JobTitle> getAllJobTitles(){
         return jobTitleRepository.findAll();
     }
+
+    public void deleteJobTitle(String jobTitle){
+        if(jobTitleRepository.findByJobTitle(jobTitle).isPresent())
+            jobTitleRepository.delete(jobTitleRepository.findByJobTitle(jobTitle).get());
+    }
+
+    public void addNewJobTitle(JobTitle jobTitle){
+        if(jobTitleRepository.findByJobTitle(jobTitle.getJobTitle()).isEmpty())
+            jobTitleRepository.save(jobTitle);
+    }
 }

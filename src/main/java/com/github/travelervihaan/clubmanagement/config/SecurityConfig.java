@@ -50,7 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.and().formLogin().permitAll();
 	}
 
-
 	/*
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
