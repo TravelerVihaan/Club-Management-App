@@ -21,7 +21,7 @@ public class AbsenceApprovalStatusService {
     }
 
     public Optional<AbsenceApprovalStatus> getAbsenceApprovalStatus(String status){
-        return absenceApprovalStatusRepository.findByStatus(status);
+        return Optional.ofNullable(absenceApprovalStatusRepository.findByStatus(status));
     }
 
     public List<AbsenceApprovalStatus> getAllAbsenceApprovalStatuses(){
@@ -29,14 +29,18 @@ public class AbsenceApprovalStatusService {
     }
 
     public void deleteAbsenceApprovalStatus(String status){
-        if(absenceApprovalStatusRepository.findByStatus(status).isPresent())
-            absenceApprovalStatusRepository.delete(absenceApprovalStatusRepository.findByStatus(status).get());
+        if(isAbsenceApprovalStatusExist(status))
+            absenceApprovalStatusRepository.delete(absenceApprovalStatusRepository.findByStatus(status));
     }
 
     public void addNewAbsenceApprovalStatus(@Valid AbsenceApprovalStatus absenceApprovalStatus, BindingResult result) {
         if (!result.hasErrors()) {
-            if (absenceApprovalStatusRepository.findByStatus(absenceApprovalStatus.getStatus()).isEmpty())
+            if (!isAbsenceApprovalStatusExist(absenceApprovalStatus.getStatus()))
                 absenceApprovalStatusRepository.save(absenceApprovalStatus);
         }
+    }
+
+    private boolean isAbsenceApprovalStatusExist(String status){
+        return Optional.ofNullable(absenceApprovalStatusRepository.findByStatus(status)).isPresent();
     }
 }

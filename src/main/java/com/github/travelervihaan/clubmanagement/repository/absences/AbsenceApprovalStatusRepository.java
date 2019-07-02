@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface AbsenceApprovalStatusRepository extends JpaRepository<AbsenceApprovalStatus, Long> {
 
-    Optional<AbsenceApprovalStatus> findByStatus(String status);
+    AbsenceApprovalStatus findByStatus(String status);
 }
