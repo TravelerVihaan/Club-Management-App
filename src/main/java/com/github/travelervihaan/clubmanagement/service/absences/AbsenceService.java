@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AbsenceService {
@@ -34,7 +35,7 @@ public class AbsenceService {
     public void addNewAbsence(@Valid Absence absence, BindingResult result) {
         if (!result.hasErrors()) {
             if (isApprovalStatusExist(WAITING_STATUS))
-                absence.setAbsenceApprovalStatus(absenceApprovalStatusRepository.findByStatus(WAITING_STATUS).get());
+                absence.setAbsenceApprovalStatus(absenceApprovalStatusRepository.findByStatus(WAITING_STATUS));
                 absenceRepository.save(absence);
         }
     }
@@ -45,7 +46,7 @@ public class AbsenceService {
     }
 
     private boolean isApprovalStatusExist(String status){
-        return absenceApprovalStatusRepository.findByStatus(status).isPresent();
+        return Optional.ofNullable(absenceApprovalStatusRepository.findByStatus(status)).isPresent();
     }
 
     private boolean isAbsenceExist(long absenceId){

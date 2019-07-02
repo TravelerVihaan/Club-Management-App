@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkDayImportanceRepository extends JpaRepository<WorkDayImportance,Long> {
+
+    WorkDayImportance findByImportanceLevel(int importance);
 }

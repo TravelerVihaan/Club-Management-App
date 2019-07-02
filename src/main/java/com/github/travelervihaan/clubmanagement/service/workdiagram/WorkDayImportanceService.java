@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WorkDayImportanceService {
@@ -25,10 +26,11 @@ public class WorkDayImportanceService {
 
     public void addNewImportanceLevel(@Valid WorkDayImportance workDayImportance, BindingResult result){
         if(!result.hasErrors())
-            if(workDayImportanceRepository
-                    .findAll()
-                    .stream()
-                    .noneMatch(importance -> importance.getImportanceLevel().equals(workDayImportance.getImportanceLevel())))
+            if(!isImportanceLevelExist(workDayImportance.getImportanceLevel()))
                 workDayImportanceRepository.save(workDayImportance);
+    }
+
+    private boolean isImportanceLevelExist(int importanceLevel){
+        return Optional.ofNullable(workDayImportanceRepository.findByImportanceLevel(importanceLevel)).isPresent();
     }
 }
