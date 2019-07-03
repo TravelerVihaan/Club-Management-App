@@ -39,9 +39,9 @@ public class Employee implements Serializable {
 
 	@ManyToMany(mappedBy="employers")
 	private List<WorkDay> workDays;
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
 	private List<Absence> absences;
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
 	private List<Payroll> payrolls;
 
 

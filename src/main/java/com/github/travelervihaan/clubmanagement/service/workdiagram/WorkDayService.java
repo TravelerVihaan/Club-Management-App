@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class WorkDayService {
@@ -18,7 +20,7 @@ public class WorkDayService {
     }
 
     public WorkDay getOneWorkDayByDate(LocalDate date){
-        //TODO
-        return null;
+        return workDayRepository.findByDate(date).orElse(new WorkDay());
     }
+
 }
