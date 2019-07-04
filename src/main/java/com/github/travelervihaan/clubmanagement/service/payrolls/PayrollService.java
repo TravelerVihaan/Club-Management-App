@@ -19,7 +19,7 @@ public class PayrollService {
     }
 
     public List<Payroll> getAllPayrollsOfEmployee(String username){
-        return payrollRepository.findAllPayrollsOfEmployee(username);
+        return payrollRepository.findAllByEmployee_Username(username);
     }
 
     //TODO add payroll

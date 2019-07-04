@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
@@ -21,6 +23,10 @@ public class EmployeeService {
 	@Autowired
 	public void setEmployeeRepository(EmployeeRepository employeeRepo) {
 		this.employeeRepo = employeeRepo;
+	}
+
+	public List<Employee> getAllEmployers(){
+		return employeeRepo.findAll();
 	}
 	
 	public void addNewEmployee(Employee employee) {

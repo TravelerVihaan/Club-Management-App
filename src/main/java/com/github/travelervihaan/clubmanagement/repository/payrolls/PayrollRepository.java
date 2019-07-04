@@ -13,4 +13,6 @@ public interface PayrollRepository extends JpaRepository<Payroll, Long> {
 
     @Query("SELECT p, e.name, e.surname FROM payrolls p INNER JOIN employers e ON p.employee_id = e.id_employee AND e.username =:username")
     List<Payroll> findAllPayrollsOfEmployee(@Param("username") String username);
+
+    List<Payroll> findAllByEmployee_Username(String username);
 }
