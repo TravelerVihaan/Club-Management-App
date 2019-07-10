@@ -2,6 +2,7 @@ package com.github.travelervihaan.clubmanagement.controller;
 
 import javax.validation.Valid;
 
+import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.service.EmployeeService;
 
 @Controller
 public class RegisterController {

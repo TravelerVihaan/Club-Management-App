@@ -17,7 +17,7 @@ public class PayrollMailService {
         this.payrollService = payrollService;
     }
 
-    public void generatePayrolls(){
+    public void sendPayrollsMails(){
 
     }
 }

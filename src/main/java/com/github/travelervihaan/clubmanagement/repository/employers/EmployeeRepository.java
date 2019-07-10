@@ -5,8 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 
+import java.util.List;
+
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	Employee findByUsername(String username);
+
+	List<Employee> findAllByEmployeeDetails_JobTitle_JobTitle(String jobTitle);
 }
