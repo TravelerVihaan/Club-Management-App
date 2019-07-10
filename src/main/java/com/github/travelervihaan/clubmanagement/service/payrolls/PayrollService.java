@@ -60,10 +60,14 @@ public class PayrollService {
         payroll.setWorkedHours(workedHours);
         payroll.setSalary(calculateSalaryOnUZ(employee, workedHours));
         payroll.setEmployee(employee);
+        savePayrollToDB(payroll);
+    }
+
+    private void savePayrollToDB(Payroll payroll){
         Set<ConstraintViolation<Payroll>> validationErrors = validator.validate(payroll);
         if(!validationErrors.isEmpty())
             System.err.println("[PAYROLL ERROR] Application generated incorrect payroll for employee: "
-                    + employee.getName() + " " + employee.getSurname());
+                    + payroll.getEmployee().getName() + " " + payroll.getEmployee().getSurname());
         payrollRepository.save(payroll);
     }
 
