@@ -14,22 +14,22 @@ import java.util.List;
 public class PayrollMailService {
 
     private JavaMailSender mailSender;
-    private PayrollService payrollService;
+
     private final String MAIL_FROM = "club@club.com";
     private final String MAIL_SUBJECT = "[CLUB - WYPLATA]";
     private final String MAIL_TEXT = "Witaj, na Twoim koncie dostepna jest nowa informacja o wypłacie za ubiegły miesiąc." +
                                         " Zapoznaj się z nią. \n Pozdrawiamy!";
 
     @Autowired
-    public PayrollMailService(JavaMailSender mailSender, PayrollService payrollService){
+    public PayrollMailService(JavaMailSender mailSender){
         this.mailSender = mailSender;
-        this.payrollService = payrollService;
     }
 
     public void sendPayrollsMails(List<Employee> employeeList){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(setRecipientList(employeeList));
-        mailMessage.setFrom(MAIL_SUBJECT);
+        mailMessage.setFrom(MAIL_FROM);
+        mailMessage.setSubject(MAIL_SUBJECT);
         mailMessage.setText(MAIL_TEXT);
         mailSender.send(mailMessage);
 

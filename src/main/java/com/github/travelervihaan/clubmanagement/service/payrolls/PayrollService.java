@@ -11,7 +11,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class PayrollService {
@@ -30,10 +29,7 @@ public class PayrollService {
     }
 
     public void generatePayrolls(List<Employee> employers){
-        List<Employee> employersUOP = employers.stream().filter(this::isUOPContract).collect(Collectors.toList());
-        generatePayrollsForUOP(employersUOP);
-        List<Employee> employersUZ = employers.stream().filter(this::isUZContract).collect(Collectors.toList());
-        generatePayrollsForUZ(employersUZ);
+        employers.forEach(this::savePayrollOfEmployee);
     }
 
     private boolean isUOPContract(Employee employee){
@@ -44,24 +40,21 @@ public class PayrollService {
         return employee.getEmployeeDetails().getContractType().getContractType().equalsIgnoreCase("UZ");
     }
 
-    private void generatePayrollsForUOP(List<Employee> employers){
-
-    }
-
-    private void generatePayrollsForUZ(List<Employee> employers){
-        employers.forEach(this::savePayrollOfUZEmployee);
-    }
-
-    private void savePayrollOfUZEmployee(Employee employee){
+    private void savePayrollOfEmployee(Employee employee){
         Payroll payroll = new Payroll();
         List<WorkDay> employeeWorkDays = employee.getWorkDays();
         payroll.setWorkedDays(employeeWorkDays.size());
         double workedHours = countWorkedHours(employeeWorkDays);
         payroll.setWorkedHours(workedHours);
-        payroll.setSalary(calculateSalaryOnUZ(employee, workedHours));
+        if(isUZContract(employee))
+            payroll.setSalary(calculateSalaryOnUZ(employee, workedHours));
+        if(isUOPContract(employee))
+            payroll.setSalary(calculateSalaryOnUOP(employee, workedHours));
+
         payroll.setEmployee(employee);
         savePayrollToDB(payroll);
     }
+
 
     private void savePayrollToDB(Payroll payroll){
         Set<ConstraintViolation<Payroll>> validationErrors = validator.validate(payroll);
@@ -79,6 +72,10 @@ public class PayrollService {
     }
 
     private double calculateSalaryOnUZ(Employee employee, double workedHours){
+        return employee.getEmployeeDetails().getSalary()*workedHours;
+    }
+
+    private double calculateSalaryOnUOP(Employee employee, double workedHours){
         return employee.getEmployeeDetails().getSalary()*workedHours;
     }
 

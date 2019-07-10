@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,8 +21,6 @@ public class PayrollMailTask {
     private final String EMPLOYEE_TITLE = "employee";
     private final String MANAGER_TITLE = "manager";
 
-    private List<Employee> employers;
-
     @Autowired
     public PayrollMailTask(PayrollMailService payrollMailService, PayrollService payrollService, EmployeeService employeeService){
         this.payrollMailService = payrollMailService;
@@ -31,6 +30,7 @@ public class PayrollMailTask {
 
     @Scheduled(cron = "0 0 10 1 * ?")
     public void preparePayrolls(){
+        List<Employee> employers = new ArrayList<>();
         employers.addAll(employeeService.getEmployersByJobTitle(EMPLOYEE_TITLE));
         employers.addAll(employeeService.getEmployersByJobTitle(MANAGER_TITLE));
 
