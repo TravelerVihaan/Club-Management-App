@@ -1,6 +1,7 @@
 package com.github.travelervihaan.clubmanagement.service.mails;
 
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,36 +11,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PayrollMailService {
+public class AbsenceMailService {
 
     private JavaMailSender mailSender;
+    private EmployeeService employeeService;
 
     private final String MAIL_FROM = "club@club.com";
-    private final String MAIL_SUBJECT = "[CLUB - WYPLATA]";
-    private final String MAIL_TEXT = "Witaj, na Twoim koncie dostepna jest nowa informacja o wypłacie za ubiegły miesiąc." +
-                                        " Zapoznaj się z nią. \n Pozdrawiamy!";
+    private final String MAIL_SUBJECT = "[CLUB - NIEOBECNOSC PRACOWNIKA]";
 
     @Autowired
-    public PayrollMailService(JavaMailSender mailSender){
+    public AbsenceMailService(JavaMailSender mailSender, EmployeeService employeeService){
         this.mailSender = mailSender;
+        this.employeeService = employeeService;
     }
 
-    public void sendPayrollsMails(List<Employee> employeeList){
+    public void sendMailInformationAboutAbsence(Employee employee){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(setRecipientList(employeeList));
-        mailMessage.setFrom(MAIL_FROM);
         mailMessage.setSubject(MAIL_SUBJECT);
-        mailMessage.setText(MAIL_TEXT);
-        mailSender.send(mailMessage);
-
+        mailMessage.setFrom(MAIL_FROM);
+        mailMessage.setTo(setRecipientList());
+        //TODO
     }
 
-    private String[] setRecipientList(List<Employee> employeeList){
+    private String[] setRecipientList(){
+        List<Employee> managerList = employeeService.getEmployersByJobTitle("manager");
         List<String> mailList = new ArrayList<>();
-        employeeList.forEach(e -> mailList.add(e.getEmail()));
+        managerList.forEach(manager -> mailList.add(manager.getEmail()));
         String[] recipientList = new String[mailList.size()];
         mailList.toArray(recipientList);
         return recipientList;
     }
-
 }
