@@ -5,6 +5,7 @@ import com.github.travelervihaan.clubmanagement.model.payrolls.Payroll;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,6 +33,9 @@ public class Employee implements Serializable {
 	@NotEmpty
 	@Column(nullable = false)
 	private String surname;
+	@NotEmpty
+	@Email
+	private String email;
 	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_details_id")
@@ -46,11 +50,12 @@ public class Employee implements Serializable {
 
 
 	public Employee(){}
-	public Employee(@NotEmpty String username, @NotEmpty String password, @NotEmpty String name, @NotEmpty String surname) {
+	public Employee(@NotEmpty String username, @NotEmpty String password, @NotEmpty String name, @NotEmpty String surname, @NotEmpty @Email String email) {
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.surname = surname;
+		this.email = email;
 	}
 
 	public Long getId() {
@@ -93,6 +98,10 @@ public class Employee implements Serializable {
 		this.surname = surname;
 	}
 
+	public String getEmail() { return email; }
+
+	public void setEmail(String email) { this.email = email; }
+
 	public EmployeeDetails getEmployeeDetails() {
 		return employeeDetails;
 	}
@@ -133,6 +142,7 @@ public class Employee implements Serializable {
 				", password='" + password + '\'' +
 				", name='" + name + '\'' +
 				", surname='" + surname + '\'' +
+				", email='" + email + '\'' +
 				", employeeDetails=" + employeeDetails +
 				'}';
 	}

@@ -35,6 +35,7 @@ public class PayrollMailTask {
         employers.addAll(employeeService.getEmployersByJobTitle(MANAGER_TITLE));
 
         payrollService.generatePayrolls(employers);
-        payrollMailService.sendPayrollsMails();
+
+        payrollMailService.sendPayrollsMails(employers);
     }
 }
