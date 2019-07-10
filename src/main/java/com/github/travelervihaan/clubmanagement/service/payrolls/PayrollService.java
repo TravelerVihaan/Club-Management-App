@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -76,7 +77,25 @@ public class PayrollService {
     }
 
     private double calculateSalaryOnUOP(Employee employee, double workedHours){
-        return employee.getEmployeeDetails().getSalary()*workedHours;
+        int workingDays = calculateWorkingDaysOfMonth();
+        double salary = employee.getEmployeeDetails().getSalary();
+        double daysWhenEmployeeWorks = workedHours/8;
+        return (salary/workingDays)*daysWhenEmployeeWorks;
+    }
+
+    private int calculateWorkingDaysOfMonth(){
+        LocalDate day = LocalDate.now().minusMonths(1);
+        int numberOfDays = LocalDate.now().minusMonths(1).lengthOfMonth();
+        int workingDays = 0;
+        for(int i=0;i<numberOfDays;i++){
+            if(isDayIsWorkingDay(day))
+                workingDays++;
+        }
+        return workingDays;
+    }
+
+    private boolean isDayIsWorkingDay(LocalDate day){
+        return day.getDayOfWeek().getValue()!=6 && day.getDayOfWeek().getValue()!=7;
     }
 
 }
