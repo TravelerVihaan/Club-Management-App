@@ -15,8 +15,9 @@ public class WorkDayService {
     private WorkDayImportanceService workDayImportanceService;
 
     @Autowired
-    public WorkDayService(WorkDayRepository workDayRepository){
+    public WorkDayService(WorkDayRepository workDayRepository, WorkDayImportanceService workDayImportanceService){
         this.workDayRepository = workDayRepository;
+        this.workDayImportanceService = workDayImportanceService;
     }
 
     public Optional<WorkDay> getOneWorkDayByDate(LocalDate date){
