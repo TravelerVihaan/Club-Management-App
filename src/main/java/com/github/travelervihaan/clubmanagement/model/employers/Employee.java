@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "employers")
@@ -40,6 +41,13 @@ public class Employee implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_details_id")
 	private EmployeeDetails employeeDetails;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "employee_role",
+			joinColumns = {@JoinColumn(name = "employee_id",
+					referencedColumnName = "id_employee")},
+			inverseJoinColumns = {@JoinColumn(name="role_id",
+					referencedColumnName = "id_role")})
+	private Set<Role> roles;
 
 	@ManyToMany(mappedBy="employers")
 	private List<WorkDay> workDays;
@@ -110,6 +118,14 @@ public class Employee implements Serializable {
 		this.employeeDetails = employeeDetails;
 	}
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	public List<WorkDay> getWorkDays() {
 		return workDays;
 	}
@@ -144,6 +160,7 @@ public class Employee implements Serializable {
 				", surname='" + surname + '\'' +
 				", email='" + email + '\'' +
 				", employeeDetails=" + employeeDetails +
+				", roles=" + roles +
 				'}';
 	}
 }

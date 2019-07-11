@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -40,6 +41,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 	@Override
+	protected void configure(HttpSecurity httpSecurity) throws Exception{
+		httpSecurity
+				.authorizeRequests()
+				.antMatchers("/admin/**").hasRole("ROLE_ADMIN")
+				.antMatchers("/manager/**").hasRole("ROLE_MANAGER")
+				.anyRequest().authenticated()
+				.and().csrf().disable()
+				.formLogin()
+				.loginPage("/login")
+				.failureUrl("/login?error=true")
+				.defaultSuccessUrl("/")
+				.usernameParameter("username")
+				.passwordParameter("password")
+				.and().logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/")
+				.and().exceptionHandling().accessDeniedPage("/denied");
+	}
+/*
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
 				.antMatchers("/logout").permitAll()
@@ -49,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.and().exceptionHandling().accessDeniedHandler((httpServletRequest, httpServletResponse, e) -> httpServletResponse.sendRedirect("/login?error"))
 				.and().formLogin().permitAll();
 	}
-
+*/
 	/*
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
