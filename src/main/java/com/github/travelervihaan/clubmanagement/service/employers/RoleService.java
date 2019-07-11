@@ -24,6 +24,6 @@ public class RoleService {
     public void addNewRole(Role role){
         if(Optional.ofNullable(getRole(role.getRole())).isEmpty()){
             roleRepository.save(role);
-        }
+    }
     }
 }

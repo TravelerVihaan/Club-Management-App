@@ -28,10 +28,9 @@ public class WorkDayImportanceService {
         return workDayImportanceRepository.findAll();
     }
 
-    public void addNewImportanceLevel(@Valid WorkDayImportance workDayImportance, BindingResult result){
-        if(!result.hasErrors())
-            if(!isImportanceLevelExist(workDayImportance.getImportanceLevel()))
-                workDayImportanceRepository.save(workDayImportance);
+    public void addNewImportanceLevel(WorkDayImportance workDayImportance){
+        if(!isImportanceLevelExist(workDayImportance.getImportanceLevel()))
+            workDayImportanceRepository.save(workDayImportance);
     }
 
     private boolean isImportanceLevelExist(int importanceLevel){
