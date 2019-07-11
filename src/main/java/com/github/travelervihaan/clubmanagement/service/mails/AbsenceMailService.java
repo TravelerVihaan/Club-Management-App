@@ -30,7 +30,10 @@ public class AbsenceMailService {
         mailMessage.setSubject(MAIL_SUBJECT);
         mailMessage.setFrom(MAIL_FROM);
         mailMessage.setTo(setRecipientList());
-        //TODO
+        mailMessage.setText("Witaj, "+employee.getName()+" "+employee.getSurname()
+                +" zglosil nieobecnosc. \n" +
+                "Zaloguj się do aplikacji, aby sprawdzić czego ona dotyczy i zatwierdzić ją");
+        mailSender.send(mailMessage);
     }
 
     private String[] setRecipientList(){

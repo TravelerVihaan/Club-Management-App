@@ -3,6 +3,7 @@ package com.github.travelervihaan.clubmanagement.service.absences;
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceApprovalStatusRepository;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
+import com.github.travelervihaan.clubmanagement.service.mails.AbsenceMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -20,12 +21,15 @@ public class AbsenceService {
 
     private AbsenceRepository absenceRepository;
     private AbsenceApprovalStatusRepository absenceApprovalStatusRepository;
+    private AbsenceMailService absenceMailService;
 
     @Autowired
     public AbsenceService(AbsenceRepository absenceRepository,
-                          AbsenceApprovalStatusRepository absenceApprovalStatusRepository){
+                          AbsenceApprovalStatusRepository absenceApprovalStatusRepository,
+                          AbsenceMailService absenceMailService){
         this.absenceRepository = absenceRepository;
         this.absenceApprovalStatusRepository = absenceApprovalStatusRepository;
+        this.absenceMailService = absenceMailService;
     }
 
     public List<Absence> getAllAbsences(){
@@ -34,9 +38,11 @@ public class AbsenceService {
 
     public void addNewAbsence(@Valid Absence absence, BindingResult result) {
         if (!result.hasErrors()) {
-            if (isApprovalStatusExist(WAITING_STATUS))
+            if (isApprovalStatusExist(WAITING_STATUS)) {
                 absence.setAbsenceApprovalStatus(absenceApprovalStatusRepository.findByStatus(WAITING_STATUS));
                 absenceRepository.save(absence);
+                absenceMailService.sendMailInformationAboutAbsence(absence.getEmployee());
+            }
         }
     }
 
@@ -49,19 +55,12 @@ public class AbsenceService {
         return Optional.ofNullable(absenceApprovalStatusRepository.findByStatus(status)).isPresent();
     }
 
-    private boolean isAbsenceExist(long absenceId){
-        return absenceRepository
-                .findById(absenceId)
-                .isPresent();
+    private void changeStatus(long absenceId, String status) {
+            absenceRepository.findById(absenceId).ifPresent(ab -> saveChangedStatusInDB(ab, status));
     }
 
-    private void changeStatus(long absenceId, String status) {
-        if(isAbsenceExist(absenceId)) {
-            Absence absence = absenceRepository
-                    .findById(absenceId)
-                    .get();
-            absence.getAbsenceApprovalStatus().setStatus(status);
-            absenceRepository.save(absence);
-        }
+    private void saveChangedStatusInDB(Absence absence, String status){
+        absence.getAbsenceApprovalStatus().setStatus(status);
+        absenceRepository.save(absence);
     }
 }
