@@ -34,11 +34,11 @@ public class EmployeeDetails implements Serializable {
     private Integer availableVacationDays;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="title_id")
     private JobTitle jobTitle;
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="contract_id")
     private ContractType contractType;
 

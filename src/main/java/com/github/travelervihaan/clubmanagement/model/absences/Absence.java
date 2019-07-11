@@ -28,11 +28,11 @@ public class Absence implements Serializable {
     private Employee employee;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="approval_id")
     private AbsenceApprovalStatus absenceApprovalStatus;
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="absence_type_id")
     private AbsenceType absenceType;
 
