@@ -1,5 +1,6 @@
 package com.github.travelervihaan.clubmanagement.service.workdiagram;
 
+import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 import com.github.travelervihaan.clubmanagement.repository.workdiagram.WorkDayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,19 @@ public class WorkDayService {
         workDay.setWorkingTime(8);
         workDayRepository.save(workDay);
         return workDay;
+    }
+
+    public void setBookedArtist(WorkDay workDay, String artist){
+        workDay.setBookedArtist(artist);
+        workDayRepository.save(workDay);
+    }
+
+    public boolean addEmployeeToWorkDay(WorkDay workDay, Employee employee){
+        if(workDay.getEmployers().size() < workDay.getWorkDayImportance().getImportanceLevel()) {
+            workDay.getEmployers().add(employee);
+            return true;
+        }
+        return false;
     }
 
 }
