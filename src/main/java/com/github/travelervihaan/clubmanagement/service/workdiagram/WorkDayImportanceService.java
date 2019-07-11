@@ -20,6 +20,10 @@ public class WorkDayImportanceService {
         this.workDayImportanceRepository = workDayImportanceRepository;
     }
 
+    WorkDayImportance getDefaultImportanceLevel(){
+        return workDayImportanceRepository.findByImportanceLevel(2);
+    }
+
     public List<WorkDayImportance> getAllWorkDayImportanceLevels(){
         return workDayImportanceRepository.findAll();
     }

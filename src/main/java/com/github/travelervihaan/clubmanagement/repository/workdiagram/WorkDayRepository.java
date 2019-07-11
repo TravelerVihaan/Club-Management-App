@@ -15,4 +15,6 @@ public interface WorkDayRepository extends JpaRepository<WorkDay, Long> {
     Optional<WorkDay> findByDate(LocalDate date);
 
     List<WorkDay> findByDateBetweenOrderByDateAsc(LocalDate startDate, LocalDate endDate);
+
+    WorkDay findFirstByOrderByDateAsc();
 }
