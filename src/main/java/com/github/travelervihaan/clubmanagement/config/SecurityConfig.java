@@ -49,13 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/manager/**").hasRole("MANAGER")
 				.anyRequest().authenticated()
 				.and()
-				.formLogin()
+				.formLogin().permitAll()
+				/*
 				.loginPage("/login").permitAll()
 				.failureUrl("/login?error=true")
 				.defaultSuccessUrl("/")
 				.usernameParameter("username")
 				.passwordParameter("password")
-				.and().logout()
+				*/.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/login")
 				.and().exceptionHandling().accessDeniedPage("/denied");
