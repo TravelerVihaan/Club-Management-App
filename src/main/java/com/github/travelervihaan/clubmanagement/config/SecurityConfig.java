@@ -44,12 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity
 				.authorizeRequests()
-				.antMatchers("/admin/**").hasRole("ROLE_ADMIN")
-				.antMatchers("/manager/**").hasRole("ROLE_MANAGER")
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/manager/**").hasRole("MANAGER")
 				.anyRequest().authenticated()
 				.and().csrf().disable()
 				.formLogin()
-				.loginPage("/login")
+				.loginPage("/login").permitAll()
 				.failureUrl("/login?error=true")
 				.defaultSuccessUrl("/")
 				.usernameParameter("username")
