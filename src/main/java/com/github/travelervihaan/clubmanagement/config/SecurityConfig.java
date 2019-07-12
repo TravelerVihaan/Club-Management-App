@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.passwordParameter("password")
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/")
+				.logoutSuccessUrl("/login")
 				.and().exceptionHandling().accessDeniedPage("/denied");
 	}
 /*
@@ -88,6 +88,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web){
 		web
 				.ignoring()
-				.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+				.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/static/css/**", "static/images/**");
 	}
 }
