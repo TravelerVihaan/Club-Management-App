@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Club Management Application - Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Club Management Application - Login Page</title>
+    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static.css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
 </head>
+
 <body>
+
+    <div id="header" class="container-fluid">
+        <!-- Zawartość kontenera -->
+        <div class="row">
+            <div id="logo" class="col-4">
+                <img src="/static/images/stack.png" class="float-right img-fluid">
+            </div>
+            <div id="logotext" class="col-8">
+                <p id="headertext" class="h1"><br>BASS STAGE
+                    <br>
+                    <small id="headertextsmall" class="text-muted">dub, jungle, roots, reggae</small>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <h1>Please Login into site</h1>
     <form action="login" th:action="@{/login}" method="post">
         <input name="username" placeholder="Username" /> <br />
         <input name="password" placeholder="Password" /> <br />
         <input type="submit" value="Login" />
     </form>
+
+    <script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="webjars/jquery/jquery.min.js"></script>
 </body>
 </html>
