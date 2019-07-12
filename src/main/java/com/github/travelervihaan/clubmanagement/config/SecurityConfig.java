@@ -89,6 +89,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web){
 		web
 				.ignoring()
-				.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/static/css/**", "static/images/**");
+				.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
 	}
 }
