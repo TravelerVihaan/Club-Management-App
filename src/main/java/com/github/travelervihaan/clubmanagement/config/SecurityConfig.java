@@ -43,11 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity
+				.csrf().disable()
 				.authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/manager/**").hasRole("MANAGER")
 				.anyRequest().authenticated()
-				.and().csrf().disable()
+				.and()
 				.formLogin()
 				.loginPage("/login").permitAll()
 				.failureUrl("/login?error=true")
