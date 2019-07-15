@@ -16,6 +16,12 @@
     margin-left: 10%;
 }
 
+#userPanel {
+    -webkit-box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.2);
+    padding: 0.2%;
+}
+
 #main {
     background-color: rgb(201, 199, 195);
     /*background-color: rgb(235, 232, 228);*/
@@ -27,17 +33,7 @@
     padding-bottom: 5%;
     /*background-color: rgb(235, 232, 228);*/
     background-color: rgb(201, 199, 195);
-    min-height: calc(100vh - 340px);
-}
-
-body {
-    /*background-color: rgb(235, 232, 228);*/
-
-    background-color: rgb(201, 199, 195);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    min-height: calc(100vh - 345px);
 }
 
 #footer {
@@ -46,12 +42,6 @@ body {
     -webkit-border-top: solid 5px rgb(20, 175, 116);
     -o-border-top: solid 5px rgb(20, 175, 116);
     border-top: solid 5px rgb(20, 175, 116);
-}
-
-#userpanel {
-    -webkit-box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.2);
-    padding: 0.2%;
 }
 
 #footerLogoText{
@@ -64,4 +54,13 @@ body {
 
 #footerSecondaryText{
     color: rgb(20, 175, 116);
+}
+
+body {
+    /*background-color: rgb(235, 232, 228);*/
+    background-color: rgb(201, 199, 195);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
