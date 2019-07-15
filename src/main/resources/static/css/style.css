@@ -27,6 +27,7 @@
     padding-bottom: 5%;
     /*background-color: rgb(235, 232, 228);*/
     background-color: rgb(201, 199, 195);
+    min-height: calc(100vh - 340px);
 }
 
 body {
