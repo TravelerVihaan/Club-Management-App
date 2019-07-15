@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
-
+/*
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
@@ -39,6 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.dataSource(dataSource)
 				.passwordEncoder(bCryptPasswordEncoder);
 	}
+	*/
+
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception{
@@ -60,6 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.logoutSuccessUrl("/login")
 				.and().exceptionHandling().accessDeniedPage("/denied");
 	}
+
 /*
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
