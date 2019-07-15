@@ -2,6 +2,7 @@ package com.github.travelervihaan.clubmanagement.model.employers;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.model.payrolls.Payroll;
+import com.github.travelervihaan.clubmanagement.model.workdiagram.Comment;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Employee implements Serializable {
 	@NotEmpty
 	@Size(min = 8)
 	@Column(nullable = false)
+	@Size(min = 8, max = 60)
 	private String password;
 	@NotEmpty
 	@Column(nullable = false)
@@ -51,6 +53,8 @@ public class Employee implements Serializable {
 
 	@ManyToMany(mappedBy="employers")
 	private List<WorkDay> workDays;
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+	private List<Comment> comments;
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
 	private List<Absence> absences;
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
@@ -148,6 +152,14 @@ public class Employee implements Serializable {
 
 	public void setPayrolls(List<Payroll> payrolls) {
 		this.payrolls = payrolls;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

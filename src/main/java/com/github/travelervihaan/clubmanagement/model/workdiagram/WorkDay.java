@@ -29,13 +29,7 @@ public class WorkDay implements Serializable {
     @JoinColumn(name="workday_importance_id")
     private WorkDayImportance workDayImportance;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.ALL} )
-    @JoinTable(name="workday_employers",
-                joinColumns = {@JoinColumn(name = "workday_id",
-                        referencedColumnName = "id_workday")},
-                inverseJoinColumns = {@JoinColumn(name = "employee_id",
-                        referencedColumnName = "id_employee")})
+    @ManyToOne
     private List<Employee> employers;
 
     public WorkDay(){}
