@@ -1,6 +1,5 @@
 package com.github.travelervihaan.clubmanagement.controller;
 
-import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
