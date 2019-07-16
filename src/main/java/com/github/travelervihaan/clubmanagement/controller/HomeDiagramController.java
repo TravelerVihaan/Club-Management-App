@@ -20,14 +20,16 @@ public class HomeDiagramController {
 	}
 
 	@GetMapping(value = {"/","/index"})
-	public String home(Model model) {
-		model.addAttribute("workDiagram",workDiagramService.getMultipleWorkDays("WEEK"));
+	public String home(@RequestParam(defaultValue = "WEEK") String interval, Model model) {
+		model.addAttribute("workDiagram",workDiagramService.getMultipleWorkDays(interval));
 		return "index";
 	}
-
+/*
 	@GetMapping("/set-diagram-scale")
 	public String setDiagramScale(@RequestParam String interval, Model model){
 		model.addAttribute("workDiagram", workDiagramService.getMultipleWorkDays(interval));
 		return "index";
 	}
+
+ */
 }

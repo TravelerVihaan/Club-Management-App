@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,9 +50,9 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<form th:action="@{/set-diagram-scale}" method="GET">
+						<form th:action="@{/index}" method="GET">
 							<div class="input-group">
-								<select class="form-control" id="dictionaryName" name="dictionaryName">
+								<select class="form-control" id="interval" name="interval">
 									<option value="WEEK" selected>Week</option>
 									<option value="MONTH">Month</option>
 									<option value="QUARTER">Quarter</option>
@@ -63,6 +64,16 @@
 						</form>
 					</div>
 				</div>
+
+				<div class="row">
+					<div th:each="workDay: ${workDiagram}" th:object="${com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay}">
+						<div class="col-md-4">
+
+							<button type="button" class="btn btn-dark btn-block">Show details</button>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
