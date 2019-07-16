@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +25,7 @@
 		</div>
 	</div>
 </div>
+
 
 <div id="userPanel" class="container-fluid">
 	<div class="row justify-content-center">
@@ -64,16 +64,17 @@
 						</form>
 					</div>
 				</div>
-
-				<div class="row">
-					<div th:each="workDay: ${workDiagram}" th:object="${com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay}">
-						<div class="col-md-4">
-
-							<button type="button" class="btn btn-dark btn-block">Show details</button>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col-sm-4" th:each="workDay: ${workDiagram}" th:object="${WorkDay}">
+						<p class="h7"><span th:utext="${workDay.getDate()}">Date</span></p>
+						<div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+							<p class="h8"><span th:utext="${employee.getName()+' '+employee.getSurname()}">Employee</span></p>
 						</div>
-					</div>
+						<button type="button" class="btn btn-dark btn-block">Show details</button>
+					<br>
 				</div>
-
 			</div>
 		</div>
 	</div>
