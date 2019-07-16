@@ -21,6 +21,10 @@ public class WorkDayService {
         this.workDayImportanceService = workDayImportanceService;
     }
 
+    public Optional<WorkDay> getWorkDayById(Long id){
+        return workDayRepository.findById(id);
+    }
+
     public Optional<WorkDay> getOneWorkDayByDate(LocalDate date){
         return workDayRepository.findByDate(date);
     }
