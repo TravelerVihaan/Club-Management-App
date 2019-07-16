@@ -51,7 +51,7 @@ public class Employee implements Serializable {
 					referencedColumnName = "id_role")})
 	private Set<Role> roles;
 
-	@ManyToMany(mappedBy="employers")
+	@ManyToMany(mappedBy= "employers")
 	private List<WorkDay> workDays;
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
 	private List<Comment> comments;

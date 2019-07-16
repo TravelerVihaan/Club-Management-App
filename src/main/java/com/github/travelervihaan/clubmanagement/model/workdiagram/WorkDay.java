@@ -29,8 +29,16 @@ public class WorkDay implements Serializable {
     @JoinColumn(name="workday_importance_id")
     private WorkDayImportance workDayImportance;
 
-    @ManyToOne
+    @ManyToMany
+    @JoinTable(name = "workday_employee",
+            joinColumns = {@JoinColumn(name = "workday_id",
+                    referencedColumnName = "id_workday")},
+            inverseJoinColumns = {@JoinColumn(name="employee_id",
+                    referencedColumnName = "id_employee")})
     private List<Employee> employers;
+
+    @OneToMany(mappedBy = "workDay", cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
 
     public WorkDay(){}
     public WorkDay(@NotNull LocalDate date, @NotNull Integer workingTime, String bookedArtist, WorkDayImportance workDayImportance) {
@@ -86,6 +94,14 @@ public class WorkDay implements Serializable {
 
     public void setEmployers(List<Employee> employers) {
         this.employers = employers;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override

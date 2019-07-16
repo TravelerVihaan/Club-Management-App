@@ -36,9 +36,9 @@
 <br>
 <div id="main" class="container">
 	<div class="row">
-		<div id="content" class="col-md-9">
+		<div id="content" class="col-md-12">
 			<!--navibar-->
-			<div id="navi" class="container">
+			<div class="container">
 				<div class="row">
 					<div class="col">
 						<br>
@@ -47,9 +47,23 @@
 						</ol>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col">
+						<form th:action="@{/set-diagram-scale}" method="GET">
+							<div class="input-group">
+								<select class="form-control" id="dictionaryName" name="dictionaryName">
+									<option value="WEEK" selected>Week</option>
+									<option value="MONTH">Month</option>
+									<option value="QUARTER">Quarter</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-secondary" type="submit">Show workdays</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
-
-
 		</div>
 	</div>
 </div>

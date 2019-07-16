@@ -25,7 +25,7 @@ public class HomeDiagramController {
 		return "index";
 	}
 
-	@PostMapping("/set-diagram-scale")
+	@GetMapping("/set-diagram-scale")
 	public String setDiagramScale(@RequestParam String interval, Model model){
 		model.addAttribute("workDiagram", workDiagramService.getMultipleWorkDays(interval));
 		return "index";
