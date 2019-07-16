@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
-/*
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
@@ -40,13 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.dataSource(dataSource)
 				.passwordEncoder(bCryptPasswordEncoder);
 	}
-	*/
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception{
@@ -68,31 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.logoutSuccessUrl("/login")
 				.and().exceptionHandling().accessDeniedPage("/denied");
 	}
-
-/*
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("/logout").permitAll()
-				.antMatchers("/employee/**").hasAnyRole("USER", "ADMIN")
-				.antMatchers("/admin/**").hasRole("ADMIN")
-				.and().logout().permitAll()
-				.and().exceptionHandling().accessDeniedHandler((httpServletRequest, httpServletResponse, e) -> httpServletResponse.sendRedirect("/login?error"))
-				.and().formLogin().permitAll();
-	}
-*/
-	/*
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.
-			authorizeRequests().antMatchers("/","/index").permitAll()
-			.anyRequest().authenticated()
-			//.and().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
-			.and().formLogin().loginPage("/login").permitAll()
-			.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
-	}
-
-	 */
 
 	@Override
 	public void configure(WebSecurity web){

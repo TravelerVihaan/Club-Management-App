@@ -1,16 +1,16 @@
-/*package com.github.travelervihaan.clubmanagement.controller;
+package com.github.travelervihaan.clubmanagement.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
-@Controller("/workday")
+@Controller
 public class WorkDayController {
 
-    @GetMapping
-    public String showWorkDayPage(@RequestParam(required = false) Long workDayId){
+    @GetMapping("/workday/{workDayId}")
+    public String showWorkDayPage(@PathVariable Long workDayId, Model model){
 
         return "workday";
     }
 }
-*/

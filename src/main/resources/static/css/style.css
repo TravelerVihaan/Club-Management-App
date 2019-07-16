@@ -56,6 +56,11 @@
     color: rgb(20, 175, 116);
 }
 
+.roundedd {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
 body {
     /*background-color: rgb(235, 232, 228);*/
     background-color: rgb(201, 199, 195);
