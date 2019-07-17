@@ -36,7 +36,7 @@ CREATE TABLE `absence_types` (
 
 LOCK TABLES `absence_types` WRITE;
 /*!40000 ALTER TABLE `absence_types` DISABLE KEYS */;
-INSERT INTO `absence_types` VALUES (1,'Holiday'),(2,'sick leave');
+INSERT INTO `absence_types` VALUES (1,'Holiday'),(2,'Sick leave');
 /*!40000 ALTER TABLE `absence_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,4 +410,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-17 15:57:10
+-- Dump completed on 2019-07-17 16:47:46

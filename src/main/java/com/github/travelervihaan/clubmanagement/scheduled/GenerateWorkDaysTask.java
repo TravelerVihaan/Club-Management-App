@@ -18,7 +18,7 @@ public class GenerateWorkDaysTask {
         this.workDayService = workDayService;
     }
 
-    @Scheduled(cron = "0 17 15 * * *")
+    @Scheduled(cron = "0 0 8 * * 1")
     public void generateWorkDays() {
         if(!isWorkDayGeneratedAlready())
             saveMissingWorkDaysInDB();
