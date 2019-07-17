@@ -18,26 +18,22 @@ public class GenerateWorkDaysTask {
         this.workDayService = workDayService;
     }
 
-    @Scheduled(cron = "0 0 8 * * 1")
+    @Scheduled(cron = "0 17 15 * * *")
     public void generateWorkDays() {
         if(!isWorkDayGeneratedAlready())
             saveMissingWorkDaysInDB();
     }
 
     private boolean isWorkDayGeneratedAlready(){
-        return workDayService.getOneWorkDayByDate(LocalDate.now().plusMonths(2)).isPresent();
+        return workDayService.getOneWorkDayByDate(LocalDate.now().plusMonths(5)).isPresent();
     }
 
     private void saveMissingWorkDaysInDB(){
-        WorkDay workDay = workDayService.getNewestWorkDay().orElse(workDayService.createFirstWorkDay());
-        LocalDate date = workDay.getDate();
+        WorkDay workDay = workDayService.getNewestWorkDay().orElse(workDayService.getDefaultWorkDay(LocalDate.now()));
+        LocalDate date = workDay.getDate().plusDays(2);
         LocalDate endDate = date.plusMonths(3);
         while(!date.isEqual(endDate)){
-            try {
-                workDayService.createDefaultWorkDay(date);
-            }catch(Exception e){
-                System.err.println("[WORKDAY GENERATOR ERROR]");
-            }
+            workDayService.createDefaultWorkDay(date);
             date = date.plusDays(1);
         }
     }
