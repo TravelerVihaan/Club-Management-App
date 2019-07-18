@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 @Service
 public class AbsenceService {
 
-    private final String WAITING_STATUS = "WAITING";
-    private final String APPROVED_STATUS = "APPROVED";
-    private final String REJECTED_STATUS = "REJECTED";
+    private final String WAITING_STATUS = "waiting";
+    private final String APPROVED_STATUS = "approved";
+    private final String REJECTED_STATUS = "rejected";
 
     private AbsenceRepository absenceRepository;
     private AbsenceApprovalStatusRepository absenceApprovalStatusRepository;

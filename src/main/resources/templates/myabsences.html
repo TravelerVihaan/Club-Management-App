@@ -67,8 +67,49 @@
                     </div>
                 </div>
             </div>
+            <p class="h5">Your absences list:</p>
+            <form th:action="@{/myabsences}" method="GET">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="h6" style="float:right">Select filter type:</p>
+                        </div>
 
-            CONTENT HERE
+                        <div class="input-group col-md-6" style="float:right">
+                            <select class="form-control" id="filter" name="filter">
+                                <option value="all" selected>All</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="waiting">Waiting</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="submit">Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th>From day</th>
+                    <th>To day</th>
+                    <th>Absence Type</th>
+                    <th>STATUS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="absence: ${absences}" th:object="${Absence}">
+                    <tr>
+                        <td th:text="${absence.getAbsenceFromDay()}"></td>
+                        <td th:text="${absence.getAbsenceToDay()}"></td>
+                        <td th:text="${absence.getAbsenceType().getAbsenceType()}"></td>
+                        <td th:text="${absence.getAbsenceApprovalStatus().getStatus()}"></td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
