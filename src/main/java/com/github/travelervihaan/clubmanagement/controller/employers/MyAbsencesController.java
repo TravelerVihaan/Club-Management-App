@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -25,6 +26,11 @@ public class MyAbsencesController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<Absence> absences = absenceService.getAbsencesOfEmployee(authentication.getName(), filter);
         model.addAttribute("absences", absences);
+        return "myabsences";
+    }
+
+    @PostMapping("/new-absence")
+    public String sendNewAbsenceRequest(){
         return "myabsences";
     }
 }

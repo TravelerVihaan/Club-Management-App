@@ -17,6 +17,7 @@
 }
 
 #userPanel {
+    background-color: rgb(201, 199, 195);
     -webkit-box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.2);
     padding: 0.2%;
