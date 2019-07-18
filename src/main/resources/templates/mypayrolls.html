@@ -62,13 +62,31 @@
                     <div class="col">
                         <br>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Main Page</li>
+                            <li class="breadcrumb-item active">Your payrolls:</li>
                         </ol>
                     </div>
                 </div>
             </div>
-
-            CONTENT HERE
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Month</th>
+                        <th>Days worked</th>
+                        <th>Hours Worked</th>
+                        <th>Calculated salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div th:each="payroll: ${payrolls}" th:object="${Payroll}">
+                        <tr>
+                            <td th:text="${payroll.getMonth()}"></td>
+                            <td th:text="${payroll.getWorkedDays()}"></td>
+                            <td th:text="${payroll.getWorkedHours()}"></td>
+                            <td th:text="${payroll.getSalary()}"></td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

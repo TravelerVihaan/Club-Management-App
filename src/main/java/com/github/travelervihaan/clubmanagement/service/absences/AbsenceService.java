@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AbsenceService {
@@ -44,6 +45,15 @@ public class AbsenceService {
                 absenceMailService.sendMailInformationAboutAbsence(absence.getEmployee());
             }
         }
+    }
+
+    public List<Absence> getAbsencesOfEmployee(String username, String filter){
+        List<Absence> absences = absenceRepository.findAllByEmployee_Username(username);
+        if(!filter.equalsIgnoreCase("all")){
+            absences = absences.stream().filter( absence -> absence.getAbsenceApprovalStatus().getStatus().equalsIgnoreCase(filter)).collect(Collectors.toList());
+            return absences;
+        }
+        return absences;
     }
 
     public void changeAbsenceStatus(long absenceId, String newStatus){

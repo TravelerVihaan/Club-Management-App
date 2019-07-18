@@ -3,6 +3,7 @@ package com.github.travelervihaan.clubmanagement.model.payrolls;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -14,6 +15,9 @@ public class Payroll implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_payroll")
     private Long id;
+    @NotEmpty
+    @Column(name="month", nullable = false)
+    private String month;
     @NotNull
     @Column(name = "worked_days", nullable = false)
     private Integer workedDays;
@@ -29,6 +33,14 @@ public class Payroll implements Serializable {
     private Employee employee;
 
     public Payroll(){}
+
+    public Payroll(@NotEmpty String month, @NotNull Integer workedDays, @NotNull Double workedHours, @NotNull Double salary, @NotNull Employee employee) {
+        this.month = month;
+        this.workedDays = workedDays;
+        this.workedHours = workedHours;
+        this.salary = salary;
+        this.employee = employee;
+    }
 
     public Payroll(@NotNull Integer workedDays, @NotNull Double workedHours, @NotNull Double salary, @NotNull Employee employee) {
         this.workedDays = workedDays;
@@ -69,6 +81,14 @@ public class Payroll implements Serializable {
         this.salary = salary;
     }
 
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -81,6 +101,7 @@ public class Payroll implements Serializable {
     public String toString() {
         return "Payroll{" +
                 "id=" + id +
+                ", month='" + month + '\'' +
                 ", workedDays=" + workedDays +
                 ", workedHours=" + workedHours +
                 ", salary=" + salary +

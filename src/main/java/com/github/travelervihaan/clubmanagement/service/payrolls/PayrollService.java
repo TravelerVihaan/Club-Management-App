@@ -11,6 +11,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -47,6 +48,9 @@ public class PayrollService {
         payroll.setWorkedDays(employeeWorkDays.size());
         double workedHours = countWorkedHours(employeeWorkDays);
         payroll.setWorkedHours(workedHours);
+        payroll.setMonth(LocalDate.now().minusMonths(1).getMonth().toString()
+                +"-"
+                +LocalDate.now().minusMonths(1).getYear());
         if(isUZContract(employee))
             payroll.setSalary(calculateSalaryOnUZ(employee, workedHours));
         if(isUOPContract(employee))
