@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,9 +33,14 @@
         <div class="col-md-5">
             <div style="float:right" class="btn-group" role="group" aria-label="User button panel">
                 <a th:href="@{/index}"><button type="button" class="btn btn-dark">Work Diagram</button></a>
-                <a th:href="@{/index}"><button type="button" class="btn btn-dark">Employers</button></a>
-                <a th:href="@{/index}"><button type="button" class="btn btn-dark">Absences</button></a>
-                <a th:href="@{/index}"><button type="button" class="btn btn-dark">Payrolls</button></a>
+                <a th:href="@{/index}"><button type="button" class="btn btn-dark">My absences</button></a>
+                <a th:href="@{/index}"><button type="button" class="btn btn-dark">My payrolls</button></a>
+                <!-- NAVIBAR OPTIONS FOR MANAGERS AND ADMINS -->
+                <div sec:authorize="hasRole('ROLE_MANAGER')">
+                    <a th:href="@{/index}"><button type="button" class="btn btn-dark">Employers</button></a>
+                    <a th:href="@{/index}"><button type="button" class="btn btn-dark">Absences</button></a>
+                    <a th:href="@{/index}"><button type="button" class="btn btn-dark">Payrolls</button></a>
+                </div>
             </div>
         </div>
         <div class="col-md-3">
