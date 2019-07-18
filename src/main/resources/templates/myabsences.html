@@ -55,18 +55,6 @@
 <div id="main" class="container">
     <div class="row">
         <div id="content" class="col-md-12">
-            <!--navibar-->
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <br>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Your absences page</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
                 <div class="row">
                     <div class="col">
                         <p class="h4">
@@ -74,45 +62,38 @@
                         </p>
                     </div>
                 </div>
-                <form th:action="@{/new-absence}" method="POST">
+                <form th:action="@{/new-absence}" method="POST" th:object="${newAbsence}">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="absenceFrom">Absence start date:</label>
-                            <input type="date" class="form-control" name="absenceDateFrom" placeholder="Pick start date">
+                            <input type="date" class="form-control" th:field="*{absenceFromDay}" placeholder="Pick start date">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="absenceTo">Absence end date:</label>
-                            <input type="date" class="form-control" name="absenceDateTo" placeholder="Pick end date">
+                            <input type="date" class="form-control" th:field="*{absenceFromDay}" placeholder="Pick end date">
                         </div>
                     </div>
                 </div>
-                <div class="row">
                 <div class="form-group">
                     <label for="absenceType">Check absence type:</label>
-                    <div class="col">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="absenceRadio" id="holidayRadio" value="1" checked>
                             <label class="form-check-label" for="holidayRadio">
                                 Holiday absence
                             </label>
                         </div>
-                    </div>
-                    <div class="col">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="absenceRadio" id="sickRadio" value="2">
                             <label class="form-check-label" for="sickRadio">
                                 Sick leave
                             </label>
                         </div>
-                    </div>
-                </div>
                 </div>
                     <button type="submit" class="btn btn-dark btn-block">Send absence request</button>
                 </form>
-            </div>
             <br>
             <p class="h4">Your absences list:</p>
             <form th:action="@{/myabsences}" method="GET">

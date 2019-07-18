@@ -26,6 +26,7 @@ public class MyAbsencesController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<Absence> absences = absenceService.getAbsencesOfEmployee(authentication.getName(), filter);
         model.addAttribute("absences", absences);
+        model.addAttribute("newAbsence", new Absence());
         return "myabsences";
     }
 
