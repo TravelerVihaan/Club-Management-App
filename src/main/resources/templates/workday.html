@@ -68,7 +68,19 @@
                 </div>
             </div>
 
-            CONTENT HERE
+            <p class="h6"><b>Workday Date: <span th:utext="${workDay.getDate()}">Date</span></b></p>
+
+            <p class="h7">Work time: <span th:utext="${workDay.getWorkingTime()}">Worktime</span></p>
+
+            <p class="h7">Booked artist: <span th:utext="${workDay.getBookedArtist()}">Importance Level</span></p>
+
+            <p class="h7">Employers needed: <span th:utext="${workDay.getWorkDayImportance().getImportanceLevel()}">Importance Level</span></p>
+
+            <p class="h7">Employers:<br></p>
+            <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                <p class="h8"><span th:utext="${employee.getName()+' '+employee.getSurname()}">Employee</span></p>
+            </div>
+
         </div>
     </div>
 </div>

@@ -42,6 +42,8 @@
 					<a th:href="@{/absences}"><button type="button" class="btn btn-dark">Absences</button></a>
 					<a th:href="@{/payrolls}"><button type="button" class="btn btn-dark">Payrolls</button></a>
 				</div>
+				Logged user: <span sec:authentication="name"> Not logged</span>
+
 			</div>
 		</div>
 		<div class="col-md-3">

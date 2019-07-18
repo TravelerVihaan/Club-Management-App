@@ -21,7 +21,7 @@ public class WorkDayController {
     public String showWorkDayPage(@PathVariable Long workDayId, Model model){
         if(workDayService.getWorkDayById(workDayId).isEmpty())
             return "errors/error404";
-        model.addAttribute("workDay",workDayService.getWorkDayById(workDayId));
+        model.addAttribute("workDay",workDayService.getWorkDayById(workDayId).orElseThrow());
         return "workday";
     }
 }
