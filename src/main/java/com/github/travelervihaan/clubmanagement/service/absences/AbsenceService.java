@@ -37,14 +37,8 @@ public class AbsenceService {
         return absenceRepository.findAll();
     }
 
-    public void addNewAbsence(@Valid Absence absence, BindingResult result) {
-        if (!result.hasErrors()) {
-            if (isApprovalStatusExist(WAITING_STATUS)) {
-                absence.setAbsenceApprovalStatus(absenceApprovalStatusRepository.findByStatus(WAITING_STATUS));
-                absenceRepository.save(absence);
-                absenceMailService.sendMailInformationAboutAbsence(absence.getEmployee());
-            }
-        }
+    public void addNewAbsence(Absence absence) {
+
     }
 
     public List<Absence> getAbsencesOfEmployee(String username, String filter){
