@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -24,9 +25,8 @@ public class EmployeeService {
         return employeeRepository.findAllByEmployeeDetails_JobTitle_JobTitle(jobTitle);
     }
 
-    @Autowired
-    public void setEmployeeRepository(EmployeeRepository employeeRepo) {
-        this.employeeRepository = employeeRepo;
+    public Optional<Employee> getEmployeeByUsername(String username){
+        return employeeRepository.findByUsername(username);
     }
 
     public List<Employee> getAllEmployers(){
