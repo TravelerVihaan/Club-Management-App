@@ -32,17 +32,17 @@
 <div id="userPanel" class="container-fluid">
 	<div class="row justify-content-around">
 		<div class="col-md-5">
-				<div style="float:right" class="btn-group" role="group" aria-label="User button panel">
-					<a th:href="@{/index}"><button type="button" class="btn btn-dark">Work Diagram</button></a>
-					<a th:href="@{/index}"><button type="button" class="btn btn-dark">My absences</button></a>
-					<a th:href="@{/index}"><button type="button" class="btn btn-dark">My payrolls</button></a>
-					<!-- NAVIBAR OPTIONS FOR MANAGERS AND ADMINS -->
-					<div sec:authorize="hasRole('ROLE_MANAGER')">
-						<a th:href="@{/index}"><button type="button" class="btn btn-dark">Employers</button></a>
-						<a th:href="@{/index}"><button type="button" class="btn btn-dark">Absences</button></a>
-						<a th:href="@{/index}"><button type="button" class="btn btn-dark">Payrolls</button></a>
-					</div>
+			<div style="float:right" class="btn-group" role="group" aria-label="User button panel">
+				<a th:href="@{/index}"><button type="button" class="btn btn-dark">Work Diagram</button></a>
+				<a th:href="@{/myabsences}"><button type="button" class="btn btn-dark">My absences</button></a>
+				<a th:href="@{/mypayrolls}"><button type="button" class="btn btn-dark">My payrolls</button></a>
+				<!-- NAVIBAR OPTIONS FOR MANAGERS AND ADMINS -->
+				<div sec:authorize="hasRole('ROLE_MANAGER')">
+					<a th:href="@{/employers}"><button type="button" class="btn btn-dark">Employers</button></a>
+					<a th:href="@{/absences}"><button type="button" class="btn btn-dark">Absences</button></a>
+					<a th:href="@{/payrolls}"><button type="button" class="btn btn-dark">Payrolls</button></a>
 				</div>
+			</div>
 		</div>
 		<div class="col-md-3">
 			<div style="float:left" class="btn-group" role="group" aria-label="User account panel">
