@@ -23,7 +23,7 @@ public class AccountController {
     public String getAccountPage(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(employeeService.getEmployeeByUsername(authentication.getName()).isEmpty())
-            return "error404";
+            return "errors/error404";
         model.addAttribute("employee", employeeService.getEmployeeByUsername(authentication.getName()));
         return "account";
     }

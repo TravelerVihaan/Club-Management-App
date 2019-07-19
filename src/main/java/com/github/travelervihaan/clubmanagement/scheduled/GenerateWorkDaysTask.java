@@ -29,7 +29,9 @@ public class GenerateWorkDaysTask {
     }
 
     private void saveMissingWorkDaysInDB(){
-        WorkDay workDay = workDayService.getNewestWorkDay().orElseGet(() -> workDayService.getDefaultWorkDay(LocalDate.now()));
+        WorkDay workDay = workDayService
+                .getNewestWorkDay()
+                .orElseGet(() -> workDayService.getDefaultWorkDay(LocalDate.now()));
         LocalDate date = workDay.getDate().plusDays(2);
         LocalDate endDate = date.plusMonths(3);
         while(!date.isEqual(endDate)){

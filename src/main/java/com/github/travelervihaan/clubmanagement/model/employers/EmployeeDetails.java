@@ -14,7 +14,6 @@ public class EmployeeDetails implements Serializable {
     @Column(name = "id_employee_details")
     private Long id;
 
-    // HIRE INFO
     @NotNull
     @Column(name = "hire_day", nullable = false)
     private LocalDate hireDay;
@@ -25,7 +24,6 @@ public class EmployeeDetails implements Serializable {
     @Column(nullable = false)
     private Double salary;
 
-    //URLOP
     @NotNull
     @Column(name = "total_vacation_days", nullable = false)
     private Integer totalVacationDays;

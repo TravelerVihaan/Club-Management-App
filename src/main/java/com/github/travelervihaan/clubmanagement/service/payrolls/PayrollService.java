@@ -34,14 +34,6 @@ public class PayrollService {
         employers.forEach(this::savePayrollOfEmployee);
     }
 
-    private boolean isUOPContract(Employee employee){
-        return employee.getEmployeeDetails().getContractType().getContractType().equalsIgnoreCase("UOP");
-    }
-
-    private boolean isUZContract(Employee employee){
-        return employee.getEmployeeDetails().getContractType().getContractType().equalsIgnoreCase("UZ");
-    }
-
     private void savePayrollOfEmployee(Employee employee){
         Payroll payroll = new Payroll();
         List<WorkDay> employeeWorkDays = employee.getWorkDays();
@@ -60,6 +52,13 @@ public class PayrollService {
         savePayrollToDB(payroll);
     }
 
+    private boolean isUOPContract(Employee employee){
+        return employee.getEmployeeDetails().getContractType().getContractType().equalsIgnoreCase("UOP");
+    }
+
+    private boolean isUZContract(Employee employee){
+        return employee.getEmployeeDetails().getContractType().getContractType().equalsIgnoreCase("UZ");
+    }
 
     private void savePayrollToDB(Payroll payroll){
         Set<ConstraintViolation<Payroll>> validationErrors = validator.validate(payroll);
