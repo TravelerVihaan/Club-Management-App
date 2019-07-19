@@ -46,7 +46,7 @@ public class MyAbsencesController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         employeeService
                 .getEmployeeByUsername(authentication.getName())
-                .ifPresent(employee -> absence.setEmployee(employee));
+                .ifPresent(absence::setEmployee);
         employeeAbsenceService.addNewAbsence(absence);
         return "redirect:/myabsences";
     }
