@@ -35,9 +35,12 @@ public class AbsenceStatusChangeService {
         }
     }
 
-    public List<Absence> getAllAbsences(){
+    public List<Absence> getAllAbsences(String username){
+        if(username!=null && !username.equals(""))
+            return absenceRepository.findAllByEmployee_Username(username);
         return absenceRepository.findAll();
     }
+
 
     private boolean isAbsenceNotTooLong(Absence absence){
         return

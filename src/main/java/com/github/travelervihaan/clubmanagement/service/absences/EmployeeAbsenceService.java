@@ -35,20 +35,31 @@ public class EmployeeAbsenceService {
         this.absenceMailService = absenceMailService;
     }
 
-    public String addNewAbsence(Absence absence){
-        if(!isDatesCorrect(absence.getAbsenceFromDay(),absence.getAbsenceToDay()))
-            return "WRONG_DATES";
-        if(!isAbsenceNotTooLong(absence))
-            return "TOO_LONG";
-        absence.setAbsenceApprovalStatus
-                        (absenceApprovalStatusService.getAbsenceApprovalStatus(WAITING_STATUS).orElseThrow());
-        Set<ConstraintViolation<Absence>> validationErrors = validator.validate(absence);
-        if(validationErrors.isEmpty()){
-            absenceRepository.save(absence);
-            absenceMailService.sendMailInformationAboutAbsence(absence.getEmployee());
-            return "OK";
+    public void addNewAbsence(Absence absence){
+        if(isAbsenceRequestValid(absence)) {
+            absence.setAbsenceApprovalStatus
+                    (absenceApprovalStatusService
+                            .getAbsenceApprovalStatus(WAITING_STATUS)
+                            .orElseThrow());
+            Set<ConstraintViolation<Absence>> validationErrors = validator.validate(absence);
+            if (validationErrors.isEmpty()) {
+                absenceRepository.save(absence);
+                absenceMailService.sendMailInformationAboutAbsence(absence.getEmployee());
+            }
         }
-        return "BAD_ARGS";
+    }
+
+    private boolean isAbsenceRequestValid(Absence absence){
+        if(!isDatesCorrect(absence.getAbsenceFromDay(),absence.getAbsenceToDay()))
+            return false;
+        if(isSickLeave(absence))
+            return true;
+        return (isAbsenceTooLong(absence));
+    }
+
+
+    private boolean isSickLeave(Absence absence){
+        return absence.getAbsenceType().getAbsenceType().equalsIgnoreCase("Sick leave");
     }
 
     private boolean isDatesCorrect(LocalDate startDate, LocalDate endDate){
@@ -57,10 +68,9 @@ public class EmployeeAbsenceService {
                 && endDate.isAfter(LocalDate.now());
         }
 
-        private boolean isAbsenceNotTooLong(Absence absence){
-            return
-                    ChronoUnit.DAYS.between(absence.getAbsenceFromDay(),absence.getAbsenceToDay())
-                            < absence.getEmployee().getEmployeeDetails().getAvailableVacationDays();
+        private boolean isAbsenceTooLong(Absence absence){
+            return ChronoUnit.DAYS.between(absence.getAbsenceFromDay(),absence.getAbsenceToDay())
+                    > absence.getEmployee().getEmployeeDetails().getAvailableVacationDays();
         }
 
     public List<Absence> getAbsencesOfEmployee(String username, String filter){
