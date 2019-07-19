@@ -14,19 +14,7 @@
 </head>
 <body>
 
-    <div id="header" class="container-fluid">
-        <div class="row">
-            <div id="logo" class="col-4">
-                <img th:src="@{/images/stack.png}" class="float-right img-fluid">
-            </div>
-            <div id="logotext" class="col-8">
-                <p id="headerText" class="h1"><br />Club management App
-                    <br />
-                    <small id="headerTextSecondary" class="text-muted">Let's manage your club!</small>
-                </p>
-            </div>
-        </div>
-    </div>
+<div th:replace="core/header"/>
 
     <div id="main" class="container">
         <div class="row">
@@ -59,20 +47,7 @@
         </div>
     </div>
 
-    <div id="footer" class="container-fluid">
-        <div class = "row">
-            <div class = "col-8">
-                <p id="footerLogoText" class="h2">
-                    Club Manager
-                </p>
-            </div>
-            <div class = "col-4">
-                <p id="footerSecondaryText" class="h6">
-                    Traveler Vihaan
-                </p>
-            </div>
-        </div>
-    </div>
+<div th:replace="core/footer"/>
 
     <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
