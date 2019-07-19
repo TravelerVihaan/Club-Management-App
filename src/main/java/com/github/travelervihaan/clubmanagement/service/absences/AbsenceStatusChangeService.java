@@ -30,7 +30,7 @@ public class AbsenceStatusChangeService {
     public void changeAbsenceStatus(long absenceId, String newStatus){
         Absence absence = absenceRepository.findById(absenceId).orElseThrow();
         if(isAbsenceNotTooLong(absence)) {
-            changeStatus(absenceId, newStatus);
+            saveChangedStatusInDB(absence, newStatus);
             employeeService.changeEmployeeVacationDays(absence);
         }
     }
@@ -43,10 +43,6 @@ public class AbsenceStatusChangeService {
         return
                 ChronoUnit.DAYS.between(absence.getAbsenceFromDay(),absence.getAbsenceToDay())
                         < absence.getEmployee().getEmployeeDetails().getAvailableVacationDays();
-    }
-
-    private void changeStatus(long absenceId, String status) {
-        absenceRepository.findById(absenceId).ifPresent(ab -> saveChangedStatusInDB(ab, status));
     }
 
     private void saveChangedStatusInDB(Absence absence, String status){
