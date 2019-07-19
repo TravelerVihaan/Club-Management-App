@@ -30,6 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
 
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
@@ -41,15 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.passwordEncoder(bCryptPasswordEncoder);
 	}
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity
-				.csrf().disable()
 				.authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/manager/**").hasRole("MANAGER")
@@ -65,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/login")
 				.and().exceptionHandling().accessDeniedPage("/denied");
+				//.csrf().disable()
 	}
 
 	@Override
