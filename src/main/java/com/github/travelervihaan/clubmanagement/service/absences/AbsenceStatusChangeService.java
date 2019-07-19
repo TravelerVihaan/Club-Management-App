@@ -51,7 +51,7 @@ public class AbsenceStatusChangeService {
     private void saveChangedStatusInDB(Absence absence, String status){
         absenceApprovalStatusService
                 .getAbsenceApprovalStatus(status)
-                .ifPresent(approvalStatus -> absence.setAbsenceApprovalStatus(approvalStatus));
+                .ifPresent(absence::setAbsenceApprovalStatus);
         absenceRepository.save(absence);
     }
 }
