@@ -100,7 +100,7 @@
 							<div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
 								<p class="h8"><span th:utext="${employee.getName()+' '+employee.getSurname()}">Employee</span></p>
 							</div>
-							<a th:href="@{'/workday/'+${workDay.getId()}}"><button type="button" class="btn btn-dark btn-block">Show details</button></a>
+							<a th:href="@{'/workday/'+${workDay.getId()}}"><button type="button" class="btn btn-secondary btn-block">Show details</button></a>
 						</div>
 					</div>
 				</div>

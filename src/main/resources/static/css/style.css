@@ -24,16 +24,16 @@
 }
 
 #main {
-    background-color: rgb(201, 199, 195);
-    /*background-color: rgb(235, 232, 228);*/
+    background-color: rgb(235, 232, 228);
+    /*background-color: rgb(201, 199, 195);*/
 }
 
 #content {
     padding-left: 10%;
     padding-right: 5%;
     padding-bottom: 5%;
-    /*background-color: rgb(235, 232, 228);*/
-    background-color: rgb(201, 199, 195);
+    background-color: rgb(235, 232, 228);
+    /*background-color: rgb(201, 199, 195);*/
     min-height: calc(100vh - 345px);
 }
 
@@ -63,8 +63,8 @@
 }
 
 body {
-    /*background-color: rgb(235, 232, 228);*/
-    background-color: rgb(201, 199, 195);
+    background-color: rgb(235, 232, 228);
+    /*background-color: rgb(201, 199, 195);*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
