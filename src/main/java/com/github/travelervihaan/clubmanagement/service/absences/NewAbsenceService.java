@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import javax.validation.Validator;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -15,23 +16,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class EmployeeAbsenceService {
+public class NewAbsenceService {
 
     private final String WAITING_STATUS = "waiting";
 
     private AbsenceRepository absenceRepository;
     private AbsenceApprovalStatusService absenceApprovalStatusService;
     private AbsenceMailService absenceMailService;
-    private Validator validator;
 
     @Autowired
-    public EmployeeAbsenceService(AbsenceRepository absenceRepository,
+    public NewAbsenceService(AbsenceRepository absenceRepository,
                           AbsenceApprovalStatusService absenceApprovalStatusService,
-                          AbsenceMailService absenceMailService,
-                          Validator validator){
+                          AbsenceMailService absenceMailService){
         this.absenceRepository = absenceRepository;
         this.absenceApprovalStatusService = absenceApprovalStatusService;
-        this.validator = validator;
         this.absenceMailService = absenceMailService;
     }
 
@@ -41,12 +39,15 @@ public class EmployeeAbsenceService {
                     (absenceApprovalStatusService
                             .getAbsenceApprovalStatus(WAITING_STATUS)
                             .orElseThrow());
-            Set<ConstraintViolation<Absence>> validationErrors = validator.validate(absence);
-            if (validationErrors.isEmpty()) {
+            if(getValidationErrors(absence).isEmpty()) {
                 absenceRepository.save(absence);
                 absenceMailService.sendMailInformationAboutAbsence(absence.getEmployee());
             }
         }
+    }
+
+    private Set<ConstraintViolation<Absence>> getValidationErrors(Absence absence){
+        return Validation.buildDefaultValidatorFactory().getValidator().validate(absence);
     }
 
     private boolean isAbsenceRequestValid(Absence absence){

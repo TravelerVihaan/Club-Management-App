@@ -2,7 +2,7 @@ package com.github.travelervihaan.clubmanagement.controller.employers;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.service.absences.AbsenceTypeService;
-import com.github.travelervihaan.clubmanagement.service.absences.EmployeeAbsenceService;
+import com.github.travelervihaan.clubmanagement.service.absences.NewAbsenceService;
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,12 +18,12 @@ import java.util.List;
 @Controller
 public class MyAbsencesController {
 
-    private EmployeeAbsenceService employeeAbsenceService;
+    private NewAbsenceService newAbsenceService;
     private EmployeeService employeeService;
     private AbsenceTypeService absenceTypeService;
 
-    public MyAbsencesController(EmployeeAbsenceService employeeAbsenceService, EmployeeService employeeService, AbsenceTypeService absenceTypeService){
-        this.employeeAbsenceService = employeeAbsenceService;
+    public MyAbsencesController(NewAbsenceService newAbsenceService, EmployeeService employeeService, AbsenceTypeService absenceTypeService){
+        this.newAbsenceService = newAbsenceService;
         this.employeeService = employeeService;
         this.absenceTypeService = absenceTypeService;
     }
@@ -33,7 +33,7 @@ public class MyAbsencesController {
         Authentication authentication = SecurityContextHolder
                 .getContext()
                 .getAuthentication();
-        List<Absence> absences = employeeAbsenceService
+        List<Absence> absences = newAbsenceService
                 .getAbsencesOfEmployee(authentication.getName(), filter);
         model.addAttribute("absences", absences);
         model.addAttribute("newAbsence", new Absence());
@@ -47,7 +47,7 @@ public class MyAbsencesController {
         employeeService
                 .getEmployeeByUsername(authentication.getName())
                 .ifPresent(absence::setEmployee);
-        employeeAbsenceService.addNewAbsence(absence);
+        newAbsenceService.addNewAbsence(absence);
         return "redirect:/myabsences";
     }
 }
