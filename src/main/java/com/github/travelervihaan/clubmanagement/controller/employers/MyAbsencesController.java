@@ -1,9 +1,8 @@
 package com.github.travelervihaan.clubmanagement.controller.employers;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.service.absences.AbsenceService;
 import com.github.travelervihaan.clubmanagement.service.absences.AbsenceTypeService;
+import com.github.travelervihaan.clubmanagement.service.absences.EmployeeAbsenceService;
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,12 +18,12 @@ import java.util.List;
 @Controller
 public class MyAbsencesController {
 
-    private AbsenceService absenceService;
+    private EmployeeAbsenceService employeeAbsenceService;
     private EmployeeService employeeService;
     private AbsenceTypeService absenceTypeService;
 
-    public MyAbsencesController(AbsenceService absenceService, EmployeeService employeeService, AbsenceTypeService absenceTypeService){
-        this.absenceService = absenceService;
+    public MyAbsencesController(EmployeeAbsenceService employeeAbsenceService, EmployeeService employeeService, AbsenceTypeService absenceTypeService){
+        this.employeeAbsenceService = employeeAbsenceService;
         this.employeeService = employeeService;
         this.absenceTypeService = absenceTypeService;
     }
@@ -32,7 +31,7 @@ public class MyAbsencesController {
     @GetMapping("/myabsences")
     public String getAbsences(@RequestParam(defaultValue = "all") String filter, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        List<Absence> absences = absenceService.getAbsencesOfEmployee(authentication.getName(), filter);
+        List<Absence> absences = employeeAbsenceService.getAbsencesOfEmployee(authentication.getName(), filter);
         model.addAttribute("absences", absences);
         model.addAttribute("newAbsence", new Absence());
         model.addAttribute("absenceTypes", absenceTypeService.getAllAbsenceTypes());
@@ -43,7 +42,7 @@ public class MyAbsencesController {
     public String sendNewAbsenceRequest(@ModelAttribute Absence absence){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         employeeService.getEmployeeByUsername(authentication.getName()).ifPresent(employee -> absence.setEmployee(employee));
-        absenceService.addNewAbsence(absence);
+        employeeAbsenceService.addNewAbsence(absence);
         return "redirect:/myabsences";
     }
 }
