@@ -36,7 +36,7 @@ public class AbsenceStatusChangeService {
     }
 
     public List<Absence> getAllAbsences(String username){
-        if(username!=null && !username.equals(""))
+        if(username!=null || !username.equals(""))
             return absenceRepository.findAllByEmployee_Username(username);
         return absenceRepository.findAll();
     }
