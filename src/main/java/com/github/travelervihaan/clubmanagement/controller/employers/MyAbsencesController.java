@@ -30,8 +30,11 @@ public class MyAbsencesController {
 
     @GetMapping("/myabsences")
     public String getAbsences(@RequestParam(defaultValue = "all") String filter, Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        List<Absence> absences = employeeAbsenceService.getAbsencesOfEmployee(authentication.getName(), filter);
+        Authentication authentication = SecurityContextHolder
+                .getContext()
+                .getAuthentication();
+        List<Absence> absences = employeeAbsenceService
+                .getAbsencesOfEmployee(authentication.getName(), filter);
         model.addAttribute("absences", absences);
         model.addAttribute("newAbsence", new Absence());
         model.addAttribute("absenceTypes", absenceTypeService.getAllAbsenceTypes());
@@ -41,7 +44,9 @@ public class MyAbsencesController {
     @PostMapping("/new-absence")
     public String sendNewAbsenceRequest(@ModelAttribute Absence absence){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        employeeService.getEmployeeByUsername(authentication.getName()).ifPresent(employee -> absence.setEmployee(employee));
+        employeeService
+                .getEmployeeByUsername(authentication.getName())
+                .ifPresent(employee -> absence.setEmployee(employee));
         employeeAbsenceService.addNewAbsence(absence);
         return "redirect:/myabsences";
     }
