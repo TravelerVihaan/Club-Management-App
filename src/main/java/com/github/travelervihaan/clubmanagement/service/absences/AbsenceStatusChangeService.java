@@ -1,7 +1,6 @@
 package com.github.travelervihaan.clubmanagement.service.absences;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
-import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceApprovalStatusRepository;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AbsenceStatusChangeService {
@@ -47,16 +45,14 @@ public class AbsenceStatusChangeService {
                         < absence.getEmployee().getEmployeeDetails().getAvailableVacationDays();
     }
 
-    private boolean isApprovalStatusExist(String status){
-        return absenceApprovalStatusService.getAbsenceApprovalStatus(status).isPresent();
-    }
-
     private void changeStatus(long absenceId, String status) {
         absenceRepository.findById(absenceId).ifPresent(ab -> saveChangedStatusInDB(ab, status));
     }
 
     private void saveChangedStatusInDB(Absence absence, String status){
-        absence.getAbsenceApprovalStatus().setStatus(status);
+        absenceApprovalStatusService
+                .getAbsenceApprovalStatus(status)
+                .ifPresent(approvalStatus -> absence.setAbsenceApprovalStatus(approvalStatus));
         absenceRepository.save(absence);
     }
 }
