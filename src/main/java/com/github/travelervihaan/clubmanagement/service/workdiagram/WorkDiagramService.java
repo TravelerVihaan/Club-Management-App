@@ -37,7 +37,7 @@ public class WorkDiagramService {
 
     private List<WorkDay> getWeekWorkDays(){
         LocalDate startDate = LocalDate.now().minusDays(2);
-        LocalDate endDate = LocalDate.now().plusDays(4);
+        LocalDate endDate = LocalDate.now().plusDays(6);
         return workDayRepository.findByDateBetweenOrderByDateAsc(startDate, endDate);
     }
 

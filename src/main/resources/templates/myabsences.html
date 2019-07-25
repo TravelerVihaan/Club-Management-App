@@ -29,25 +29,27 @@
                     </div>
                 </div>
                 <form th:action="@{/new-absence}" method="POST" th:object="${newAbsence}">
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="form-row">
+                    <div class="col">
                         <div class="form-group">
                             <label for="absenceFrom">Absence start date:</label>
                             <input type="date" class="form-control" th:field="*{absenceFromDay}" placeholder="Pick start date">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col">
                         <div class="form-group">
                             <label for="absenceTo">Absence end date:</label>
                             <input type="date" class="form-control" th:field="*{absenceFromDay}" placeholder="Pick end date">
                         </div>
                     </div>
                 </div>
-                        <li th:each="absType : ${absenceTypes}">
-                            <input type="radio" th:field="*{absenceType}" th:value="${absType}" />
-                            <label th:text="${absType.getAbsenceType()}">Wireframe</label>
-                        </li>
+                <div class="form-group">
+                    <li th:each="absType : ${absenceTypes}">
+                        <input type="radio" th:field="*{absenceType}" th:value="${absType}" />
+                        <label th:text="${absType.getAbsenceType()}">Wireframe</label>
+                    </li>
                     <button type="submit" class="btn btn-dark btn-block">Send absence request</button>
+                </div>
                 </form>
             <br>
 

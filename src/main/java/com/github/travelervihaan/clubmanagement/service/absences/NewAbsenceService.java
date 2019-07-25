@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
-import javax.validation.Validator;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -58,7 +57,6 @@ public class NewAbsenceService {
         return (isAbsenceTooLong(absence));
     }
 
-
     private boolean isSickLeave(Absence absence){
         return absence.getAbsenceType().getAbsenceType().equalsIgnoreCase("Sick leave");
     }
@@ -85,6 +83,5 @@ public class NewAbsenceService {
         }
         return absences;
     }
-
 
 }
