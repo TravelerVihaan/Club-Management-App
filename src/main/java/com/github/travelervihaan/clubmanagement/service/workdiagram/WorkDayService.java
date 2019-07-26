@@ -2,11 +2,13 @@ package com.github.travelervihaan.clubmanagement.service.workdiagram;
 
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
+import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDayImportance;
 import com.github.travelervihaan.clubmanagement.repository.workdiagram.WorkDayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +29,10 @@ public class WorkDayService {
 
     public Optional<WorkDay> getOneWorkDayByDate(LocalDate date){
         return workDayRepository.findByDate(date);
+    }
+
+    public List<WorkDayImportance> getAllImportanceLevels(){
+        return workDayImportanceService.getAllWorkDayImportanceLevels();
     }
 
     public Optional<WorkDay> getNewestWorkDay(){
