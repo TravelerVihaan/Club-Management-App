@@ -16,11 +16,15 @@ public class WorkDayService {
 
     private WorkDayRepository workDayRepository;
     private WorkDayImportanceService workDayImportanceService;
+    private WorkDayDetailsService workDayDetailsService;
 
     @Autowired
-    public WorkDayService(WorkDayRepository workDayRepository, WorkDayImportanceService workDayImportanceService){
+    public WorkDayService(WorkDayRepository workDayRepository,
+                          WorkDayImportanceService workDayImportanceService,
+                          WorkDayDetailsService workDayDetailsService){
         this.workDayRepository = workDayRepository;
         this.workDayImportanceService = workDayImportanceService;
+        this.workDayDetailsService = workDayDetailsService;
     }
 
     public Optional<WorkDay> getWorkDayById(Long id){
@@ -40,8 +44,7 @@ public class WorkDayService {
     }
 
     public void createDefaultWorkDay(LocalDate date){
-        WorkDay workDay = this.getDefaultWorkDay(date);
-        workDayRepository.save(workDay);
+        workDayRepository.save(this.getDefaultWorkDay(date));
     }
 
     public WorkDay getDefaultWorkDay(LocalDate date){
@@ -52,9 +55,12 @@ public class WorkDayService {
         return workDay;
     }
 
-    public void setBookedArtist(WorkDay workDay, String artist){
-        workDay.setBookedArtist(artist);
-        workDayRepository.save(workDay);
+    public void setBookedArtist(Long workDayId, String artist){
+        workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.saveBookedArtist(workDay, artist));
+    }
+
+    public void setImportanceLevel(Long workDayId, WorkDayImportance workDayImportance){
+        workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.saveImportanceLevel(workDay,workDayImportance));
     }
 
     public boolean addEmployeeToWorkDay(WorkDay workDay, Employee employee){

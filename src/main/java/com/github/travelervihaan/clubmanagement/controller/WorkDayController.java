@@ -5,10 +5,7 @@ import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WorkDayController {
@@ -30,18 +27,20 @@ public class WorkDayController {
     }
 
     @PostMapping("/workday/{workDayId}/set-worktime")
-    public String setWorktime(@PathVariable Long workDayId){
+    public String setWorktime(@PathVariable Long workDayId, @RequestParam int workTime){
+
         return "redirect:/workday/"+workDayId;
     }
 
     @PostMapping("/workday/{workDayId}/set-artist")
     public String setArtist(@PathVariable Long workDayId, @RequestParam String bookedArtist){
-
+        workDayService.setBookedArtist(workDayId, bookedArtist);
         return "redirect:/workday/"+workDayId;
     }
 
     @PostMapping("/workday/{workDayId}/set-employers-needed")
-    public String setEmployersNeeded(@PathVariable Long workDayId, @RequestParam WorkDayImportance importanceLevel){
+    public String setEmployersNeeded(@PathVariable Long workDayId, @RequestParam WorkDayImportance workDayImportance){
+        workDayService.setImportanceLevel(workDayId, workDayImportance);
         return "redirect:/workday/"+workDayId;
     }
 }
