@@ -25,7 +25,16 @@ public class WorkDayDetailsService {
     }
 
     void saveBookedArtist(WorkDay workDay, String artist){
-        workDay.setBookedArtist(artist);
-        workDayRepository.save(workDay);
+        if(artist != null || !artist.equals("")) {
+            workDay.setBookedArtist(artist);
+            workDayRepository.save(workDay);
+        }
+    }
+
+    void saveWorkTime(WorkDay workDay, int workTime){
+        if(workTime > 0 && workTime < 24){
+            workDay.setWorkingTime(workTime);
+            workDayRepository.save(workDay);
+        }
     }
 }

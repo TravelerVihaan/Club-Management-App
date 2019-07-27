@@ -55,6 +55,10 @@ public class WorkDayService {
         return workDay;
     }
 
+    public void setWorkTime(Long workDayId, int workTime){
+        workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.saveWorkTime(workDay, workTime));
+    }
+
     public void setBookedArtist(Long workDayId, String artist){
         workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.saveBookedArtist(workDay, artist));
     }

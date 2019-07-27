@@ -28,7 +28,7 @@ public class WorkDayController {
 
     @PostMapping("/workday/{workDayId}/set-worktime")
     public String setWorktime(@PathVariable Long workDayId, @RequestParam int workTime){
-
+        workDayService.setWorkTime(workDayId, workTime);
         return "redirect:/workday/"+workDayId;
     }
 
