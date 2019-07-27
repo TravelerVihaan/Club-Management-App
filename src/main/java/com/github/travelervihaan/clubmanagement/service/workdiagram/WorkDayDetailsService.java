@@ -17,7 +17,6 @@ public class WorkDayDetailsService {
         this.workDayRepository = workDayRepository;
     }
 
-    @Transactional
     void saveImportanceLevel(WorkDay workDay, WorkDayImportance workDayImportance){
         workDay.setWorkDayImportance(workDayImportance);
         while(workDay.getEmployers().size() > workDayImportance.getImportanceLevel()){
@@ -26,7 +25,6 @@ public class WorkDayDetailsService {
         workDayRepository.save(workDay);
     }
 
-    @Transactional
     void saveBookedArtist(WorkDay workDay, String artist){
         if(artist != null && !artist.equals("")) {
             workDay.setBookedArtist(artist);
@@ -35,7 +33,6 @@ public class WorkDayDetailsService {
         }
     }
 
-    @Transactional
     void saveWorkTime(WorkDay workDay, int workTime){
         if(workTime > 0 && workTime < 24){
             workDay.setWorkingTime(workTime);

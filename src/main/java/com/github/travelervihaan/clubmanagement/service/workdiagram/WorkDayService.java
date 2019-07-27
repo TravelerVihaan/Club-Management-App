@@ -56,17 +56,14 @@ public class WorkDayService {
         return workDay;
     }
 
-    @Transactional
     public void setWorkTime(Long workDayId, int workTime){
         workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.saveWorkTime(workDay, workTime));
     }
 
-    @Transactional
     public void setBookedArtist(Long workDayId, String artist){
         workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.saveBookedArtist(workDay, artist));
     }
 
-    @Transactional
     public void setImportanceLevel(Long workDayId, int workDayImportance){
         workDayRepository
                 .findById(workDayId)
