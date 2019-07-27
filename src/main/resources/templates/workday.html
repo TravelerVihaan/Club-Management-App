@@ -29,11 +29,29 @@
             <br>
             <h6>Work time: <span th:utext="${workDay.getWorkingTime()}">Worktime</span></h6>
             <br>
-            <div sec:authorize="hasRole('ROLE_MANAGER')">
+            <!--<div sec:authorize="hasRole('ROLE_MANAGER')">-->
                 <form th:action="@{'/workday/'+${workDay.getId()}+'/set-worktime'}" method="POST">
+
+                </form>
+            <!--</div>-->
+
+            <p class="h7">Booked artist: <span th:utext="${workDay.getBookedArtist()}">Importance Level</span></p>
+            <!--<div sec:authorize="hasRole('ROLE_MANAGER')">-->
+                <form th:action="@{'/workday/'+${workDay.getId()}+'/set-artist'}" method="POST">
+                    <label for="setArtist">Set booked artist:</label>
+                    <input type="text" class="form-control" name="bookedArtist" placeholder="Booked Artist"/>
+                    <button class="btn btn-secondary btn-block" type="submit">Set Artist</button>
+                </form>
+                <br>
+            <!--</div>-->
+
+
+            <p class="h7">Employers needed: <span th:utext="${workDay.getWorkDayImportance().getImportanceLevel()}">Importance Level</span></p>
+            <!-- <div sec:authorize="hasRole('ROLE_MANAGER')"> -->
+                <form th:action="@{'/workday/'+${workDay.getId()}+'/set-employers-needed'}" method="POST">
                     <div class="input-group">
-                        <select class="form-control" id="workDayImportances" name="workDayImportances">
-                            <option th:each="dict: ${importanceLevels}" th:value="${importanceLevel}" th:utext="${importanceLevel}" />
+                        <select class="form-control" id="workDayImportance" name="workDayImportance">
+                            <option th:each="importanceLevel: ${importanceLevels}" th:value="${importanceLevel.getImportanceLevel()}" th:utext="${importanceLevel.getImportanceLevel()}" />
                         </select>
                         <div class="input-group-append">
                             <button class="btn btn-secondary" type="submit">Set importance level</button>
@@ -41,25 +59,7 @@
                     </div>
                 </form>
                 <br>
-            </div>
-
-            <p class="h7">Booked artist: <span th:utext="${workDay.getBookedArtist()}">Importance Level</span></p>
-            <div sec:authorize="hasRole('ROLE_MANAGER')">
-                <form th:action="@{'/workday/'+${workDay.getId()}+'/set-artist'}" method="POST">
-                    <label for="setArtist">Set booked artist:</label>
-                    <input type="text" class="form-control" name="bookedArtist" placeholder="Booked Artist"/>
-                    <button class="btn btn-secondary btn-block" type="submit">Set Artist</button>
-                </form>
-                <br>
-            </div>
-
-
-            <p class="h7">Employers needed: <span th:utext="${workDay.getWorkDayImportance().getImportanceLevel()}">Importance Level</span></p>
-            <div sec:authorize="hasRole('ROLE_MANAGER')">
-                <form th:action="@{'/workday/'+${workDay.getId()}+'/set-employers-needed'}" method="POST">
-
-                </form>
-            </div>
+            <!--</div>-->
 
             <!-- Akordeon -->
             <div id="#akordeon" role="tablist" aria-multiselectable="true">

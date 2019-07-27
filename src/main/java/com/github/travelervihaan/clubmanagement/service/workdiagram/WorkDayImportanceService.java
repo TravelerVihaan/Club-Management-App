@@ -28,6 +28,10 @@ public class WorkDayImportanceService {
         return workDayImportanceRepository.findAll();
     }
 
+    public Optional<WorkDayImportance> getWorkDayImportanceByLevel(int level){
+        return Optional.ofNullable(workDayImportanceRepository.findByImportanceLevel(level));
+    }
+
     public void addNewImportanceLevel(WorkDayImportance workDayImportance){
         if(!isImportanceLevelExist(workDayImportance.getImportanceLevel()))
             workDayImportanceRepository.save(workDayImportance);

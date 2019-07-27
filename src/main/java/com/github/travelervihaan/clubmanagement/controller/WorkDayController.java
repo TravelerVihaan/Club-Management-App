@@ -39,7 +39,7 @@ public class WorkDayController {
     }
 
     @PostMapping("/workday/{workDayId}/set-employers-needed")
-    public String setEmployersNeeded(@PathVariable Long workDayId, @RequestParam WorkDayImportance workDayImportance){
+    public String setEmployersNeeded(@PathVariable Long workDayId, @RequestParam int workDayImportance){
         workDayService.setImportanceLevel(workDayId, workDayImportance);
         return "redirect:/workday/"+workDayId;
     }
