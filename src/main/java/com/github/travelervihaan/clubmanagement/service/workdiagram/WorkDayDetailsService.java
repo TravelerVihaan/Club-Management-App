@@ -5,7 +5,6 @@ import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDayImporta
 import com.github.travelervihaan.clubmanagement.repository.workdiagram.WorkDayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class WorkDayDetailsService {
@@ -22,6 +21,7 @@ public class WorkDayDetailsService {
         while(workDay.getEmployers().size() > workDayImportance.getImportanceLevel()){
             workDay.getEmployers().remove(workDay.getEmployers().size()-1);
         }
+        workDay.setId(workDay.getId());
         workDayRepository.save(workDay);
     }
 
