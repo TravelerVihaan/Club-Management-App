@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -45,15 +46,15 @@ public class AbsencesController {
         return "manager/absences";
     }
 
-    @PostMapping("/absences/accept-absence")
-    public String acceptAbsence(@RequestParam long idAbsence){
-        absenceStatusChangeService.changeAbsenceStatus(idAbsence, STATUS_ACCEPTED);
+    @PostMapping("/absences/{absenceId}/accept-absence")
+    public String acceptAbsence(@PathVariable long absenceId){
+        absenceStatusChangeService.changeAbsenceStatus(absenceId, STATUS_ACCEPTED);
         return "redirect:/absences";
     }
 
-    @PostMapping("reject-absence")
-    public String rejectAbsence(@RequestParam long idAbsence){
-        absenceStatusChangeService.changeAbsenceStatus(idAbsence, STATUS_REJECTED);
+    @PostMapping("/absences/{absenceId}/reject-absence")
+    public String rejectAbsence(@PathVariable long absenceId){
+        absenceStatusChangeService.changeAbsenceStatus(absenceId, STATUS_REJECTED);
         return "redirect:/absences";
     }
 }

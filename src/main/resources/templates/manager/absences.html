@@ -9,6 +9,7 @@
     <title>Club Management Application</title>
     <link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
     <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/webjars/font-awesome/5.9.0/all.css" type="text/css">
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 
 </head>
@@ -43,8 +44,16 @@
                         <td th:text="${absence.getAbsenceToDay()}"></td>
                         <td th:text="${absence.getAbsenceType().getAbsenceType()}"></td>
                         <td th:text="${absence.getAbsenceApprovalStatus().getStatus()}"></td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <form th:action="@{'/addword/'+${absence.getId()}+'/accept-absence'}" method="POST">
+                                <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{'/addword/'+${absence.getId()}+'/reject-absence'}" method="POST">
+                                <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            </form>
+                        </td>
                     </tr>
                 </div>
                 </tbody>
@@ -63,14 +72,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <div th:each="archabsence: ${archivalAbsences}" th:object="${Absence}">
-                    <tr>
-                        <td th:text="${archabsence.getAbsenceFromDay()}"></td>
-                        <td th:text="${archabsence.getAbsenceToDay()}"></td>
-                        <td th:text="${archabsence.getAbsenceType().getAbsenceType()}"></td>
-                        <td th:text="${archabsence.getAbsenceApprovalStatus().getStatus()}"></td>
-                    </tr>
-                </div>
+
                 </tbody>
             </table>
             <br>
