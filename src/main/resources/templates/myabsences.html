@@ -33,20 +33,21 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="absenceFrom">Absence start date:</label>
-                            <input type="date" class="form-control" th:field="*{absenceFromDay}" placeholder="Pick start date">
+                            <input type="date" class="form-control" th:value="*{absenceFromDay}" th:field="*{absenceFromDay}" placeholder="Pick start date">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="absenceTo">Absence end date:</label>
-                            <input type="date" class="form-control" th:field="*{absenceFromDay}" placeholder="Pick end date">
+                            <input type="date" class="form-control" th:value="*{absenceFromDay}" th:field="*{absenceFromDay}" placeholder="Pick end date">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <li th:each="absType : ${absenceTypes}">
                         <input type="radio" th:field="*{absenceType}" th:value="${absType}" />
-                        <label th:text="${absType.getAbsenceType()}">Wireframe</label>
+                        <!--<label th:text="${absType.getAbsenceType()}">Wireframe</label>-->
+                        <label th:for="${#ids.prev('absenceType')}" th:text="${absType.getAbsenceType()}">Wireframe</label>
                     </li>
                     <button type="submit" class="btn btn-dark btn-block">Send absence request</button>
                 </div>
