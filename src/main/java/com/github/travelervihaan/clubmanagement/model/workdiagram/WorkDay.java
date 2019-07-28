@@ -17,7 +17,7 @@ public class WorkDay implements Serializable {
     @Column(name = "id_workday")
     private Long id;
     @NotNull
-    @Column(name = "workday_date", nullable = false, unique = true)
+    @Column(name = "workday_date", nullable = false, unique = true, updatable = false)
     private LocalDate date;
     @NotNull
     @Column(name = "working_time", nullable = false)

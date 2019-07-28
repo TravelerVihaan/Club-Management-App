@@ -36,6 +36,7 @@ public class WorkDayDetailsService {
     void saveWorkTime(WorkDay workDay, int workTime){
         if(workTime > 0 && workTime < 24){
             workDay.setWorkingTime(workTime);
+            workDay.setId(workDay.getId());
             workDayRepository.save(workDay);
         }
     }
