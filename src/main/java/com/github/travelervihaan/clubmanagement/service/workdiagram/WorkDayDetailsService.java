@@ -28,7 +28,7 @@ public class WorkDayDetailsService {
     void saveBookedArtist(WorkDay workDay, String artist){
         if(artist != null && !artist.equals("")) {
             workDay.setBookedArtist(artist);
-            System.err.println(workDay);
+            workDay.setId(workDay.getId());
             workDayRepository.save(workDay);
         }
     }

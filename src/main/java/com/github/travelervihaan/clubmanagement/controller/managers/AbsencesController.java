@@ -15,6 +15,7 @@ public class AbsencesController {
 
     private final String STATUS_ACCEPTED = "accepted";
     private final String STATUS_REJECTED = "rejected";
+    private final String STATUS_WAITING = "waiting";
 
     @Autowired
     public AbsencesController(AbsenceStatusChangeService absenceStatusChangeService){
@@ -23,11 +24,28 @@ public class AbsencesController {
 
     @GetMapping("/absences")
     public String getAllAbsences(@RequestParam(required = false)String username, Model model){
-        model.addAttribute(absenceStatusChangeService.getAllAbsences(username));
+        model
+                .addAttribute(
+                        "waitingAbsences",
+                        absenceStatusChangeService
+                                .getAbsencesOfType
+                                        (absenceStatusChangeService
+                                                .getAllAbsences(username),STATUS_WAITING));
+        model
+                .addAttribute(
+                        "archivalAbsences",
+                        absenceStatusChangeService
+                                .getAbsencesOfType
+                                        (absenceStatusChangeService
+                                                .getAllAbsences(username),STATUS_ACCEPTED)
+                                .addAll(absenceStatusChangeService
+                                        .getAbsencesOfType
+                                                (absenceStatusChangeService
+                                                        .getAllAbsences(username),STATUS_REJECTED)));
         return "manager/absences";
     }
 
-    @PostMapping("/accept-absence")
+    @PostMapping("/absences/accept-absence")
     public String acceptAbsence(@RequestParam long idAbsence){
         absenceStatusChangeService.changeAbsenceStatus(idAbsence, STATUS_ACCEPTED);
         return "redirect:/absences";

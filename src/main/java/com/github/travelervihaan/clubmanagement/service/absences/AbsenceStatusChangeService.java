@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AbsenceStatusChangeService {
@@ -36,9 +37,20 @@ public class AbsenceStatusChangeService {
     }
 
     public List<Absence> getAllAbsences(String username){
-        if(username!=null || !username.equals(""))
+        if(username!=null && !username.equals(""))
             return absenceRepository.findAllByEmployee_Username(username);
         return absenceRepository.findAll();
+    }
+
+    public List<Absence> getAbsencesOfType(List<Absence> absenceList, String type){
+        return absenceList
+                .stream()
+                .filter(absence ->
+                        absence
+                                .getAbsenceApprovalStatus()
+                                .getStatus()
+                                .equalsIgnoreCase(type))
+                .collect(Collectors.toList());
     }
 
 
