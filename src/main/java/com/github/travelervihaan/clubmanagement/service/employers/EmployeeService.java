@@ -65,8 +65,8 @@ public class EmployeeService {
         List<String> employersOnVacation = absenceRepository
                 .findAllByAbsenceFromDayIsBeforeAndAbsenceToDayIsAfter(LocalDate.now(),LocalDate.now())
                 .stream()
-                .map(absence -> absence.getEmployee())
-                .map(employee -> employee.getUsername())
+                .map(Absence::getEmployee)
+                .map(Employee::getUsername)
                 .collect(Collectors.toList());
         for(String username: employersOnVacation){
             employers = employers
