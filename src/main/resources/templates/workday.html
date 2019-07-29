@@ -92,6 +92,7 @@
                     </div>
                 </div>
             </p>
+            <div sec:authorize="hasRole('ROLE_MANAGER')">
             <p>
                 <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#employers-manage" aria-expanded="false" aria-controls="employers-manage">
                     Employers management
@@ -127,6 +128,7 @@
                     </div>
                 </div>
             </p>
+            </div>
             <p>
                 <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#comments" aria-expanded="false" aria-controls="comments">
                     Comments
