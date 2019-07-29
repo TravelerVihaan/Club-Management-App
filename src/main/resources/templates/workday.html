@@ -100,7 +100,7 @@
                     <div class="card card-body">
                         Add employee to work day:<br>
                         <div th:if="not ${employers.isEmpty()}">
-                            <form th:action="@{'/workday/'+${workDay.getId()}+'/add-employee/'}" method="POST">
+                            <form th:action="@{'/workday/'+${workDay.getId()}+'/add-employee'}" method="POST">
                                 <div class="input-group">
                                     <select class="form-control" id="employee" name="employee">
                                         <option th:each="employee: ${employers}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
@@ -113,7 +113,7 @@
                         </div>
                         Take down employee:<br>
                         <div th:if="not ${employersWorking.isEmpty()}">
-                            <form th:action="@{'/workday/'+${workDay.getId()}+'/delete-employee/'}" method="POST">
+                            <form th:action="@{'/workday/'+${workDay.getId()}+'/delete-employee'}" method="POST">
                                 <div class="input-group">
                                     <select class="form-control" id="employeeWorking" name="employee">
                                         <option th:each="employee: ${employersWorking}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
@@ -133,7 +133,25 @@
                 </button>
             <div class="collapse" id="comments">
                 <div class="card card-body">
-                    To jest treść diva, która pokazuje się bądź ukrywa po kliknięciu w powyższe buttony.
+                    Add comment:<br>
+                    <form th:action="@{'/workday/'+${workDay.getId()}+'/add-comment'}" method="POST">
+                        <div class="input-group">
+                            <br>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Type text of the comment</span>
+                            </div>
+                            <textarea class="form-control" aria-label="Comment content" name="commentText"></textarea>
+                        </div>
+                        <button class="btn btn-secondary btn-block" type="submit">Add new comment</button>
+                    </form>
+                    Comments:<br>
+                    <div th:each="comment: ${workDay.getComments()}" th:object="${Comment}">
+                        -------------------------------------------------------------------------
+                        Date: <span th:utext="${comment.getDate()}">Date</span><br>
+                        Author: <span th:utext="${comment.getEmployee().getName()+' '+comment.getEmployee().getSurname()}">Author</span><br>
+                        Comment: <span th:utext="${comment.getText()}">Text</span><br>
+                        -------------------------------------------------------------------------
+                    </div>
                 </div>
             </div>
             </p>
