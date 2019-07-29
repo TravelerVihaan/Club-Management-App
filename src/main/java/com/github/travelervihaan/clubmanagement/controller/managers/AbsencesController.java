@@ -25,24 +25,14 @@ public class AbsencesController {
 
     @GetMapping("/absences")
     public String getAllAbsences(@RequestParam(required = false)String username, Model model){
-        model
-                .addAttribute(
-                        "waitingAbsences",
-                        absenceStatusChangeService
-                                .getAbsencesOfType
-                                        (absenceStatusChangeService
+        model.addAttribute("waitingAbsences", absenceStatusChangeService
+                .getAbsencesOfType(absenceStatusChangeService
                                                 .getAllAbsences(username),STATUS_WAITING));
-        model
-                .addAttribute(
-                        "archivalAbsences",
-                        absenceStatusChangeService
-                                .getAbsencesOfType
-                                        (absenceStatusChangeService
-                                                .getAllAbsences(username),STATUS_ACCEPTED)
-                                .addAll(absenceStatusChangeService
-                                        .getAbsencesOfType
-                                                (absenceStatusChangeService
-                                                        .getAllAbsences(username),STATUS_REJECTED)));
+        model.addAttribute("archivalAbsences", absenceStatusChangeService
+                .getAbsencesOfType(absenceStatusChangeService
+                        .getAllAbsences(username),STATUS_ACCEPTED).addAll(absenceStatusChangeService
+                        .getAbsencesOfType(absenceStatusChangeService
+                                .getAllAbsences(username),STATUS_REJECTED)));
         return "manager/absences";
     }
 

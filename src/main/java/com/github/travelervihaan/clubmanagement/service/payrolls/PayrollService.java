@@ -26,8 +26,18 @@ public class PayrollService {
         this.validator = validator;
     }
 
+    public List<Payroll> getAllPayrolls(String username){
+        if(username!=null && !username.equals(""))
+            return getAllPayrollsBySearchPattern(username);
+        return payrollRepository.findAll();
+    }
+
     public List<Payroll> getAllPayrollsOfEmployee(String username){
         return payrollRepository.findAllByEmployee_Username(username);
+    }
+
+    private List<Payroll> getAllPayrollsBySearchPattern(String username){
+        return payrollRepository.findAllByEmployee_UsernameOrEmployee_NameOrOrEmployee_Surname(username);
     }
 
     public void generatePayrolls(List<Employee> employers){

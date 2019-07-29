@@ -107,7 +107,7 @@
                                         <option th:each="employee: ${employers}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">Add employee</button>
+                                        <button class="btn btn-secondary" type="submit">Add employee</button>
                                     </div>
                                 </div>
                             </form>
@@ -120,7 +120,7 @@
                                         <option th:each="employee: ${workDay.getEmployers()}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">Add employee</button>
+                                        <button class="btn btn-secondary" type="submit">Drop employee</button>
                                     </div>
                                 </div>
                             </form>

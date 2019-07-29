@@ -15,4 +15,6 @@ public interface PayrollRepository extends JpaRepository<Payroll, Long> {
     List<Payroll> findAllPayrollsOfEmployee(@Param("username") String username);
 */
     List<Payroll> findAllByEmployee_Username(String username);
+
+    List<Payroll> findAllByEmployee_UsernameOrEmployee_NameOrOrEmployee_Surname(String username);
 }

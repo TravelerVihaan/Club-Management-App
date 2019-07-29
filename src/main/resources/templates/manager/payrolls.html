@@ -14,81 +14,56 @@
 </head>
 <body>
 
-<div id="header" class="container-fluid">
-    <div class="row">
-        <div id="logo" class="col-4">
-            <img th:src="@{/images/stack.png}" class="float-right img-fluid">
-        </div>
-        <div id="logotext" class="col-8">
-            <p id="headerText" class="h1"><br />Club management App
-                <br />
-                <small id="headerTextSecondary" class="text-muted">Let's manage your club!</small>
-            </p>
-        </div>
-    </div>
-</div>
+<div th:replace="core/header"/>
 
-<div id="userPanel" class="container-fluid">
-    <div class="row justify-content-around">
-        <div class="col-md-5">
-            <div style="float:right" class="btn-group" role="group" aria-label="User button panel">
-                <a th:href="@{/index}"><button type="button" class="btn btn-dark">Work Diagram</button></a>
-                <a th:href="@{/myabsences}"><button type="button" class="btn btn-dark">My absences</button></a>
-                <a th:href="@{/mypayrolls}"><button type="button" class="btn btn-dark">My payrolls</button></a>
-                <!-- NAVIBAR OPTIONS FOR MANAGERS AND ADMINS -->
-                <div sec:authorize="hasRole('ROLE_MANAGER')">
-                    <a th:href="@{/employers}"><button type="button" class="btn btn-dark">Employers</button></a>
-                    <a th:href="@{/absences}"><button type="button" class="btn btn-dark">Absences</button></a>
-                    <a th:href="@{/payrolls}"><button type="button" class="btn btn-dark">Payrolls</button></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div style="float:left" class="btn-group" role="group" aria-label="User account panel">
-                <a th:href="@{/account}"><button type="button" class="btn btn-info">My Account</button></a>
-                <a th:href="@{/logout}"><button type="button" class="btn btn-info">Logout</button></a>
-            </div>
-        </div>
-    </div>
-</div>
+<div th:replace="core/user-panel"/>
 
 <br>
 <div id="main" class="container">
-    <div class="row">
-        <div id="content" class="col-md-12">
-            <!--navibar-->
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <br>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Employers</li>
-                        </ol>
+    <div id="content" class="row">
+        <div class="col-md-12">
+            <form th:action="@{/payrolls/export-to-txt}" method="POST">
+                <button class="btn btn-secondary btn-block" type="submit">Export to text file</button>
+            </form>
+            <br>
+            <form th:action="@{/payrolls/export-to-csv}" method="POST">
+                <button class="btn btn-secondary btn-block" type="submit">Export to csv file</button>
+            </form>
+            <br>
+            <form th:action="@{/payrolls}" method="GET">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit">Search</button>
                     </div>
                 </div>
-            </div>
-
-            CONTENT HERE
-
-
+            </form>
+            <br>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th>Month</th>
+                    <th>Days worked</th>
+                    <th>Hours Worked</th>
+                    <th>Calculated salary</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="payroll: ${payrolls}" th:object="${Payroll}">
+                    <tr>
+                        <td th:text="${payroll.getMonth()}"></td>
+                        <td th:text="${payroll.getWorkedDays()}"></td>
+                        <td th:text="${payroll.getWorkedHours()}"></td>
+                        <td th:text="${payroll.getSalary()}"></td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<div id="footer" class="container-fluid">
-    <div class = "row">
-        <div class = "col-8">
-            <p id="footerLogoText" class="h2">
-                Club Manager
-            </p>
-        </div>
-        <div class = "col-4">
-            <p id="footerSecondaryText" class="h6">
-                Traveler Vihaan
-            </p>
-        </div>
-    </div>
-</div>
+<div th:replace="core/footer"/>
 
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>

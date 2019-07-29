@@ -14,4 +14,6 @@ public interface AbsenceRepository extends JpaRepository<Absence, Long> {
     List<Absence> findAllByEmployee_Username(String username);
 
     List<Absence> findAllByAbsenceFromDayIsBeforeAndAbsenceToDayIsAfter(LocalDate date1, LocalDate date2);
+
+    List<Absence> findAllByEmployee_UsernameOrEmployee_NameOrEmployee_Surname(String username);
 }
