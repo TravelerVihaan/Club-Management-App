@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +27,10 @@ public class EmployeeService {
 
     public List<Employee> getEmployersByJobTitle(String jobTitle){
         return employeeRepository.findAllByEmployeeDetails_JobTitle_JobTitle(jobTitle);
+    }
+
+    public List<Employee> getEmployersWithTerminatedContract(){
+        return employeeRepository.findAllByEmployeeDetails_DayOfHireTerminateBefore(LocalDate.now());
     }
 
     public Optional<Employee> getEmployeeByUsername(String username){
@@ -50,5 +56,14 @@ public class EmployeeService {
         String passwordHash = passwordEncoder.encode(employee.getPassword());
         employee.setPassword(passwordHash);
         employeeRepository.save(employee);
+    }
+
+    static String[] getStrings(EmployeeService employeeService) {
+        List<Employee> managerList = employeeService.getEmployersByJobTitle("manager");
+        List<String> mailList = new ArrayList<>();
+        managerList.forEach(manager -> mailList.add(manager.getEmail()));
+        String[] recipientList = new String[mailList.size()];
+        mailList.toArray(recipientList);
+        return recipientList;
     }
 }
