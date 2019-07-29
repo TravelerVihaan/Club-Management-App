@@ -6,7 +6,6 @@ import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDayImporta
 import com.github.travelervihaan.clubmanagement.repository.workdiagram.WorkDayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -56,6 +55,14 @@ public class WorkDayService {
         return workDay;
     }
 
+    public void addEmployeeToWorkDay(Long workDayId, String employeeUsername){
+        workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.addEmployeeToWorkDay(workDay, employeeUsername));
+    }
+
+    public void dropEmployeeFromWorkDay(Long workDayId, String employeeUsername){
+        workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.deleteEmployeeToWorkDay(workDay, employeeUsername));
+    }
+
     public void setWorkTime(Long workDayId, int workTime){
         workDayRepository.findById(workDayId).ifPresent(workDay -> workDayDetailsService.saveWorkTime(workDay, workTime));
     }
@@ -71,14 +78,6 @@ public class WorkDayService {
                         .saveImportanceLevel(workDay,workDayImportanceService
                                 .getWorkDayImportanceByLevel(workDayImportance)
                                 .orElse(workDayImportanceService.getDefaultImportanceLevel())));
-    }
-
-    public boolean addEmployeeToWorkDay(WorkDay workDay, Employee employee){
-        if(workDay.getEmployers().size() < workDay.getWorkDayImportance().getImportanceLevel()) {
-            workDay.getEmployers().add(employee);
-            return true;
-        }
-        return false;
     }
 
 }

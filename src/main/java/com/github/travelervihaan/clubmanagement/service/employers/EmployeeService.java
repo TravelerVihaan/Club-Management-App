@@ -17,12 +17,10 @@ import java.util.Optional;
 public class EmployeeService {
 
     private EmployeeRepository employeeRepository;
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, PasswordEncoder passwordEncoder){
+    public EmployeeService(EmployeeRepository employeeRepository){
         this.employeeRepository = employeeRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     public List<Employee> getEmployersByJobTitle(String jobTitle){
@@ -49,21 +47,5 @@ public class EmployeeService {
 
     public List<Employee> getAllEmployers(){
         return employeeRepository.findAll();
-    }
-
-    public void addNewEmployee(Employee employee) {
-        // EmployeeRole defaultRole = roleRepository.findByRole(DEFAULT_ROLE);
-        String passwordHash = passwordEncoder.encode(employee.getPassword());
-        employee.setPassword(passwordHash);
-        employeeRepository.save(employee);
-    }
-
-    static String[] getStrings(EmployeeService employeeService) {
-        List<Employee> managerList = employeeService.getEmployersByJobTitle("manager");
-        List<String> mailList = new ArrayList<>();
-        managerList.forEach(manager -> mailList.add(manager.getEmail()));
-        String[] recipientList = new String[mailList.size()];
-        mailList.toArray(recipientList);
-        return recipientList;
     }
 }

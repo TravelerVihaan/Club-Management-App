@@ -58,71 +58,85 @@
                             <option th:each="importanceLevel: ${importanceLevels}" th:value="${importanceLevel.getImportanceLevel()}" th:utext="${importanceLevel.getImportanceLevel()}" />
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="submit">Set importance level</button>
+                            <button class="btn btn-secondary btn-block" type="submit">Set importance level</button>
                         </div>
                     </div>
                 </form>
                 <br>
             </div>
-
-            <!-- Akordeon -->
-            <div class="panel-group" id="#akordeon" role="tablist" aria-multiselectable="true">
-                <div class="card">
-                    <div class="card-header" role="tab" id="employers">
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" data-parent="#akordeon" href="#employers-content" aria-expanded="true" aria-controls="employers-content">
-                                Employers
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="employers-content" class="collapse in" role="tabpanel" aria-labelledby="employers">
-                        <div class="card-body">
-                            <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
-                                <p class="h8"><span th:utext="${employee.getName()+' '+employee.getSurname()}">Employee</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header" role="tab" id="comments">
-                        <h5 class="mb-0">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#akordeon" href="#comments-content" aria-expanded="false" aria-controls="comments-content">
-                                Drugie pytanie
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="comments-content" class="collapse" role="tabpanel" aria-labelledby="comments">
-                        <div class="card-body">
-                            To jest odpowiedź na drugie pytanie.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <br><br>
-
-            <p>
-                <a class="btn btn-primary" data-toggle="collapse" href="#ukryta-tresc" aria-expanded="false" aria-controls="ukryta-tresc">
-                    Link z href
-                </a>
-            <div class="collapse" id="ukryta-tresc">
-                <div class="card card-body">
-                    To jest treść diva, która pokazuje się bądź ukrywa po kliknięciu w powyższe buttony.
-                </div>
-            </div>
             <br>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#ukryta-tresc2" aria-expanded="false" aria-controls="ukryta-tresc2">
-                    Link z data-target
-                </button>
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
+                    Employers
+                </a>
+                <div class="collapse" id="employers">
+                    <div class="card card-body">
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Username</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                                <tr>
+                                    <td th:text="${employee.getName()}"></td>
+                                    <td th:text="${employee.getSurname()}"></td>
+                                    <td th:text="${employee.getUsername()}"></td>
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </p>
-
-            <div class="collapse" id="ukryta-tresc2">
+            <p>
+                <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#employers-manage" aria-expanded="false" aria-controls="employers-manage">
+                    Employers management
+                </button>
+                <div class="collapse" id="employers-manage">
+                    <div class="card card-body">
+                        Add employee to work day:<br>
+                        <div th:if="not ${employers.isEmpty()}">
+                            <form th:action="@{'/workday/'+${workDay.getId()}+'/add-employee/'}" method="POST">
+                                <div class="input-group">
+                                    <select class="form-control" id="employee" name="employee">
+                                        <option th:each="employee: ${employers}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Add employee</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        Take down employee:<br>
+                        <div th:if="not ${employersWorking.isEmpty()}">
+                            <form th:action="@{'/workday/'+${workDay.getId()}+'/delete-employee/'}" method="POST">
+                                <div class="input-group">
+                                    <select class="form-control" id="employeeWorking" name="employee">
+                                        <option th:each="employee: ${employersWorking}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Add employee</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </p>
+            <p>
+                <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#comments" aria-expanded="false" aria-controls="comments">
+                    Comments
+                </button>
+            <div class="collapse" id="comments">
                 <div class="card card-body">
                     To jest treść diva, która pokazuje się bądź ukrywa po kliknięciu w powyższe buttony.
                 </div>
             </div>
-
+            </p>
         </div>
     </div>
 </div>
