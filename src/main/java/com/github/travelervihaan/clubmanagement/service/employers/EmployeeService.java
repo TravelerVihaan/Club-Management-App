@@ -2,7 +2,9 @@ package com.github.travelervihaan.clubmanagement.service.employers;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
 import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
+import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,12 @@ import java.util.stream.Collectors;
 public class EmployeeService {
 
     private EmployeeRepository employeeRepository;
+    private AbsenceRepository absenceRepository;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository){
+    public EmployeeService(EmployeeRepository employeeRepository,AbsenceRepository absenceRepository){
         this.employeeRepository = employeeRepository;
+        this.absenceRepository = absenceRepository;
     }
 
     public List<Employee> getEmployersByJobTitle(String jobTitle){
@@ -52,8 +56,29 @@ public class EmployeeService {
 
     public List<Employee> getAvailableEmployers(List<Employee> workDayEmployers){
         List<String> employersUsernames = workDayEmployers.stream().map(Employee::getUsername).collect(Collectors.toList());
+        List<Employee> availableEmployers = getEmployersNotWorkingYet(employersUsernames);
+        availableEmployers = getEmployersNotOnVacations(availableEmployers);
+        return availableEmployers;
+    }
+
+    private List<Employee> getEmployersNotOnVacations(List<Employee> employers){
+        List<String> employersOnVacation = absenceRepository
+                .findAllByAbsenceFromDayIsBeforeAndAbsenceToDayIsAfter(LocalDate.now(),LocalDate.now())
+                .stream()
+                .map(absence -> absence.getEmployee())
+                .map(employee -> employee.getUsername())
+                .collect(Collectors.toList());
+        for(String username: employersOnVacation){
+            employers = employers
+                    .stream()
+                    .filter(employee -> !employee.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
+        }
+        return employers;
+    }
+
+    private List<Employee> getEmployersNotWorkingYet(List<String> usernames){
         List<Employee> allEmployers = this.getAllEmployers();
-        for(String username: employersUsernames){
+        for(String username: usernames){
             allEmployers = allEmployers
                     .stream()
                     .filter(employee -> !employee.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());

@@ -163,6 +163,18 @@ public class Employee implements Serializable {
 	}
 
 	@Override
+	public boolean equals(Object obj){
+		if(this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return username.equals(other.getUsername());
+	}
+
+	@Override
 	public String toString() {
 		return "Employee{" +
 				"id=" + id +
