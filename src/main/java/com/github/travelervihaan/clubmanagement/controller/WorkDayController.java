@@ -30,8 +30,11 @@ public class WorkDayController {
             return "errors/error404";
         model.addAttribute("workDay",workDayService.getWorkDayById(workDayId).orElseThrow());
         model.addAttribute("importanceLevels", workDayService.getAllImportanceLevels());
-        model.addAttribute("employers", employeeService.getAllEmployers());
-        model.addAttribute("employersWorking",workDayService.getWorkDayById(workDayId).orElseThrow().getEmployers());
+        model.addAttribute("employers", employeeService
+                .getAvailableEmployers(workDayService
+                        .getWorkDayById(workDayId)
+                        .orElseThrow()
+                        .getEmployers()));
         model.addAttribute("comments",workDayService.getWorkDayById(workDayId).orElseThrow().getComments());
         return "workday";
     }

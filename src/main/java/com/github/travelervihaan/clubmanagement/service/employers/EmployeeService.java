@@ -12,6 +12,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -47,5 +48,16 @@ public class EmployeeService {
 
     public List<Employee> getAllEmployers(){
         return employeeRepository.findAll();
+    }
+
+    public List<Employee> getAvailableEmployers(List<Employee> workDayEmployers){
+        List<String> employersUsernames = workDayEmployers.stream().map(Employee::getUsername).collect(Collectors.toList());
+        List<Employee> allEmployers = this.getAllEmployers();
+        for(String username: employersUsernames){
+            allEmployers = allEmployers
+                    .stream()
+                    .filter(employee -> !employee.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
+        }
+        return allEmployers;
     }
 }

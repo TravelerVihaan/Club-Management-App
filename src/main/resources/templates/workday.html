@@ -113,11 +113,11 @@
                             </form>
                         </div>
                         Take down employee:<br>
-                        <div th:if="not ${employersWorking.isEmpty()}">
+                        <div th:if="not ${workDay.getEmployers().isEmpty()}">
                             <form th:action="@{'/workday/'+${workDay.getId()}+'/delete-employee'}" method="POST">
                                 <div class="input-group">
                                     <select class="form-control" id="employeeWorking" name="employee">
-                                        <option th:each="employee: ${employersWorking}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
+                                        <option th:each="employee: ${workDay.getEmployers()}" th:value="${employee.getUsername()}" th:utext="${employee.getUsername()}" />
                                     </select>
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Add employee</button>
