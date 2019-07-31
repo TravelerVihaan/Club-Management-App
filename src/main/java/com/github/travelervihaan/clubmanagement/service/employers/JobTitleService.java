@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobTitleService {
@@ -26,6 +27,10 @@ public class JobTitleService {
     public void deleteJobTitle(String jobTitle){
         if(jobTitleRepository.findByJobTitle(jobTitle).isPresent())
             jobTitleRepository.delete(jobTitleRepository.findByJobTitle(jobTitle).get());
+    }
+
+    public JobTitle getJobTitleByTitle(String title){
+        return jobTitleRepository.findByJobTitle(title).orElseThrow();
     }
 
     public void addNewJobTitle(@Valid JobTitle jobTitle, BindingResult result) {

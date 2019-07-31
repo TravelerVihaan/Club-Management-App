@@ -23,6 +23,10 @@ public class ContractTypeService {
         return contractTypeRepository.findAll();
     }
 
+    public ContractType getContractTypeByType(String contractType){
+        return contractTypeRepository.findByContractType(contractType).orElseThrow();
+    }
+
     public void deleteContractType(String contractTypeName){
         if(contractTypeRepository.findByContractType(contractTypeName).isPresent())
             contractTypeRepository.delete(contractTypeRepository.findByContractType(contractTypeName).get());

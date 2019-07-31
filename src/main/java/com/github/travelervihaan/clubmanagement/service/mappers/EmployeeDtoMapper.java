@@ -48,14 +48,10 @@ public class EmployeeDtoMapper {
     }
 
     private JobTitle convertJobTitle(EmployeeDto employeeDto){
-        JobTitle jobTitle = new JobTitle();
-        jobTitle.setJobTitle(employeeDto.getJobTitle());
-        return jobTitle;
+        return jobTitleService.getJobTitleByTitle(employeeDto.getJobTitle());
     }
 
     private ContractType convertContractType(EmployeeDto employeeDto){
-        ContractType contractType = new ContractType();
-        contractType.setContractType(employeeDto.getContractType());
-        return contractType;
+        return contractTypeService.getContractTypeByType(employeeDto.getContractType());
     }
 }
