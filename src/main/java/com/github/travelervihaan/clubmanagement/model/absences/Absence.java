@@ -1,6 +1,7 @@
 package com.github.travelervihaan.clubmanagement.model.absences;
 
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,9 +17,11 @@ public class Absence implements Serializable {
     @Column(name="id_absence")
     private Long id;
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "absence_from_day", nullable = false)
     private LocalDate absenceFromDay;
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "absence_to_day", nullable = false)
     private LocalDate absenceToDay;
 
