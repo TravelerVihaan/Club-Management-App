@@ -37,7 +37,7 @@ public class PayrollService {
     }
 
     private List<Payroll> getAllPayrollsBySearchPattern(String username){
-        return payrollRepository.findAllByEmployee_UsernameOrEmployee_NameOrOrEmployee_Surname(username);
+        return payrollRepository.findAllByEmployee_UsernameOrEmployee_NameOrOrEmployee_Surname(username, username, username);
     }
 
     public void generatePayrolls(List<Employee> employers){
