@@ -1,9 +1,11 @@
 package com.github.travelervihaan.clubmanagement.controller.employers;
 
+import com.github.travelervihaan.clubmanagement.dto.AbsenceDto;
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
+import com.github.travelervihaan.clubmanagement.model.absences.AbsenceType;
 import com.github.travelervihaan.clubmanagement.service.absences.AbsenceTypeService;
 import com.github.travelervihaan.clubmanagement.service.absences.NewAbsenceService;
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.mappers.AbsenceDtoMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,18 +16,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class MyAbsencesController {
 
     private NewAbsenceService newAbsenceService;
-    private EmployeeService employeeService;
     private AbsenceTypeService absenceTypeService;
+    private AbsenceDtoMapper absenceDtoMapper;
 
-    public MyAbsencesController(NewAbsenceService newAbsenceService, EmployeeService employeeService, AbsenceTypeService absenceTypeService){
+    public MyAbsencesController(NewAbsenceService newAbsenceService, AbsenceTypeService absenceTypeService, AbsenceDtoMapper absenceDtoMapper){
         this.newAbsenceService = newAbsenceService;
-        this.employeeService = employeeService;
         this.absenceTypeService = absenceTypeService;
+        this.absenceDtoMapper = absenceDtoMapper;
     }
 
     @GetMapping("/myabsences")
@@ -36,18 +39,20 @@ public class MyAbsencesController {
         List<Absence> absences = newAbsenceService
                 .getAbsencesOfEmployee(authentication.getName(), filter);
         model.addAttribute("absences", absences);
-        model.addAttribute("newAbsence", new Absence());
-        model.addAttribute("absenceTypes", absenceTypeService.getAllAbsenceTypes());
+        model.addAttribute("newAbsence", new AbsenceDto());
+        model.addAttribute("absenceTypes", absenceTypeService
+                .getAllAbsenceTypes()
+                .stream()
+                .map(AbsenceType::getAbsenceType)
+                .collect(Collectors.toList()));
         return "myabsences";
     }
 
     @PostMapping("/new-absence")
-    public String sendNewAbsenceRequest(@ModelAttribute Absence absence){
+    public String sendNewAbsenceRequest(@ModelAttribute AbsenceDto absence){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        employeeService
-                .getEmployeeByUsername(authentication.getName())
-                .ifPresent(absence::setEmployee);
-        newAbsenceService.addNewAbsence(absence);
+        absence.setUsername(authentication.getName());
+        newAbsenceService.addNewAbsence(absenceDtoMapper.convertFromDtoToEntity(absence));
         return "redirect:/myabsences";
     }
 }

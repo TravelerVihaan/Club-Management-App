@@ -47,7 +47,7 @@
                     <li th:each="absType : ${absenceTypes}">
                         <input type="radio" th:field="*{absenceType}" th:value="${absType}" />
                         <!--<label th:text="${absType.getAbsenceType()}">Wireframe</label>-->
-                        <label th:for="${#ids.prev('absenceType')}" th:text="${absType.getAbsenceType()}">Wireframe</label>
+                        <label th:for="${#ids.prev('absenceType')}" th:text="${absType}">Wireframe</label>
                     </li>
                     <button type="submit" class="btn btn-dark btn-block">Send absence request</button>
                 </div>

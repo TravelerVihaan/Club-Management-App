@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AbsenceTypeService {
@@ -26,6 +27,10 @@ public class AbsenceTypeService {
     public void deleteAbsenceType(String absenceType){
         if(absenceTypeRepository.findByAbsenceType(absenceType).isPresent())
             absenceTypeRepository.delete(absenceTypeRepository.findByAbsenceType(absenceType).get());
+    }
+
+    public Optional<AbsenceType> getAbsenceTypeByType(String absenceType){
+        return absenceTypeRepository.findByAbsenceType(absenceType);
     }
 
     public void addNewAbsenceType(@Valid AbsenceType absenceType, BindingResult result) {
