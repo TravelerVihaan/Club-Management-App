@@ -1,5 +1,7 @@
 package com.github.travelervihaan.clubmanagement.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class EmployeeDto {
@@ -11,6 +13,7 @@ public class EmployeeDto {
     private String surname;
     private String email;
     //EmployeeDetails Entity
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dayOfHireTerminate;
     private Double salary;
     //JobTitle Entity
