@@ -44,7 +44,8 @@
                     <h6><b>Salary (month): <span th:utext="${employee.getEmployeeDetails().getSalary()}">Date</span></b></h6>
                     <h6><b>Available vacation days: <span th:utext="${employee.getEmployeeDetails().getAvailableVacationDays()}">Date</span></b></h6>
                     <h6><b>Total vacation days: <span th:utext="${employee.getEmployeeDetails().getTotalVacationDays()}">Date</span></b></h6>
-                    <form action="#" th:action="@{/change-password}" method="post">
+
+                    <form th:action="@{/account/change-password}" method="post">
                         <h6><b>Change password form:</b></h6>
                         <div class="row">
                             <div class="form-group row">
@@ -68,8 +69,29 @@
                             <button type="submit" class="btn btn-secondary btn-block">Change password</button>
                         </div>
                     </form>
-                    <form>
-
+                    <form th:action="@{/account/change-email}" method="post">
+                        <h6><b>Change e-mail form:</b></h6>
+                        <div class="row">
+                            <div class="form-group row">
+                                <label for="oldPass" class="col-sm-2 col-form-label">Present e-mail</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="oldEmail" class="form-control" id="oldEmail" placeholder="Present e-mail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newPass1" class="col-sm-2 col-form-label">New e-mail</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="newEmail1" class="form-control" id="newEmail1" placeholder="New e-mail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newPass2" class="col-sm-2 col-form-label">Repeat new e-mail</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="newEmail2" class="form-control" id="newEmail2" placeholder="Repeat new e-mail">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-secondary btn-block">Change e-mail</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -77,27 +99,23 @@
 
             <!-- WORK STATS -->
             <p>
-                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
-                    Monthly work statistics
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employeeStats" aria-expanded="false" aria-controls="employeeStats">
+                    Monthly work stats
                 </a>
-            <div class="collapse" id="employers">
+            <div class="collapse" id="employeeStats">
                 <div class="card card-body">
                     <table class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Username</th>
+                            <th>Month worked hours:</th>
+                            <th>Month worked days:</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
                             <tr>
-                                <td th:text="${employee.getName()}"></td>
                                 <td th:text="${employee.getSurname()}"></td>
                                 <td th:text="${employee.getUsername()}"></td>
                             </tr>
-                        </div>
                         </tbody>
                     </table>
                 </div>
@@ -106,17 +124,16 @@
 
             <!-- WORKING DAYS -->
             <p>
-                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#workingDays" aria-expanded="false" aria-controls="workingDays">
                     Your working days
                 </a>
-            <div class="collapse" id="employers">
+            <div class="collapse" id="workingDays">
                 <div class="card card-body">
                     <table class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Username</th>
+                            <th>Date</th>
+                            <th>Working hours</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -124,7 +141,6 @@
                             <tr>
                                 <td th:text="${employee.getName()}"></td>
                                 <td th:text="${employee.getSurname()}"></td>
-                                <td th:text="${employee.getUsername()}"></td>
                             </tr>
                         </div>
                         </tbody>
@@ -135,17 +151,17 @@
 
             <!-- DAYS AVAILABLE TO WORK -->
             <p>
-                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#availableDays" aria-expanded="false" aria-controls="availableDays">
                     Days available to work
                 </a>
-            <div class="collapse" id="employers">
+            <div class="collapse" id="availableDays">
                 <div class="card card-body">
                     <table class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Username</th>
+                            <th>Date</th>
+                            <th>Working Hours</th>
+                            <th>Add me to this day</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -153,7 +169,10 @@
                             <tr>
                                 <td th:text="${employee.getName()}"></td>
                                 <td th:text="${employee.getSurname()}"></td>
-                                <td th:text="${employee.getUsername()}"></td>
+                                <td>
+                                    <form th:action=""
+
+                                </td>
                             </tr>
                         </div>
                         </tbody>

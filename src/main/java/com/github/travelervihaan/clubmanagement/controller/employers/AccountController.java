@@ -6,10 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/account")
@@ -37,12 +34,12 @@ public class AccountController {
     }
 
     @PostMapping("/change-email")
-    public String changeEmail(){
+    public String changeEmail(@RequestParam String oldEmail, @RequestParam String newEmail1, @RequestParam String newEmail2, Model model){
         return "redirect:/account";
     }
 
-    @PostMapping("/add-to-workday")
-    public String addToWorkday(){
+    @PostMapping("/add-to-workday/{workDayId}")
+    public String addToWorkday(@PathVariable Long workDayId){
         return "redirect:/account";
     }
 }
