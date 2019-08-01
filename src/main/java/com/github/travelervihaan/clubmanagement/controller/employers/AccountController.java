@@ -1,6 +1,7 @@
 package com.github.travelervihaan.clubmanagement.controller.employers;
 
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     private EmployeeService employeeService;
+    private WorkDayService workDayService;
 
     @Autowired
-    public AccountController(EmployeeService employeeService){
+    public AccountController(EmployeeService employeeService, WorkDayService workDayService){
         this.employeeService = employeeService;
+        this.workDayService = workDayService;
     }
 
     @GetMapping

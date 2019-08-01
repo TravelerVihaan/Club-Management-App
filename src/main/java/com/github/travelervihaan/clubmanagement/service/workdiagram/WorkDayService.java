@@ -42,6 +42,14 @@ public class WorkDayService {
         return Optional.ofNullable(workDayRepository.findTopByOrderByIdDesc());
     }
 
+    public List<WorkDay> getWorkDaysInCurrentMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate startDate = today.withDayOfMonth(1);
+        LocalDate endDate = today.withDayOfMonth(today.lengthOfMonth());
+        return workDayRepository.findByDateBetween(startDate,endDate);
+
+    }
+
     public void createDefaultWorkDay(LocalDate date){
         workDayRepository.save(this.getDefaultWorkDay(date));
     }
