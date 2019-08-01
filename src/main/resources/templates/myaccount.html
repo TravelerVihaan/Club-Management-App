@@ -44,25 +44,25 @@
                     <h6><b>Salary (month): <span th:utext="${employee.getEmployeeDetails().getSalary()}">Date</span></b></h6>
                     <h6><b>Available vacation days: <span th:utext="${employee.getEmployeeDetails().getAvailableVacationDays()}">Date</span></b></h6>
                     <h6><b>Total vacation days: <span th:utext="${employee.getEmployeeDetails().getTotalVacationDays()}">Date</span></b></h6>
-                    <form>
+                    <form action="#" th:action="@{/change-password}" method="post">
                         <h6><b>Change password form:</b></h6>
                         <div class="row">
                             <div class="form-group row">
                                 <label for="oldPass" class="col-sm-2 col-form-label">Present password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="oldPass" placeholder="Present password">
+                                    <input type="password" name="oldPassword" class="form-control" id="oldPass" placeholder="Present password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="newPass1" class="col-sm-2 col-form-label">New password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="newPass1" placeholder="New password">
+                                    <input type="password" name="newPassword1" class="form-control" id="newPass1" placeholder="New password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="newPass2" class="col-sm-2 col-form-label">Repeat new password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="newPass2" placeholder="Repeat new password">
+                                    <input type="password" name="newPassword2" class="form-control" id="newPass2" placeholder="Repeat new password">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-secondary btn-block">Change password</button>

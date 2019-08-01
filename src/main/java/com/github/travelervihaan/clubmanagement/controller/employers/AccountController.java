@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/account")
@@ -26,12 +27,12 @@ public class AccountController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(employeeService.getEmployeeByUsername(authentication.getName()).isEmpty())
             return "errors/error404";
-        model.addAttribute("employee", employeeService.getEmployeeByUsername(authentication.getName()));
+        model.addAttribute("employee", employeeService.getEmployeeByUsername(authentication.getName()).orElseThrow());
         return "myaccount";
     }
 
     @PostMapping("/change-password")
-    public String changePassword(){
+    public String changePassword(@RequestParam String oldPassword, @RequestParam String newPassword1, @RequestParam String newPassword2, Model model){
         return "redirect:/account";
     }
 
