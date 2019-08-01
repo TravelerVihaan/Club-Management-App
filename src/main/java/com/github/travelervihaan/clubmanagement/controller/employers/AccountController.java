@@ -1,4 +1,4 @@
-package com.github.travelervihaan.clubmanagement.controller;
+package com.github.travelervihaan.clubmanagement.controller.employers;
 
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/account")
 public class AccountController {
 
     private EmployeeService employeeService;
@@ -18,12 +21,27 @@ public class AccountController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/account")
+    @GetMapping
     public String getAccountPage(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(employeeService.getEmployeeByUsername(authentication.getName()).isEmpty())
             return "errors/error404";
         model.addAttribute("employee", employeeService.getEmployeeByUsername(authentication.getName()));
-        return "account";
+        return "myaccount";
+    }
+
+    @PostMapping("/change-password")
+    public String changePassword(){
+        return "redirect:/account";
+    }
+
+    @PostMapping("/change-email")
+    public String changeEmail(){
+        return "redirect:/account";
+    }
+
+    @PostMapping("/add-to-workday")
+    public String addToWorkday(){
+        return "redirect:/account";
     }
 }
