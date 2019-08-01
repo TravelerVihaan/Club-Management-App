@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Club Management Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
+</head>
+<body>
+
+<div th:replace="core/header"/>
+
+<div th:replace="core/user-panel"/>
+
+<br>
+<div id="main" class="container">
+    <div class="row">
+        <div id="content" class="col-md-12">
+
+            <!-- Account Data -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
+                    Account data
+                </a>
+            <div class="collapse" id="employers">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                            <tr>
+                                <td th:text="${employee.getName()}"></td>
+                                <td th:text="${employee.getSurname()}"></td>
+                                <td th:text="${employee.getUsername()}"></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </p>
+
+            <!-- WORK STATS -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
+                    Monthly work statistics
+                </a>
+            <div class="collapse" id="employers">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                            <tr>
+                                <td th:text="${employee.getName()}"></td>
+                                <td th:text="${employee.getSurname()}"></td>
+                                <td th:text="${employee.getUsername()}"></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </p>
+
+            <!-- WORKING DAYS -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
+                    Your working days
+                </a>
+            <div class="collapse" id="employers">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                            <tr>
+                                <td th:text="${employee.getName()}"></td>
+                                <td th:text="${employee.getSurname()}"></td>
+                                <td th:text="${employee.getUsername()}"></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </p>
+
+            <!-- DAYS AVAILABLE TO WORK -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employers" aria-expanded="false" aria-controls="eemployers">
+                    Days available to work
+                </a>
+            <div class="collapse" id="employers">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                            <tr>
+                                <td th:text="${employee.getName()}"></td>
+                                <td th:text="${employee.getSurname()}"></td>
+                                <td th:text="${employee.getUsername()}"></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="core/footer"/>
+
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+</body>
+</html>
