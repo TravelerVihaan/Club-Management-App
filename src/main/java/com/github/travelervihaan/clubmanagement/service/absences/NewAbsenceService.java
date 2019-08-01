@@ -52,6 +52,8 @@ public class NewAbsenceService {
     private boolean isAbsenceRequestValid(Absence absence){
         if(!isDatesCorrect(absence.getAbsenceFromDay(),absence.getAbsenceToDay()))
             return false;
+        if(!isAbsenceInContractTime(absence))
+            return false;
         if(isSickLeave(absence))
             return true;
         return (isAbsenceTooLong(absence));
@@ -59,6 +61,11 @@ public class NewAbsenceService {
 
     private boolean isSickLeave(Absence absence){
         return absence.getAbsenceType().getAbsenceType().equalsIgnoreCase("Sick leave");
+    }
+
+    private boolean isAbsenceInContractTime(Absence absence){
+        LocalDate dateOfTerminateContract = absence.getEmployee().getEmployeeDetails().getDayOfHireTerminate();
+        return (absence.getAbsenceFromDay().isBefore(dateOfTerminateContract) && absence.getAbsenceToDay().isBefore(dateOfTerminateContract));
     }
 
     private boolean isDatesCorrect(LocalDate startDate, LocalDate endDate){
