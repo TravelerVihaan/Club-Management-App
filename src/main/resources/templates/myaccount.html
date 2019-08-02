@@ -142,7 +142,9 @@
                             <tr>
                                 <td th:text="${workingDay.getDate()}"></td>
                                 <td th:text="${workingDay.getWorkingTime()}"></td>
-                                <td><a th:href="@{'/workday/'+${workingDay.getId()}}"><button type="button" class="btn btn-secondary">Go to WorkDay page</button></td>
+                                <td>
+                                    <a th:href="@{'/workday/'+${workingDay.getId()}}"><button type="button" class="btn btn-secondary">Go to WorkDay page</button></a>
+                                </td>
                             </tr>
                         </div>
                         </tbody>
@@ -172,10 +174,9 @@
                                 <td th:text="${workingDay.getDate()}"></td>
                                 <td th:text="${workingDay.getWorkingTime()}"></td>
                                 <td>
-                                    <form th:action="" method="POST">
-
+                                    <form th:action="@{'/add-to-workday/'+${workingDay.getId()}}" method="POST">
+                                        <button type="submit" class="btn btn-success">Add me!</button>
                                     </form>
-
                                 </td>
                             </tr>
                         </div>
