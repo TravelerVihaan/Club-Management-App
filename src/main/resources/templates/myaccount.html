@@ -134,13 +134,15 @@
                         <tr>
                             <th>Date</th>
                             <th>Working hours</th>
+                            <th>Workday Page</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                        <div th:each="workingDay: ${workingDays}" th:object="${WorkDay}">
                             <tr>
-                                <td th:text="${employee.getName()}"></td>
-                                <td th:text="${employee.getSurname()}"></td>
+                                <td th:text="${workingDay.getDate()}"></td>
+                                <td th:text="${workingDay.getWorkingTime()}"></td>
+                                <td><a th:href="@{'/workday/'+${workingDay.getId()}}"><button type="button" class="btn btn-secondary">Go to WorkDay page</button></td>
                             </tr>
                         </div>
                         </tbody>
@@ -165,12 +167,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <div th:each="employee: ${workDay.getEmployers()}" th:object="${Employee}">
+                        <div th:each="workingDay: ${availableDays}" th:object="${WorkDay}">
                             <tr>
-                                <td th:text="${employee.getName()}"></td>
-                                <td th:text="${employee.getSurname()}"></td>
+                                <td th:text="${workingDay.getDate()}"></td>
+                                <td th:text="${workingDay.getWorkingTime()}"></td>
                                 <td>
-                                    <form th:action=""
+                                    <form th:action="" method="POST">
+
+                                    </form>
 
                                 </td>
                             </tr>
