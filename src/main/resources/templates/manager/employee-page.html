@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
 </head>
 <body>
 
@@ -22,19 +25,109 @@
 <div id="main" class="container">
     <div class="row">
         <div id="content" class="col-md-12">
-            <!--navibar-->
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <br>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Employee Page</li>
-                        </ol>
-                    </div>
+
+            <!-- Account Data -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#accountdata" aria-expanded="false" aria-controls="accountdata">
+                    Account data
+                </a>
+            <div class="collapse" id="accountdata">
+                <div class="card card-body">
+                    <h6><b>Name: <span th:utext="${employee.getName()}">Data</span></b></h6>
+                    <h6><b>Surname: <span th:utext="${employee.getSurname()}">Data</span></b></h6>
+                    <h6><b>Username: <span th:utext="${employee.getUsername()}">Data</span></b></h6>
+                    <h6><b>E-mail address <span th:utext="${employee.getEmail()}">Data</span></b></h6>
+                    <h6><b>Hire day: <span th:utext="${employee.getEmployeeDetails().getHireDay()}">Date</span></b></h6>
+                    <h6><b>Contract to day: <span th:utext="${employee.getEmployeeDetails().getDayOfHireTerminate()}">Date</span></b></h6>
+                    <h6><b>Job Position: <span th:utext="${employee.getEmployeeDetails().getJobTitle().getJobTitle()}">Date</span></b></h6>
+                    <h6><b>Contract Type: <span th:utext="${employee.getEmployeeDetails().getContractType().getContractType()}">Date</span></b></h6>
+                    <h6><b>Salary (month): <span th:utext="${employee.getEmployeeDetails().getSalary()}">Date</span></b></h6>
+                    <h6><b>Available vacation days: <span th:utext="${employee.getEmployeeDetails().getAvailableVacationDays()}">Date</span></b></h6>
+                    <h6><b>Total vacation days: <span th:utext="${employee.getEmployeeDetails().getTotalVacationDays()}">Date</span></b></h6>
                 </div>
             </div>
+            </p>
 
-            CONTENT HERE
+            <!-- EMPLOYEE ACTIONS -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employeeActions" aria-expanded="false" aria-controls="employeeActions">
+                    Monthly work stats
+                </a>
+            <div class="collapse" id="employeeActions">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Month worked hours:</th>
+                            <th>Month worked days:</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${employee.getSurname()}"></td>
+                            <td th:text="${employee.getUsername()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </p>
+
+            <!-- WORK STATS -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#employeeStats" aria-expanded="false" aria-controls="employeeStats">
+                    Monthly work stats
+                </a>
+            <div class="collapse" id="employeeStats">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Month worked hours:</th>
+                            <th>Month worked days:</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${employee.getSurname()}"></td>
+                            <td th:text="${employee.getUsername()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </p>
+
+            <!-- WORKING DAYS -->
+            <p>
+                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#workingDays" aria-expanded="false" aria-controls="workingDays">
+                    Employee working in days...
+                </a>
+            <div class="collapse" id="workingDays">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>Working hours</th>
+                            <th>Workday Page</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="workingDay: ${workingDays}" th:object="${WorkDay}">
+                            <tr>
+                                <td th:text="${workingDay.getDate()}"></td>
+                                <td th:text="${workingDay.getWorkingTime()}"></td>
+                                <td>
+                                    <a th:href="@{'/workday/'+${workingDay.getId()}}"><button type="button" class="btn btn-secondary">Go to WorkDay page</button></a>
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </p>
 
         </div>
     </div>
@@ -43,6 +136,7 @@
 <div th:replace="core/footer"/>
 
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
 </body>
 </html>
