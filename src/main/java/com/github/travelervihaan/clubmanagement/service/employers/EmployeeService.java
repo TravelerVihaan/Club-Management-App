@@ -36,8 +36,16 @@ public class EmployeeService {
         return employeeRepository.findAllByEmployeeDetails_DayOfHireTerminateBefore(LocalDate.now());
     }
 
+    public Optional<Employee> getEmployeeById(Long id){
+        return employeeRepository.findById(id);
+    }
+
     public Optional<Employee> getEmployeeByUsername(String username){
         return employeeRepository.findByUsername(username);
+    }
+
+    public List<Employee> getEmployersBySearchPattern(String searchPattern){
+        return employeeRepository.findAllByUsernameOrNameOrSurname(searchPattern,searchPattern,searchPattern);
     }
 
     public void saveUpdatedEmployee(Employee employee){

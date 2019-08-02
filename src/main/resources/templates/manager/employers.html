@@ -9,6 +9,7 @@
     <title>Club Management Application</title>
     <link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
     <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/webjars/font-awesome/5.9.0/all.css" type="text/css">
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 
 </head>
@@ -22,15 +23,32 @@
 <div id="main" class="container">
     <div class="row">
         <div id="content" class="col-md-12">
-            dfgdgdgdfgdgdfd
-        </div>
-        <div id="content" class="col-md-12">
-            fgfdgdfggdfgdfg
-        </div>
-    </div>
-    <div class="row">
-        <div id="content" class="col-md-12">
-            CONTENT
+
+            <h4>Employers:</h4>
+            <br>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th>Employee name</th>
+                    <th>Employee surname</th>
+                    <th>Employee page links</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="employee: ${employers}" th:object="${Employee}">
+                    <tr>
+                        <td th:text="${employee.getName()}"></td>
+                        <td th:text="${employee.getSurname()}"></td>
+                        <td>
+                            <form th:action="@{'/employers/'+${employee.getId()}}" method="GET">
+                                <button type="submit" class="btn btn-secondary">Go to this employee page</button>
+                            </form>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+            <br>
         </div>
     </div>
 </div>

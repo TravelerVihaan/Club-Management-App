@@ -19,4 +19,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	List<Employee> findAllByEmployeeDetails_DayOfHireTerminateBefore(LocalDate date);
 
+	List<Employee> findAllByUsernameOrNameOrSurname(String username, String name, String surname);
+
 }
