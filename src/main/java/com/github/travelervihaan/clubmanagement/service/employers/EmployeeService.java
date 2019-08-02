@@ -4,14 +4,11 @@ import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
 import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
-import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,7 +45,7 @@ public class EmployeeService {
         return employeeRepository.findAllByUsernameOrNameOrSurname(searchPattern,searchPattern,searchPattern);
     }
 
-    public void saveUpdatedEmployee(Employee employee){
+    void saveUpdatedEmployee(Employee employee){
         employeeRepository.save(employee);
     }
 
