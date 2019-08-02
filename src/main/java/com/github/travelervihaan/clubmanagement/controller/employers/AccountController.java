@@ -2,7 +2,6 @@ package com.github.travelervihaan.clubmanagement.controller.employers;
 
 import com.github.travelervihaan.clubmanagement.service.employers.AccountService;
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
-import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,6 +45,8 @@ public class AccountController {
 
     @PostMapping("/add-to-workday/{workDayId}")
     public String addToWorkday(@PathVariable Long workDayId){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        accountService.addEmployeeToWorkDay(workDayId,authentication.getName());
         return "redirect:/account";
     }
 }

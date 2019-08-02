@@ -21,6 +21,10 @@ public class AccountService {
         this.workDayService = workDayService;
     }
 
+    public void addEmployeeToWorkDay(Long workDayId, String username){
+        workDayService.addEmployeeToWorkDay(workDayId, username);
+    }
+
     public List<WorkDay> getWorkingDaysInCurrentMonth(String username){
         List<WorkDay> workDays = workDayService.getWorkDaysInCurrentMonth();
         Employee employee = employeeService.getEmployeeByUsername(username).orElseThrow();
