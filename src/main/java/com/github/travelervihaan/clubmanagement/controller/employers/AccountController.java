@@ -44,6 +44,10 @@ public class AccountController {
 
     @PostMapping("/change-email")
     public String changeEmail(@RequestParam String oldEmail, @RequestParam String newEmail1, @RequestParam String newEmail2, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        String message = accountService.changeUserEmail(username,oldEmail,newEmail1,newEmail2);
+        model.addAttribute("message",message);
         return "redirect:/account";
     }
 

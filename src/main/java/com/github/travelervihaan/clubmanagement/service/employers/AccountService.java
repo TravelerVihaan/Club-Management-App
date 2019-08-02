@@ -21,6 +21,10 @@ public class AccountService {
     private final String PASSWORDS_NOT_MATCH = "Your new passwords don't match";
     private final String PASSWORD_CHANGE_SUCCESS = "Your password is changed";
 
+    private final String WRONG_EMAIL_MESSAGE = "You provided wrong e-mail";
+    private final String EMAILS_NOT_MATCH = "Your new e-mails don't match";
+    private final String EMAIL_CHANGE_SUCCESS = "Your e-mail is changed";
+
     @Autowired
     public AccountService(EmployeeService employeeService, WorkDayService workDayService, BCryptPasswordEncoder bCryptPasswordEncoder){
         this.employeeService = employeeService;
@@ -40,8 +44,15 @@ public class AccountService {
 
     }
 
-    public String changeUserEmail(){
-
+    public String changeUserEmail(String username, String oldEmail, String newEmail1, String newEmail2){
+        Employee employee = employeeService.getEmployeeByUsername(username).orElseThrow();
+        if(!employee.getEmail().equals(oldEmail))
+            return WRONG_EMAIL_MESSAGE;
+        if(!newEmail1.equals(newEmail2))
+            return EMAILS_NOT_MATCH;
+        employee.setEmail(bCryptPasswordEncoder.encode(newEmail1));
+        employeeService.saveUpdatedEmployee(employee);
+        return EMAIL_CHANGE_SUCCESS;
     }
 
     public void addEmployeeToWorkDay(Long workDayId, String username){
