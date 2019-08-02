@@ -1,5 +1,6 @@
 package com.github.travelervihaan.clubmanagement.controller.employers;
 
+import com.github.travelervihaan.clubmanagement.service.employers.AccountService;
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     private EmployeeService employeeService;
-    private WorkDayService workDayService;
+    private AccountService accountService;
 
     @Autowired
-    public AccountController(EmployeeService employeeService, WorkDayService workDayService){
+    public AccountController(EmployeeService employeeService, AccountService accountService){
         this.employeeService = employeeService;
-        this.workDayService = workDayService;
+        this.accountService = accountService;
     }
 
     @GetMapping
@@ -28,6 +29,8 @@ public class AccountController {
         if(employeeService.getEmployeeByUsername(authentication.getName()).isEmpty())
             return "errors/error404";
         model.addAttribute("employee", employeeService.getEmployeeByUsername(authentication.getName()).orElseThrow());
+        model.addAttribute("workingDays", accountService.getWorkingDaysInCurrentMonth(authentication.getName()));
+        model.addAttribute("availableDays",accountService.getAvailableWorkDaysInCurrentMonth(authentication.getName()));
         return "myaccount";
     }
 

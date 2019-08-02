@@ -44,8 +44,8 @@ public class WorkDayService {
 
     public List<WorkDay> getWorkDaysInCurrentMonth(){
         LocalDate today = LocalDate.now();
-        LocalDate startDate = today.withDayOfMonth(1);
-        LocalDate endDate = today.withDayOfMonth(today.lengthOfMonth());
+        LocalDate startDate = today.withDayOfMonth(1).minusDays(1);
+        LocalDate endDate = today.withDayOfMonth(today.lengthOfMonth()).plusDays(1);
         return workDayRepository.findByDateBetween(startDate,endDate);
 
     }
