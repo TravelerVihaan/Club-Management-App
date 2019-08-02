@@ -40,6 +40,10 @@ public class EmployeeService {
         return employeeRepository.findByUsername(username);
     }
 
+    public void saveUpdatedEmployee(Employee employee){
+        employeeRepository.save(employee);
+    }
+
     public void changeEmployeeVacationDays(Absence absence){
         Employee employee = absence.getEmployee();
         Long vacationDays = ChronoUnit

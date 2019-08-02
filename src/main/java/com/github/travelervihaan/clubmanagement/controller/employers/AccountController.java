@@ -35,6 +35,10 @@ public class AccountController {
 
     @PostMapping("/change-password")
     public String changePassword(@RequestParam String oldPassword, @RequestParam String newPassword1, @RequestParam String newPassword2, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        String message = accountService.changeUserPassword(username, oldPassword, newPassword1, newPassword2);
+        model.addAttribute("message",message);
         return "redirect:/account";
     }
 
