@@ -22,7 +22,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping
+    @GetMapping(value = {"","/"})
     public String getAccountPage(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(employeeService.getEmployeeByUsername(authentication.getName()).isEmpty())

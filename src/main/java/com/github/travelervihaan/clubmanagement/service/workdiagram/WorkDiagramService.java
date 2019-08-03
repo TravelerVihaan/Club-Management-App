@@ -23,32 +23,26 @@ public class WorkDiagramService {
     }
 
     public List<WorkDay> getMultipleWorkDays(String interval){
-        if(interval.equals(WEEK))
-            return getWeekWorkDays();
-
-        if(interval.equals(MONTH))
-            return getMonthWorkDays();
-
-        if(interval.equals(QUARTER))
-            return getQuarterWorkDays();
-
+        if(interval.equals(WEEK)) return getWeekWorkDays();
+        if(interval.equals(MONTH)) return getMonthWorkDays();
+        if(interval.equals(QUARTER)) return getQuarterWorkDays();
         return getWeekWorkDays();
     }
 
     private List<WorkDay> getWeekWorkDays(){
-        LocalDate startDate = LocalDate.now();
-        LocalDate endDate = startDate.plusDays(9);
+        LocalDate startDate = LocalDate.now().plusDays(1);
+        LocalDate endDate = startDate.plusDays(8);
         return workDayRepository.findByDateBetweenOrderByDateAsc(startDate, endDate);
     }
 
     private List<WorkDay> getMonthWorkDays(){
-        LocalDate startDate = LocalDate.now();
+        LocalDate startDate = LocalDate.now().plusDays(1);
         LocalDate endDate = startDate.plusWeeks(5);
         return workDayRepository.findByDateBetweenOrderByDateAsc(startDate, endDate);
     }
 
     private List<WorkDay> getQuarterWorkDays(){
-        LocalDate startDate = LocalDate.now();
+        LocalDate startDate = LocalDate.now().plusDays(1);
         LocalDate endDate = startDate.plusMonths(3);
         return workDayRepository.findByDateBetweenOrderByDateAsc(startDate, endDate);
     }
