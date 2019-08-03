@@ -53,6 +53,8 @@ public class AccountService {
             return WRONG_EMAIL_MESSAGE;
         if(!newEmail1.equals(newEmail2))
             return EMAILS_NOT_MATCH;
+        if(!newEmail1.contains("@"))
+            return WRONG_EMAIL_MESSAGE;
         employee.setEmail(bCryptPasswordEncoder.encode(newEmail1));
         employeeService.saveUpdatedEmployee(employee);
         return EMAIL_CHANGE_SUCCESS;
