@@ -19,6 +19,7 @@ public class AccountService {
 
     private final String WRONG_PASSWORD_MESSAGE = "You provided wrong password";
     private final String PASSWORDS_NOT_MATCH = "Your new passwords don't match";
+    private final String WRONG_PASSWORD_LENGTH = "Your password is too long or to short";
     private final String PASSWORD_CHANGE_SUCCESS = "Your password is changed";
 
     private final String WRONG_EMAIL_MESSAGE = "You provided wrong e-mail";
@@ -38,6 +39,8 @@ public class AccountService {
             return WRONG_PASSWORD_MESSAGE;
         if(!newPassword1.equals(newPassword2))
             return PASSWORDS_NOT_MATCH;
+        if(newPassword1.length()<8 || newPassword1.length()>30)
+            return WRONG_PASSWORD_LENGTH;
         employee.setPassword(bCryptPasswordEncoder.encode(newPassword1));
         employeeService.saveUpdatedEmployee(employee);
         return PASSWORD_CHANGE_SUCCESS;
