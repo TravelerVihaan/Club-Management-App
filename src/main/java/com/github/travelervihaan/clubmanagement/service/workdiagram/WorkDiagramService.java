@@ -36,20 +36,20 @@ public class WorkDiagramService {
     }
 
     private List<WorkDay> getWeekWorkDays(){
-        LocalDate startDate = LocalDate.now().minusDays(2);
-        LocalDate endDate = LocalDate.now().plusDays(6);
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusDays(9);
         return workDayRepository.findByDateBetweenOrderByDateAsc(startDate, endDate);
     }
 
     private List<WorkDay> getMonthWorkDays(){
-        LocalDate startDate = LocalDate.now().minusWeeks(2);
-        LocalDate endDate = LocalDate.now().plusWeeks(3);
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusWeeks(5);
         return workDayRepository.findByDateBetweenOrderByDateAsc(startDate, endDate);
     }
 
     private List<WorkDay> getQuarterWorkDays(){
-        LocalDate startDate = LocalDate.now().minusMonths(1);
-        LocalDate endDate = LocalDate.now().plusMonths(2);
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusMonths(3);
         return workDayRepository.findByDateBetweenOrderByDateAsc(startDate, endDate);
     }
 }
