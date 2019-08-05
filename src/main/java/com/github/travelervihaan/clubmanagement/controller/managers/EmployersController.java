@@ -46,16 +46,8 @@ public class EmployersController {
     @GetMapping("/{employeeId}")
     public String getEmployee(@PathVariable Long employeeId, Model model){
         model.addAttribute("employee",employeeService.getEmployeeById(employeeId).orElseThrow());
-        model.addAttribute("jobTitles", jobTitleService
-                .getAllJobTitles()
-                .stream()
-                .map(JobTitle::getJobTitle)
-                .collect(Collectors.toList()));
-        model.addAttribute("contractTypes", contractTypeService
-                .getAllContracts()
-                .stream()
-                .map(ContractType::getContractType)
-                .collect(Collectors.toList()));
+        model.addAttribute("jobTitles", jobTitleService.getAllJobTitles());
+        model.addAttribute("contractTypes", contractTypeService.getAllContracts());
         return "manager/employee-page";
     }
 }

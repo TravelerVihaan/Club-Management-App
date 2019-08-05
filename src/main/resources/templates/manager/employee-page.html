@@ -60,38 +60,36 @@
                         <h6><b>Change salary form:</b></h6>
                         <div class="row">
                             <div class="form-group row">
-                                <label for="oldPass" class="col-sm-2 col-form-label">New salary</label>
+                                <label for="newSalary" class="col-sm-2 col-form-label">New salary</label>
                                 <div class="col-sm-10">
                                     <input type="number" name="salary" class="form-control" id="salary" placeholder="Salary value">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-secondary btn-block">Change password</button>
+                            <button type="submit" class="btn btn-secondary btn-block">Change salary</button>
                         </div>
                     </form>
-
+                    <br>
                     <form th:action="@{'/employers/'+${employee.getId()}+'/change-job-position'}" method="post">
-                        <h6><b>Change password form:</b></h6>
-                        <div class="row">
-                            <div class="form-group row">
-                                <label for="oldPass" class="col-sm-2 col-form-label">Present password</label>
-                                <div class="col-sm-10">
-                                    <input type="number" name="jobPosition" class="form-control" id="jobPosition" placeholder="Salary value">
-                                </div>
+                        <h6><b>Change job position form:</b></h6>
+                        <div class="input-group">
+                            <select class="form-control" id="jobPosition" name="jobPosition">
+                                <option th:each="jobTitle: ${jobTitles}" th:value="${jobTitle.getJobTitle()}" th:utext="${jobTitle.getJobTitle()}" />
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary btn-block" type="submit">Change job position</button>
                             </div>
-                            <button type="submit" class="btn btn-secondary btn-block">Change password</button>
                         </div>
                     </form>
-
+                    <br>
                     <form th:action="@{'/employers/'+${employee.getId()}+'/change-contract'}" method="post">
-                        <h6><b>Change password form:</b></h6>
-                        <div class="row">
-                            <div class="form-group row">
-                                <label for="oldPass" class="col-sm-2 col-form-label">Present password</label>
-                                <div class="col-sm-10">
-                                    <input type="number" name="contractType" class="form-control" id="contractType" placeholder="Salary value">
-                                </div>
+                        <h6><b>Change contract form:</b></h6>
+                        <div class="input-group">
+                            <select class="form-control" id="contractType" name="contractType">
+                                <option th:each="contractType: ${contractTypes}" th:value="${contractType.getContractType()}" th:utext="${contractType.getContractType()}" />
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary btn-block" type="submit">Change contract</button>
                             </div>
-                            <button type="submit" class="btn btn-secondary btn-block">Change password</button>
                         </div>
                     </form>
 
