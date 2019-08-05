@@ -37,6 +37,6 @@ public class EmployersController {
     @GetMapping("/{employeeId}")
     public String getEmployee(@PathVariable Long employeeId, Model model){
         model.addAttribute("employee",employeeService.getEmployeeById(employeeId).orElseThrow());
-        return "manager/employee";
+        return "manager/employee-page";
     }
 }

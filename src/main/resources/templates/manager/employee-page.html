@@ -55,20 +55,7 @@
                 </a>
             <div class="collapse" id="employeeActions">
                 <div class="card card-body">
-                    <table class="table">
-                        <thead class="thead-light">
-                        <tr>
-                            <th>Month worked hours:</th>
-                            <th>Month worked days:</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td th:text="${employee.getSurname()}"></td>
-                            <td th:text="${employee.getUsername()}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <!-- EMPLOYEE ACTIONS -->
                 </div>
             </div>
             </p>
@@ -114,7 +101,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <div th:each="workingDay: ${workingDays}" th:object="${WorkDay}">
+                        <div th:each="workingDay: ${employee.getWorkDays()}" th:object="${WorkDay}">
                             <tr>
                                 <td th:text="${workingDay.getDate()}"></td>
                                 <td th:text="${workingDay.getWorkingTime()}"></td>
