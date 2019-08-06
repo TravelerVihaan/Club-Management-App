@@ -37,6 +37,8 @@ public class AccountService {
         Employee employee = employeeService.getEmployeeByUsername(username).orElseThrow();
         if(!employee.getPassword().equals(bCryptPasswordEncoder.encode(oldPassword)))
             return WRONG_PASSWORD_MESSAGE;
+        if(newPassword1==null || newPassword2 ==null)
+            return WRONG_PASSWORD_MESSAGE;
         if(!newPassword1.equals(newPassword2))
             return PASSWORDS_NOT_MATCH;
         if(newPassword1.length()<8 || newPassword1.length()>30)
@@ -50,6 +52,8 @@ public class AccountService {
     public String changeUserEmail(String username, String oldEmail, String newEmail1, String newEmail2){
         Employee employee = employeeService.getEmployeeByUsername(username).orElseThrow();
         if(!employee.getEmail().equals(oldEmail))
+            return WRONG_EMAIL_MESSAGE;
+        if(newEmail1 == null || newEmail2 == null)
             return WRONG_EMAIL_MESSAGE;
         if(!newEmail1.equals(newEmail2))
             return EMAILS_NOT_MATCH;

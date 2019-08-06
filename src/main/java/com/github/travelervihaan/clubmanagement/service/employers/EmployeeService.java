@@ -4,15 +4,19 @@ import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.model.employers.ContractType;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.model.employers.JobTitle;
+import com.github.travelervihaan.clubmanagement.model.employers.Role;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
 import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
+import com.github.travelervihaan.clubmanagement.repository.employers.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,11 +24,13 @@ public class EmployeeService {
 
     private EmployeeRepository employeeRepository;
     private AbsenceRepository absenceRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository,AbsenceRepository absenceRepository){
+    public EmployeeService(EmployeeRepository employeeRepository,AbsenceRepository absenceRepository, RoleRepository roleRepository){
         this.employeeRepository = employeeRepository;
         this.absenceRepository = absenceRepository;
+        this.roleRepository = roleRepository;
     }
 
     public List<Employee> getEmployersByJobTitle(String jobTitle){
@@ -57,10 +63,27 @@ public class EmployeeService {
 
     public void changeEmployeeJobPosition(Long employeeId, JobTitle jobTitle){
         Employee employee = employeeRepository.findById(employeeId).orElseThrow();
+        employee.setRoles(changeEmployeeRoles(employee.getRoles(),jobTitle.getJobTitle()));
         employee.getEmployeeDetails().setJobTitle(jobTitle);
         employeeRepository.save(employee);
     }
 
+    private Set<Role> changeEmployeeRoles(Set<Role> roles, String jobTitle){
+        if(jobTitle.equalsIgnoreCase("employee"))
+            roles.removeIf(role -> !role.getRole().equalsIgnoreCase("USER"));
+
+        if(jobTitle.equalsIgnoreCase("manager"))
+            roles = roleRepository
+                    .findAll()
+                    .stream()
+                    .filter(role -> !role.getRole().equalsIgnoreCase("ADMIN"))
+                    .collect(Collectors.toSet());
+
+        if(jobTitle.equalsIgnoreCase("director"))
+            roles = new HashSet<>(roleRepository.findAll());
+
+        return roles;
+    }
 
     public List<Employee> getEmployersBySearchPattern(String searchPattern){
         return employeeRepository.findAllByUsernameOrNameOrSurname(searchPattern,searchPattern,searchPattern);

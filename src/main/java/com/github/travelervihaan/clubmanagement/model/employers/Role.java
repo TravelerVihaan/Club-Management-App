@@ -3,6 +3,7 @@ package com.github.travelervihaan.clubmanagement.model.employers;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "roles")
@@ -48,6 +49,19 @@ public class Role {
 
     public void setEmployers(List<Employee> employers) {
         this.employers = employers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role1 = (Role) o;
+        return role.equals(role1.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(role);
     }
 
     @Override
