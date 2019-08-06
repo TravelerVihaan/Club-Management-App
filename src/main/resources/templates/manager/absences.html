@@ -67,6 +67,7 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
+                    <th>Employee</th>
                     <th>From day</th>
                     <th>To day</th>
                     <th>Absence Type</th>
@@ -74,7 +75,15 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                    <div th:each="absence: ${archivalAbsences}" th:object="${Absence}">
+                        <tr>
+                            <td th:text="${absence.getEmployee().getName()+' '+absence.getEmployee().getSurname()}"></td>
+                            <td th:text="${absence.getAbsenceFromDay()}"></td>
+                            <td th:text="${absence.getAbsenceToDay()}"></td>
+                            <td th:text="${absence.getAbsenceType().getAbsenceType()}"></td>
+                            <td th:text="${absence.getAbsenceApprovalStatus().getStatus()}"></td>
+                        </tr>
+                    </div>
                 </tbody>
             </table>
             <br>

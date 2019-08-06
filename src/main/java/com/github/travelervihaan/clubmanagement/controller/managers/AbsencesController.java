@@ -29,10 +29,7 @@ public class AbsencesController {
                 .getAbsencesOfType(absenceStatusChangeService
                                                 .getAllAbsences(username),STATUS_WAITING));
         model.addAttribute("archivalAbsences", absenceStatusChangeService
-                .getAbsencesOfType(absenceStatusChangeService
-                        .getAllAbsences(username),STATUS_ACCEPTED).addAll(absenceStatusChangeService
-                        .getAbsencesOfType(absenceStatusChangeService
-                                .getAllAbsences(username),STATUS_REJECTED)));
+                .getArchivalAbsences(STATUS_WAITING));
         return "manager/absences";
     }
 

@@ -42,6 +42,10 @@ public class AbsenceStatusChangeService {
         return absenceRepository.findAll();
     }
 
+    public List<Absence> getArchivalAbsences(String status){
+        return absenceRepository.findAllByAbsenceApprovalStatus_StatusNot(status);
+    }
+
     public List<Absence> getAbsencesOfType(List<Absence> absenceList, String type){
         return absenceList
                 .stream()
