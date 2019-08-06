@@ -45,19 +45,19 @@ public class EmployersController {
         return "manager/employee-page";
     }
 
-    @PostMapping()
+    @PostMapping("/{employeeId}/change-salary")
     public String changeEmployeeSalary(@PathVariable Long employeeId, @RequestParam double newSalary){
         employeeService.changeEmployeeSalary(employeeId,newSalary);
         return "redirect:/employers/"+employeeId;
     }
 
-    @PostMapping()
+    @PostMapping("/{employeeId}/change-job-position")
     public String changeEmployeeContract(@PathVariable Long employeeId, @RequestParam String newContract){
         employeeService.changeEmployeeContract(employeeId, contractTypeService.getContractTypeByType(newContract));
         return "redirect:/employers/"+employeeId;
     }
 
-    @PostMapping()
+    @PostMapping("/{employeeId}/change-contract")
     public String changeEmployeeJobPosition(@PathVariable Long employeeId, @RequestParam String newPosition){
         employeeService.changeEmployeeJobPosition(employeeId,jobTitleService.getJobTitleByTitle(newPosition));
         return "redirect:/employers/"+employeeId;
