@@ -29,7 +29,7 @@ public class EmployersController {
     @GetMapping
     public String getAllEmployers(@RequestParam(required = false) String searchPattern, Model model){
         List<Employee> employers;
-        if(searchPattern==null || searchPattern.equals(""))
+        if(searchPattern==null || "".equals(searchPattern))
             employers = employeeService.getAllEmployers();
         else
             employers = employeeService.getEmployersBySearchPattern(searchPattern);
