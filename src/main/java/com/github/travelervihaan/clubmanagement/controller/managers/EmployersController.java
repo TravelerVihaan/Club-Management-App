@@ -1,21 +1,15 @@
 package com.github.travelervihaan.clubmanagement.controller.managers;
 
-import com.github.travelervihaan.clubmanagement.model.employers.ContractType;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.model.employers.JobTitle;
 import com.github.travelervihaan.clubmanagement.service.employers.ContractTypeService;
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import com.github.travelervihaan.clubmanagement.service.employers.JobTitleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/employers")
@@ -49,5 +43,23 @@ public class EmployersController {
         model.addAttribute("jobTitles", jobTitleService.getAllJobTitles());
         model.addAttribute("contractTypes", contractTypeService.getAllContracts());
         return "manager/employee-page";
+    }
+
+    @PostMapping()
+    public String changeEmployeeSalary(@PathVariable Long employeeId, @RequestParam double newSalary){
+        employeeService.changeEmployeeSalary(employeeId,newSalary);
+        return "redirect:/employers/"+employeeId;
+    }
+
+    @PostMapping()
+    public String changeEmployeeContract(@PathVariable Long employeeId, @RequestParam String newContract){
+        employeeService.changeEmployeeContract(employeeId, contractTypeService.getContractTypeByType(newContract));
+        return "redirect:/employers/"+employeeId;
+    }
+
+    @PostMapping()
+    public String changeEmployeeJobPosition(@PathVariable Long employeeId, @RequestParam String newPosition){
+        employeeService.changeEmployeeJobPosition(employeeId,jobTitleService.getJobTitleByTitle(newPosition));
+        return "redirect:/employers/"+employeeId;
     }
 }

@@ -1,7 +1,9 @@
 package com.github.travelervihaan.clubmanagement.service.employers;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
+import com.github.travelervihaan.clubmanagement.model.employers.ContractType;
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.model.employers.JobTitle;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
 import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,25 @@ public class EmployeeService {
     public Optional<Employee> getEmployeeByUsername(String username){
         return employeeRepository.findByUsername(username);
     }
+
+    public void changeEmployeeSalary(Long employeeId, double newSalary){
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow();
+        employee.getEmployeeDetails().setSalary(newSalary);
+        employeeRepository.save(employee);
+    }
+
+    public void changeEmployeeContract(Long employeeId, ContractType newContract){
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow();
+        employee.getEmployeeDetails().setContractType(newContract);
+        employeeRepository.save(employee);
+    }
+
+    public void changeEmployeeJobPosition(Long employeeId, JobTitle jobTitle){
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow();
+        employee.getEmployeeDetails().setJobTitle(jobTitle);
+        employeeRepository.save(employee);
+    }
+
 
     public List<Employee> getEmployersBySearchPattern(String searchPattern){
         return employeeRepository.findAllByUsernameOrNameOrSurname(searchPattern,searchPattern,searchPattern);
