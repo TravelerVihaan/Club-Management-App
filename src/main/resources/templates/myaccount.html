@@ -174,7 +174,7 @@
                                 <td th:text="${workingDay.getDate()}"></td>
                                 <td th:text="${workingDay.getWorkingTime()}"></td>
                                 <td>
-                                    <form th:action="@{'/add-to-workday/'+${workingDay.getId()}}" method="POST">
+                                    <form th:action="@{'account/add-to-workday/'+${workingDay.getId()}}" method="POST">
                                         <button type="submit" class="btn btn-success">Add me!</button>
                                     </form>
                                 </td>

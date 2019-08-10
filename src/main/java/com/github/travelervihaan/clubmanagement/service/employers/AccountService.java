@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -80,11 +81,13 @@ public class AccountService {
     public List<WorkDay> getAvailableWorkDaysInCurrentMonth(String username){
         List<WorkDay> workDays = workDayService.getWorkDaysInCurrentMonth();
         Employee employee = employeeService.getEmployeeByUsername(username).orElseThrow();
-        return workDays
+        workDays = workDays
                 .stream()
+                .filter(workDay -> workDay.getDate().isAfter(LocalDate.now()))
                 .filter(workDay -> !workDay.getEmployers().contains(employee))
-                .filter(workDay -> workDay.getEmployers().size()>workDay.getWorkDayImportance().getImportanceLevel())
+                .filter(workDay -> workDay.getEmployers().size()<workDay.getWorkDayImportance().getImportanceLevel())
                 .collect(Collectors.toList());
+        return workDays;
     }
 
 }
