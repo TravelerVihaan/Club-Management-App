@@ -1,10 +1,12 @@
 package com.github.travelervihaan.clubmanagement.model.workdiagram;
 
 import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,6 +19,7 @@ public class Comment {
     private Long id;
 
     @NotNull
+    @DateTimeFormat(pattern = "hh:mm dd-MM-yyyy")
     private LocalDateTime date;
 
     @NotEmpty

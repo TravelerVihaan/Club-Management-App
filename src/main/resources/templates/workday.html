@@ -31,7 +31,7 @@
             <br>
             <h6>Work time: <span th:utext="${workDay.getWorkingTime()}">Worktime</span></h6>
             <br>
-            <div sec:authorize="hasRole('ROLE_MANAGER')">
+            <div sec:authorize="hasAuthority('MANAGER')">
                 <form th:action="@{'/workday/'+${workDay.getId()}+'/set-worktime'}" method="POST">
                     <label for="setWorkTime">Set time of work:</label>
                     <input type="text" class="form-control" name="workTime" placeholder="Work Time"/>
@@ -41,7 +41,7 @@
             </div>
 
             <p class="h7">Booked artist: <span th:utext="${workDay.getBookedArtist()}">Importance Level</span></p>
-            <div sec:authorize="hasRole('ROLE_MANAGER')">
+            <div sec:authorize="hasAuthority('MANAGER')">
                 <form th:action="@{'/workday/'+${workDay.getId()}+'/set-artist'}" method="POST">
                     <label for="setArtist">Set booked artist:</label>
                     <input type="text" class="form-control" name="bookedArtist" placeholder="Booked Artist"/>
@@ -51,7 +51,7 @@
             </div>
 
             <p class="h7">Employers needed: <span th:utext="${workDay.getWorkDayImportance().getImportanceLevel()}">Importance Level</span></p>
-            <div sec:authorize="hasRole('ROLE_MANAGER')">
+            <div sec:authorize="hasAuthority('MANAGER')">
                 <form th:action="@{'/workday/'+${workDay.getId()}+'/set-employers-needed'}" method="POST">
                     <div class="input-group">
                         <select class="form-control" id="workDayImportance" name="workDayImportance">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </p>
-            <div sec:authorize="hasRole('ROLE_MANAGER')">
+            <div sec:authorize="hasAuthority('MANAGER')">
             <p>
                 <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#employers-manage" aria-expanded="false" aria-controls="employers-manage">
                     Employers management
@@ -149,7 +149,7 @@
                     Comments:<br>
                     <div th:each="comment: ${workDay.getComments()}" th:object="${Comment}">
                         -------------------------------------------------------------------------<br>
-                        Date: <span th:utext="${comment.getDate()}">Date</span><br>
+                        Date: <span th:utext="${{comment.getDate()}}">Date</span><br>
                         Author: <span th:utext="${comment.getEmployee().getName()+' '+comment.getEmployee().getSurname()}">Author</span><br>
                         Comment: <span th:utext="${comment.getText()}">Text</span><br>
                         -------------------------------------------------------------------------<br>
