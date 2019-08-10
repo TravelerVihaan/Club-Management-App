@@ -28,7 +28,6 @@ public class Employee implements Serializable {
 	@NotEmpty
 	@Size(min = 8)
 	@Column(nullable = false)
-	@Size(min = 8, max = 60)
 	private String password;
 	@NotEmpty
 	@Column(nullable = false)
