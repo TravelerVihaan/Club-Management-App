@@ -148,11 +148,11 @@
                     </form>
                     Comments:<br>
                     <div th:each="comment: ${workDay.getComments()}" th:object="${Comment}">
-                        -------------------------------------------------------------------------
+                        -------------------------------------------------------------------------<br>
                         Date: <span th:utext="${comment.getDate()}">Date</span><br>
                         Author: <span th:utext="${comment.getEmployee().getName()+' '+comment.getEmployee().getSurname()}">Author</span><br>
                         Comment: <span th:utext="${comment.getText()}">Text</span><br>
-                        -------------------------------------------------------------------------
+                        -------------------------------------------------------------------------<br>
                     </div>
                 </div>
             </div>
