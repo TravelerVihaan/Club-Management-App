@@ -4,6 +4,7 @@ import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.service.employers.ContractTypeService;
 import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
 import com.github.travelervihaan.clubmanagement.service.employers.JobTitleService;
+import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,8 @@ public class EmployersController {
 
     @GetMapping("/{employeeId}")
     public String getEmployee(@PathVariable Long employeeId, Model model){
-        model.addAttribute("employee",employeeService.getEmployeeById(employeeId).orElseThrow());
+        Employee employee = employeeService.getEmployeeById(employeeId).orElseThrow();
+        model.addAttribute("employee",employee);
         model.addAttribute("jobTitles", jobTitleService.getAllJobTitles());
         model.addAttribute("contractTypes", contractTypeService.getAllContracts());
         return "manager/employee-page";
