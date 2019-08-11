@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/login")
 				.and().exceptionHandling().accessDeniedPage("/denied");
-		//.csrf().disable()
+				//.csrf().disable()
 	}
 
 	@Override
