@@ -4,6 +4,7 @@ import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.model.payrolls.Payroll;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 import com.github.travelervihaan.clubmanagement.repository.payrolls.PayrollRepository;
+import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +13,20 @@ import javax.validation.Validator;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PayrollService {
 
     private PayrollRepository payrollRepository;
     private Validator validator;
+    private WorkDayService workDayService;
 
     @Autowired
-    public PayrollService(PayrollRepository payrollRepository, Validator validator){
+    public PayrollService(PayrollRepository payrollRepository, WorkDayService workDayService, Validator validator){
         this.payrollRepository = payrollRepository;
         this.validator = validator;
+        this.workDayService = workDayService;
     }
 
     public List<Payroll> getAllPayrolls(String username){
@@ -45,7 +49,11 @@ public class PayrollService {
 
     private void savePayrollOfEmployee(Employee employee){
         Payroll payroll = new Payroll();
-        List<WorkDay> employeeWorkDays = employee.getWorkDays();
+        List<WorkDay> employeeWorkDays = workDayService.getWorkDaysInCurrentMonth();
+        employeeWorkDays = employeeWorkDays
+                .stream()
+                .filter(workDay -> workDay.getEmployers().contains(employee))
+                .collect(Collectors.toList());
         payroll.setWorkedDays(employeeWorkDays.size());
         double workedHours = countWorkedHours(employeeWorkDays);
         payroll.setWorkedHours(workedHours);

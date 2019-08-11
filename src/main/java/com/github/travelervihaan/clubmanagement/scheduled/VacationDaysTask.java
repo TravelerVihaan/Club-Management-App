@@ -18,7 +18,7 @@ public class VacationDaysTask {
         this.employeeService = employeeService;
     }
 
-    @Scheduled(cron = "0 8 1 1 *")
+    @Scheduled(cron = "0 8 1 1 * ?")
     public void addVacationDays(){
         List<Employee> employers = employeeService.getAllEmployers();
         employers.forEach(this::saveEmployeeWithVacationDays);
