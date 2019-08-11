@@ -47,39 +47,25 @@
 
                     <form th:action="@{/account/change-password}" method="post">
                         <h6><b>Change password form:</b></h6>
-                        <div class="row">
-                            <div class="form-group row">
-                                <label for="oldPass" class="col-sm-2 col-form-label">Present password</label>
-                                    <input type="password" name="oldPassword" class="form-control" id="oldPass" placeholder="Present password">
-                            </div>
-                            <div class="form-group row">
-                                <label for="newPass1" class="col-sm-2 col-form-label">New password</label>
+                                <input type="password" name="oldPassword" class="form-control" id="oldPass" placeholder="Present password">
+                            <br>
                                 <input type="password" name="newPassword1" class="form-control" id="newPass1" placeholder="New password">
-                            </div>
-                            <div class="form-group row">
-                                <label for="newPass2" class="col-sm-2 col-form-label">Repeat new password</label>
-                                    <input type="password" name="newPassword2" class="form-control" id="newPass2" placeholder="Repeat new password">
-                            </div>
+                            <br>
+                                <input type="password" name="newPassword2" class="form-control" id="newPass2" placeholder="Repeat new password">
+                            <br>
                             <button type="submit" class="btn btn-secondary">Change password</button>
-                        </div>
+                            <br><br>
                     </form>
                     <form th:action="@{/account/change-email}" method="post">
                         <h6><b>Change e-mail form:</b></h6>
-                        <div class="row">
-                            <div class="form-group row">
-                                <label for="oldPass" class="col-sm-2 col-form-label">Present e-mail</label>
-                                    <input type="password" name="oldEmail" class="form-control" id="oldEmail" placeholder="Present e-mail">
-                            </div>
-                            <div class="form-group row">
-                                <label for="newPass1" class="col-sm-2 col-form-label">New e-mail</label>
-                                    <input type="password" name="newEmail1" class="form-control" id="newEmail1" placeholder="New e-mail">
-                            </div>
-                            <div class="form-group row">
-                                <label for="newPass2" class="col-sm-2 col-form-label">Repeat new e-mail</label>
-                                    <input type="password" name="newEmail2" class="form-control" id="newEmail2" placeholder="Repeat new e-mail">
-                            </div>
+                            <input type="password" name="oldEmail" class="form-control" id="oldEmail" placeholder="Present e-mail">
+                            <br>
+                            <input type="password" name="newEmail1" class="form-control" id="newEmail1" placeholder="New e-mail">
+                            <br>
+                            <input type="password" name="newEmail2" class="form-control" id="newEmail2" placeholder="Repeat new e-mail">
+                            <br>
                             <button type="submit" class="btn btn-secondary">Change e-mail</button>
-                        </div>
+                            <br>
                     </form>
                 </div>
             </div>
