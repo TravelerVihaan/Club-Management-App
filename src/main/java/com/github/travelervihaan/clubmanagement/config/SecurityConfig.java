@@ -56,22 +56,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.and()
 				.formLogin()
 				.loginPage("/login").permitAll()
-				.loginProcessingUrl("/process-login").permitAll()
 				.failureUrl("/login?error=true")
-				.defaultSuccessUrl("/").permitAll()
+				.defaultSuccessUrl("/",true).permitAll()
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/login")
 				.and().exceptionHandling().accessDeniedPage("/denied");
-				//.csrf().disable()
 	}
 
 	@Override
 	public void configure(WebSecurity web){
 		web
 				.ignoring()
-				.antMatchers("/resources/**", "/static/**", "/css/**", "/images/**");
+				.antMatchers("/resources/**", "/static/**", "/css/**", "/images/**", "/webjars/**");
 	}
 }

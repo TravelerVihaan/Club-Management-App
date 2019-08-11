@@ -19,7 +19,7 @@ public class HomeDiagramController {
 		this.workDiagramService = workDiagramService;
 	}
 
-	@GetMapping(value = {"/","/index"})
+	@GetMapping("/")
 	public String home(@RequestParam(defaultValue = "WEEK") String interval, Model model) {
 		model.addAttribute("workDiagram",workDiagramService.getMultipleWorkDays(interval));
 		return "index";
