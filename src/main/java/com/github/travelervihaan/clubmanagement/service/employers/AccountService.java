@@ -69,13 +69,21 @@ public class AccountService {
         workDayService.addEmployeeToWorkDay(workDayId, username);
     }
 
+    public double getMonthlyHoursStat(String username){
+        List<WorkDay> workDays = this.getWorkingDaysInCurrentMonth(username);
+        double hours = 0;
+        for(WorkDay workDay: workDays)
+            hours+=workDay.getWorkingTime();
+        return hours;
+    }
+
+    public int getWorkDaysMonthlyStat(String username){
+        return this.getWorkingDaysInCurrentMonth(username).size();
+    }
+
     public List<WorkDay> getWorkingDaysInCurrentMonth(String username){
-        List<WorkDay> workDays = workDayService.getWorkDaysInCurrentMonth();
         Employee employee = employeeService.getEmployeeByUsername(username).orElseThrow();
-        return workDays
-                .stream()
-                .filter(workDay -> workDay.getEmployers().contains(employee))
-                .collect(Collectors.toList());
+        return workDayService.getWorkDaysOfEmployeeInCurrentMonth(employee);
     }
 
     public List<WorkDay> getAvailableWorkDaysInCurrentMonth(String username){

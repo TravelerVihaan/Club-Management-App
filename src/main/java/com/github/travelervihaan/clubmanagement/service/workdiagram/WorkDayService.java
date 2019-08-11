@@ -1,5 +1,6 @@
 package com.github.travelervihaan.clubmanagement.service.workdiagram;
 
+import com.github.travelervihaan.clubmanagement.model.employers.Employee;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDayImportance;
 import com.github.travelervihaan.clubmanagement.repository.workdiagram.WorkDayRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class WorkDayService {
@@ -47,7 +49,14 @@ public class WorkDayService {
         LocalDate startDate = today.withDayOfMonth(1).minusDays(1);
         LocalDate endDate = today.withDayOfMonth(today.lengthOfMonth()).plusDays(1);
         return workDayRepository.findByDateBetween(startDate,endDate);
+    }
 
+    public List<WorkDay> getWorkDaysOfEmployeeInCurrentMonth(Employee employee){
+        List<WorkDay> workDays = this.getWorkDaysInCurrentMonth();
+        return workDays
+                .stream()
+                .filter(workDay -> workDay.getEmployers().contains(employee))
+                .collect(Collectors.toList());
     }
 
     public void createDefaultWorkDay(LocalDate date){

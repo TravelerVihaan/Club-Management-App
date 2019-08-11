@@ -43,17 +43,13 @@ public class PayrollService {
         return payrollRepository.findAllByEmployee_UsernameOrEmployee_NameOrOrEmployee_Surname(username, username, username);
     }
 
-    public void generatePayrolls(List<Employee> employers){
+    public void generatePayrolls(List<Employee> employers) {
         employers.forEach(this::savePayrollOfEmployee);
     }
 
     private void savePayrollOfEmployee(Employee employee){
         Payroll payroll = new Payroll();
-        List<WorkDay> employeeWorkDays = workDayService.getWorkDaysInCurrentMonth();
-        employeeWorkDays = employeeWorkDays
-                .stream()
-                .filter(workDay -> workDay.getEmployers().contains(employee))
-                .collect(Collectors.toList());
+        List<WorkDay> employeeWorkDays = workDayService.getWorkDaysOfEmployeeInCurrentMonth(employee);
         payroll.setWorkedDays(employeeWorkDays.size());
         double workedHours = countWorkedHours(employeeWorkDays);
         payroll.setWorkedHours(workedHours);

@@ -30,6 +30,8 @@ public class AccountController {
         model.addAttribute("employee", employeeService.getEmployeeByUsername(authentication.getName()).orElseThrow());
         model.addAttribute("workingDays", accountService.getWorkingDaysInCurrentMonth(authentication.getName()));
         model.addAttribute("availableDays",accountService.getAvailableWorkDaysInCurrentMonth(authentication.getName()));
+        model.addAttribute("monthlyHours",accountService.getMonthlyHoursStat(authentication.getName()));
+        model.addAttribute("monthlyDays",accountService.getWorkDaysMonthlyStat(authentication.getName()));
         return "myaccount";
     }
 
