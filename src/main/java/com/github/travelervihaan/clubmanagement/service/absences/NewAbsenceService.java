@@ -56,7 +56,7 @@ public class NewAbsenceService {
             return false;
         if(isSickLeave(absence))
             return true;
-        return (isAbsenceTooLong(absence));
+        return (!isAbsenceTooLong(absence));
     }
 
     private boolean isSickLeave(Absence absence){

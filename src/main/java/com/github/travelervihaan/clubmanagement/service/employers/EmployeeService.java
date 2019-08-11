@@ -108,7 +108,10 @@ public class EmployeeService {
     }
 
     public List<Employee> getAvailableEmployers(List<Employee> workDayEmployers){
-        List<String> employersUsernames = workDayEmployers.stream().map(Employee::getUsername).collect(Collectors.toList());
+        List<String> employersUsernames = workDayEmployers
+                .stream()
+                .map(Employee::getUsername)
+                .collect(Collectors.toList());
         List<Employee> availableEmployers = getEmployersNotWorkingYet(employersUsernames);
         availableEmployers = getEmployersNotOnVacations(availableEmployers);
         return availableEmployers;
@@ -124,7 +127,8 @@ public class EmployeeService {
         for(String username: employersOnVacation){
             employers = employers
                     .stream()
-                    .filter(employee -> !employee.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
+                    .filter(employee -> !employee.getUsername().equalsIgnoreCase(username))
+                    .collect(Collectors.toList());
         }
         return employers;
     }
@@ -134,7 +138,9 @@ public class EmployeeService {
         for(String username: usernames){
             allEmployers = allEmployers
                     .stream()
-                    .filter(employee -> !employee.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
+                    .filter(employee -> !employee.getUsername()
+                            .equalsIgnoreCase(username))
+                    .collect(Collectors.toList());
         }
         return allEmployers;
     }

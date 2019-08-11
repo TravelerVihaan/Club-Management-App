@@ -47,13 +47,13 @@
                         <td th:text="${absence.getAbsenceType().getAbsenceType()}"></td>
                         <td th:text="${absence.getAbsenceApprovalStatus().getStatus()}"></td>
                         <td>
-                            <form th:action="@{'/addword/'+${absence.getId()}+'/accept-absence'}" method="POST">
-                                <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                            <form th:action="@{'/absences/'+${absence.getId()}+'/accept-absence'}" method="POST">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
                             </form>
                         </td>
                         <td>
-                            <form th:action="@{'/addword/'+${absence.getId()}+'/reject-absence'}" method="POST">
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <form th:action="@{'/absences/'+${absence.getId()}+'/reject-absence'}" method="POST">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
                             </form>
                         </td>
                     </tr>
