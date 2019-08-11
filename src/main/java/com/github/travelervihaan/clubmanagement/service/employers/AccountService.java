@@ -47,7 +47,6 @@ public class AccountService {
         employee.setPassword(bCryptPasswordEncoder.encode(newPassword1));
         employeeService.saveUpdatedEmployee(employee);
         return PASSWORD_CHANGE_SUCCESS;
-
     }
 
     public String changeUserEmail(String username, String oldEmail, String newEmail1, String newEmail2){
