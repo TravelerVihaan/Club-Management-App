@@ -30,10 +30,22 @@ public class AbsenceStatusChangeService {
     @Transactional
     public void changeAbsenceStatus(long absenceId, String newStatus){
         Absence absence = absenceRepository.findById(absenceId).orElseThrow();
-        if(isAbsenceNotTooLong(absence)) {
+        if(isSickLeave(absence)){
             saveChangedStatusInDB(absence, newStatus);
-            employeeService.changeEmployeeVacationDays(absence);
+            return;
         }
+            if("accepted".equalsIgnoreCase(newStatus)) {
+                if (isAbsenceNotTooLong(absence)) {
+                    employeeService.changeEmployeeVacationDays(absence);
+                    saveChangedStatusInDB(absence, newStatus);
+            }else {
+                saveChangedStatusInDB(absence, "rejected");
+            }
+        }
+    }
+
+    private boolean isSickLeave(Absence absence){
+        return absence.getAbsenceType().getAbsenceType().equalsIgnoreCase("Sick leave");
     }
 
     public List<Absence> getAllAbsences(String username){
