@@ -89,7 +89,7 @@ public class EmployeeService {
         return employeeRepository.findAllByUsernameOrNameOrSurname(searchPattern,searchPattern,searchPattern);
     }
 
-    void saveUpdatedEmployee(Employee employee){
+    public void saveUpdatedEmployee(Employee employee){
         employeeRepository.save(employee);
     }
 
