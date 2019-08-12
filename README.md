@@ -4,6 +4,8 @@ Club Management Application
 It's an application to manage eployers of virtual music club.<br>
 I made this application to learn some web development features.
 It implements Spring Security and roles feature, mail senders, scheduled tasks, managing employers, their absences.
+<br><br>
+There aren't implemented some features like add new employee or interface to change settings and parameters connected with work and employers structure (CRUD operations to manage accounts, change contract types etc.) because it will be repeatable code. I made this application to train web programming skills and lot of things can be done better, or can be more expanded, but maybe in future I will come back to this project and refactor it.
 
 ### Used technologies
 Java 11<br>
