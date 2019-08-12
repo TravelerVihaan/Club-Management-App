@@ -27,3 +27,6 @@ You should create executable jar using maven. Just go to project directory and t
 
 You should have configured mail server to provide e-mail sending feature implemented in application. You can modify the configuration in ```application.properties```.<br>
 You also need working MySQL database to run application. Name of schema in application is configured to ```cm``` and needs to working on default MySQL port ```3306```.
+
+### How to run?
+Start MySQL server, and execute jar file then.
