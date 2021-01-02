@@ -1,7 +1,6 @@
 package com.github.travelervihaan.clubmanagement.model.absences;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

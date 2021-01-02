@@ -1,4 +1,4 @@
-package com.github.travelervihaan.clubmanagement.controller.employers;
+package com.github.travelervihaan.clubmanagement.controller.employees;
 
 import com.github.travelervihaan.clubmanagement.model.payrolls.Payroll;
 import com.github.travelervihaan.clubmanagement.service.payrolls.PayrollService;

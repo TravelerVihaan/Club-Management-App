@@ -1,6 +1,6 @@
 package com.github.travelervihaan.clubmanagement.controller;
 
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.employees.EmployeeService;
 import com.github.travelervihaan.clubmanagement.service.workdiagram.CommentService;
 import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
 import org.springframework.beans.factory.annotation.Autowired;

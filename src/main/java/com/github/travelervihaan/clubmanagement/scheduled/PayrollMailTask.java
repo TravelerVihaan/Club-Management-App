@@ -1,7 +1,7 @@
 package com.github.travelervihaan.clubmanagement.scheduled;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
+import com.github.travelervihaan.clubmanagement.service.employees.EmployeeService;
 import com.github.travelervihaan.clubmanagement.service.mails.PayrollMailService;
 import com.github.travelervihaan.clubmanagement.service.payrolls.PayrollService;
 import org.springframework.beans.factory.annotation.Autowired;

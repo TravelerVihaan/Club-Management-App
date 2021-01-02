@@ -1,6 +1,6 @@
-package com.github.travelervihaan.clubmanagement.repository.employers;
+package com.github.travelervihaan.clubmanagement.repository.employees;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Role;
+import com.github.travelervihaan.clubmanagement.model.employees.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

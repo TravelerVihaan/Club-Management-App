@@ -1,7 +1,7 @@
-package com.github.travelervihaan.clubmanagement.controller.employers;
+package com.github.travelervihaan.clubmanagement.controller.employees;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.service.employers.AddEmployeeService;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
+import com.github.travelervihaan.clubmanagement.service.employees.AddEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

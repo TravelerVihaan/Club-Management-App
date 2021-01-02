@@ -1,9 +1,7 @@
-package com.github.travelervihaan.clubmanagement.service.employers;
+package com.github.travelervihaan.clubmanagement.service.employees;
 
-import com.github.travelervihaan.clubmanagement.dto.EmployeeDto;
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
-import com.github.travelervihaan.clubmanagement.service.mappers.EmployeeDtoMapper;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
+import com.github.travelervihaan.clubmanagement.repository.employees.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package com.github.travelervihaan.clubmanagement.controller.employers;
+package com.github.travelervihaan.clubmanagement.controller.employees;
 
-import com.github.travelervihaan.clubmanagement.service.employers.AccountService;
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.employees.AccountService;
+import com.github.travelervihaan.clubmanagement.service.employees.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

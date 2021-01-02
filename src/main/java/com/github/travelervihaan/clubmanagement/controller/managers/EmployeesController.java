@@ -1,10 +1,9 @@
 package com.github.travelervihaan.clubmanagement.controller.managers;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.service.employers.ContractTypeService;
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
-import com.github.travelervihaan.clubmanagement.service.employers.JobTitleService;
-import com.github.travelervihaan.clubmanagement.service.workdiagram.WorkDayService;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
+import com.github.travelervihaan.clubmanagement.service.employees.ContractTypeService;
+import com.github.travelervihaan.clubmanagement.service.employees.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.employees.JobTitleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +13,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/employers")
-public class EmployersController {
+public class EmployeesController {
 
     private EmployeeService employeeService;
     private JobTitleService jobTitleService;
     private ContractTypeService contractTypeService;
 
     @Autowired
-    public EmployersController(EmployeeService employeeService, JobTitleService jobTitleService, ContractTypeService contractTypeService){
+    public EmployeesController(EmployeeService employeeService, JobTitleService jobTitleService, ContractTypeService contractTypeService){
         this.employeeService = employeeService;
         this.jobTitleService = jobTitleService;
         this.contractTypeService = contractTypeService;

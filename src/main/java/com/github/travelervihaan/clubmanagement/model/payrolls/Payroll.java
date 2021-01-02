@@ -1,6 +1,6 @@
 package com.github.travelervihaan.clubmanagement.model.payrolls;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

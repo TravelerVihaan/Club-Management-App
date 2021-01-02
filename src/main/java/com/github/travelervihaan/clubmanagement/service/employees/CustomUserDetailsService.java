@@ -1,7 +1,7 @@
-package com.github.travelervihaan.clubmanagement.service.employers;
+package com.github.travelervihaan.clubmanagement.service.employees;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.model.employers.Role;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,11 +27,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Employee employee = employeeService.getEmployeeByUsername(s).orElseThrow();
-        User userDetails = new User(
+        return new User(
                 employee.getUsername(),
                 employee.getPassword(),
                 convertAuthorities(employee.getRoles()));
-        return userDetails;
     }
 
     private Set<GrantedAuthority> convertAuthorities(Set<Role> userRoles) {

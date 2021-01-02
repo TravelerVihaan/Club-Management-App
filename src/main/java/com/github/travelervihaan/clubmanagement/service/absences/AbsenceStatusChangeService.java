@@ -2,7 +2,7 @@ package com.github.travelervihaan.clubmanagement.service.absences;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.employees.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,6 @@
 package com.github.travelervihaan.clubmanagement.service.mails;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -1,7 +1,7 @@
-package com.github.travelervihaan.clubmanagement.service.employers;
+package com.github.travelervihaan.clubmanagement.service.employees;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Role;
-import com.github.travelervihaan.clubmanagement.repository.employers.RoleRepository;
+import com.github.travelervihaan.clubmanagement.model.employees.Role;
+import com.github.travelervihaan.clubmanagement.repository.employees.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

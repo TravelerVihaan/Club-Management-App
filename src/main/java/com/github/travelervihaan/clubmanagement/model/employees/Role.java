@@ -1,4 +1,4 @@
-package com.github.travelervihaan.clubmanagement.model.employers;
+package com.github.travelervihaan.clubmanagement.model.employees;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

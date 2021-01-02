@@ -1,10 +1,9 @@
-package com.github.travelervihaan.clubmanagement.repository.employers;
+package com.github.travelervihaan.clubmanagement.repository.employees;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
 
 import java.time.LocalDate;
 import java.util.List;

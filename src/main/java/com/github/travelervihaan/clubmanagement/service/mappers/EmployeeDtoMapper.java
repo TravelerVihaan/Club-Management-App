@@ -1,12 +1,12 @@
 package com.github.travelervihaan.clubmanagement.service.mappers;
 
 import com.github.travelervihaan.clubmanagement.dto.EmployeeDto;
-import com.github.travelervihaan.clubmanagement.model.employers.ContractType;
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.model.employers.EmployeeDetails;
-import com.github.travelervihaan.clubmanagement.model.employers.JobTitle;
-import com.github.travelervihaan.clubmanagement.service.employers.ContractTypeService;
-import com.github.travelervihaan.clubmanagement.service.employers.JobTitleService;
+import com.github.travelervihaan.clubmanagement.model.employees.ContractType;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.EmployeeDetails;
+import com.github.travelervihaan.clubmanagement.model.employees.JobTitle;
+import com.github.travelervihaan.clubmanagement.service.employees.ContractTypeService;
+import com.github.travelervihaan.clubmanagement.service.employees.JobTitleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

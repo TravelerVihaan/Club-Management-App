@@ -1,7 +1,7 @@
-package com.github.travelervihaan.clubmanagement.service.employers;
+package com.github.travelervihaan.clubmanagement.service.employees;
 
-import com.github.travelervihaan.clubmanagement.model.employers.JobTitle;
-import com.github.travelervihaan.clubmanagement.repository.employers.JobTitleRepository;
+import com.github.travelervihaan.clubmanagement.model.employees.JobTitle;
+import com.github.travelervihaan.clubmanagement.repository.employees.JobTitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;

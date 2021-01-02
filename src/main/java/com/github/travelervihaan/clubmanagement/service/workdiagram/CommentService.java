@@ -2,7 +2,7 @@ package com.github.travelervihaan.clubmanagement.service.workdiagram;
 
 import com.github.travelervihaan.clubmanagement.model.workdiagram.Comment;
 import com.github.travelervihaan.clubmanagement.repository.workdiagram.CommentRepository;
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.employees.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

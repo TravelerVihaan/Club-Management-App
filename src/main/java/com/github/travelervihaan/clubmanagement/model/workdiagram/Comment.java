@@ -1,6 +1,6 @@
 package com.github.travelervihaan.clubmanagement.model.workdiagram;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

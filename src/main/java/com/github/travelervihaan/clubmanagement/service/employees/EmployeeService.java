@@ -1,13 +1,13 @@
-package com.github.travelervihaan.clubmanagement.service.employers;
+package com.github.travelervihaan.clubmanagement.service.employees;
 
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
-import com.github.travelervihaan.clubmanagement.model.employers.ContractType;
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
-import com.github.travelervihaan.clubmanagement.model.employers.JobTitle;
-import com.github.travelervihaan.clubmanagement.model.employers.Role;
+import com.github.travelervihaan.clubmanagement.model.employees.ContractType;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.JobTitle;
+import com.github.travelervihaan.clubmanagement.model.employees.Role;
 import com.github.travelervihaan.clubmanagement.repository.absences.AbsenceRepository;
-import com.github.travelervihaan.clubmanagement.repository.employers.EmployeeRepository;
-import com.github.travelervihaan.clubmanagement.repository.employers.RoleRepository;
+import com.github.travelervihaan.clubmanagement.repository.employees.EmployeeRepository;
+import com.github.travelervihaan.clubmanagement.repository.employees.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -95,11 +95,11 @@ public class EmployeeService {
 
     public void changeEmployeeVacationDays(Absence absence){
         Employee employee = absence.getEmployee();
-        Long vacationDays = ChronoUnit
+        long vacationDays = ChronoUnit
                 .DAYS
                 .between(absence.getAbsenceFromDay(),absence.getAbsenceToDay());
         employee.getEmployeeDetails().setAvailableVacationDays(
-                employee.getEmployeeDetails().getAvailableVacationDays()-vacationDays.intValue());
+                employee.getEmployeeDetails().getAvailableVacationDays()- (int) vacationDays);
         employeeRepository.save(employee);
     }
 

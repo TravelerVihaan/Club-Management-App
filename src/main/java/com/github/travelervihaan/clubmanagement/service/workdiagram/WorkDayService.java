@@ -1,6 +1,6 @@
 package com.github.travelervihaan.clubmanagement.service.workdiagram;
 
-import com.github.travelervihaan.clubmanagement.model.employers.Employee;
+import com.github.travelervihaan.clubmanagement.model.employees.Employee;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDay;
 import com.github.travelervihaan.clubmanagement.model.workdiagram.WorkDayImportance;
 import com.github.travelervihaan.clubmanagement.repository.workdiagram.WorkDayRepository;

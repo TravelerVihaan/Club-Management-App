@@ -3,7 +3,7 @@ package com.github.travelervihaan.clubmanagement.service.mappers;
 import com.github.travelervihaan.clubmanagement.dto.AbsenceDto;
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
 import com.github.travelervihaan.clubmanagement.service.absences.AbsenceTypeService;
-import com.github.travelervihaan.clubmanagement.service.employers.EmployeeService;
+import com.github.travelervihaan.clubmanagement.service.employees.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

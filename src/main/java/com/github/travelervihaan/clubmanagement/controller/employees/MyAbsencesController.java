@@ -1,4 +1,4 @@
-package com.github.travelervihaan.clubmanagement.controller.employers;
+package com.github.travelervihaan.clubmanagement.controller.employees;
 
 import com.github.travelervihaan.clubmanagement.dto.AbsenceDto;
 import com.github.travelervihaan.clubmanagement.model.absences.Absence;
